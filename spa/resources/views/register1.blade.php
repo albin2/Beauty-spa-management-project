@@ -44,7 +44,7 @@
 	
 	<div class="limiter">
 		<div class="container-login100">
-			<div class="login100-more" style="background-image: url('ureg/images/bg-01.jpg');"></div>
+			<div class="login100-more" style="background-image: url('ureg/images/bg.jpg');"></div>
 
 			<div class="wrap-login100 p-l-50 p-r-50 p-t-72 p-b-50">
 				<form class="login100-form validate-form oh-autoval-form" onsubmit="return"  method="POST" enctype="multipart/form-data" action="{{ route('registerTo') }}">
@@ -64,26 +64,7 @@
 						<span class="focus-input100"></span>
 					</div>
 
-					<div class="wrap-input100 validate-input" data-validate = "Date is required">
-						<span class="label-input100">DOB</span>
-						<input class="input100 av-required" type="date" name="DOB" >
-						<span class="focus-input100"></span>
-					</div>
-
-					<div class="wrap-input100 validate-input" data-validate = " please enter the city">
-						<span class="label-input100 ">City</span>
-						<input class="input100 av-required" type="text" name="city" >
-						<span class="focus-input100"></span>
-					</div>
-
-					<div class="wrap-input100 validate-input" data-validate = "please select the gender">
-						<span class="label-input100">Gender</span>
-						<select name="gender">
-                        <option value="volvo">male</option>
-                        <option value="saab">female</option>
-                        </select>
-						<span class="focus-input100"></span>
-					</div>
+					
                     <div class="wrap-input100 validate-input" data-validate = " please enter the contact number">
 						<span class="label-input100 ">Contact number</span>
 						<input class="input100 av-number" av-message="enter a valid phone number" type="tel" name="contact" >

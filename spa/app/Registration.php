@@ -9,7 +9,7 @@ class Registration extends Model
     protected $table = 'regist';
 
     protected $fillable = [
-        'fname', 'lname', 'DOB','city','gender','contact','proimg',
+        'fname', 'lname','contact','proimg',
     ];
 
 

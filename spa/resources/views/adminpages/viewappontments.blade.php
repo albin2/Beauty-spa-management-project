@@ -22,9 +22,9 @@
             <center><h3><b><class="box-title">BOOKING DETAILS</b></h3></center>
             </div>
             <!-- /.box-header -->
-            <table id="example2" class="table table-bordered table-hover">
+            <table id="example2" class="table table-dark table-bordered table-hover ">
                 <thead>
-                <tr>
+                <tr clsss="table-dark">
                   <th>USER NAME</th>
                   <th>BOOOKING DATE</th>
                   <th>BOOKING TIME</th>

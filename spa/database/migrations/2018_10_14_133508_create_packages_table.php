@@ -19,6 +19,8 @@ class CreatePackagesTable extends Migration
             $table->string('servename');
             $table->string('packname');
             $table->string('packdecr');
+            $table->string('packfor');
+            $table->string('benafits');
             $table->string('timed');
             $table->string('price');
             $table->string('image');

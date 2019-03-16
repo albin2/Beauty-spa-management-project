@@ -17,9 +17,6 @@ class CreateRegistTable extends Migration
             $table->integer('user_id')->index();
             $table->string('fname');
             $table->string('lname');
-            $table->date('DOB');
-            $table->string('city');
-            $table->string('gender');
             $table->string('contact');
             $table->string('proimg');
             $table->timestamps();

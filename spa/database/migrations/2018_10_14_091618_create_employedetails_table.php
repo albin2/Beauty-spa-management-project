@@ -19,6 +19,9 @@ class CreateEmployedetailsTable extends Migration
             $table->string('lname');
             $table->date('dob');
             $table->string('city');
+            $table->string('qualification');
+            $table->string('bio');
+            $table->string('experience');
             $table->string('gender');
             $table->string('number');
             $table->string('image');

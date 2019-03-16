@@ -17,6 +17,7 @@ Route::get('/', function () {
 
 Auth::routes();
 
+
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/_register', function () {
@@ -34,34 +35,12 @@ Route::post('/registerTo', 'user\UserController@regStep')->name('registerTo');
 
 /*admin routes
 __________________ */
-Route::view('/adminhome', 'adminhome');
-Route::post('/admin/savePackages','AdminController@savePackages')->name('savePackages');
-Route::post('/admin/saveEmployee','AdminController@saveEmployee')->name('saveEmployee');
-Route::post('/admin/addEmpRole', 'AdminController@addEmpRole')->name('addEmpRole');
-Route::post('/admin/addServices', 'AdminController@addServices')->name('addServices');
-Route::post('/admin/del/user', 'AdminController@delUser')->name('delUser');
-Route::post('/admin/del/services', 'AdminController@delServices')->name('delServices');
-Route::post('/admin/del/packages', 'AdminController@delPackages')->name('delPackages');
-Route::post('/admin/del/Employee', 'AdminController@delEmployees')->name('delEmployees');
-Route::post('/admin/rej/Empleave', 'AdminController@rejleave')->name('rejleave');
-Route::post('/admin/apr/Empleaves', 'AdminController@aprleave')->name('aprleave');
 
 
 
 //menu_redirect
 Route::view('/admin/viewEmpRole', 'adminpages.addEmpRole')->name('viewEmpRole'); //viewEmpRole
 Route::view('/admin/viewServices', 'adminpages.addServices')->name('viewServices');
-Route::get('/admin/viewEmployee', 'AdminController@viewEmployeeForm')->name('viewEmployee');
-Route::get('/admin/viewPackage', 'AdminController@viewPackageForm')->name('viewPackage');
-Route::get('/admin/viewfeedback', 'AdminController@viewFeedbackform')->name('viewFeedback');//view feedback
-Route::post('/admin/del/feedback', 'AdminController@delfeedback')->name('deletefeedback');//REMOVE FEEEDBACK
-Route::get('/admin/viewappointmentss', 'AdminController@viewAppointment')->name('viewappoi');//view appointments
-
-Route::get('/admin/list/users','AdminController@viewUsers')->name('listusers');
-Route::get('/admin/list/services','AdminController@viewServices')->name('listservices');
-Route::get('/admin/list/packages','AdminController@viewPackages')->name('listpackages');
-Route::get('/admin/list/employees','AdminController@viewEmployees')->name('listemployees');
-Route::get('/admin/view/empleaves','AdminController@viewLeaves')->name('listempleaves');
 
 
 //user routs
@@ -98,3 +77,65 @@ Route::get('/employee/viewappointments', 'EmployeeController@viewAppointment')->
 
 // Route::view('/page', 'page');
 
+
+Route::get('/send/email', 'HomeController@mail'); ;//mail emp add
+
+
+
+//admin
+Route::middleware(['disableadmin'])->group(function (){
+         Route::post('/admin/savePackages','AdminController@savePackages')->name('savePackages');
+    Route::post('/admin/saveEmployee','AdminController@saveEmployee')->name('saveEmployee');
+    Route::post('/admin/addEmpRole', 'AdminController@addEmpRole')->name('addEmpRole');
+    Route::post('/admin/addServices', 'AdminController@addServices')->name('addServices');
+    Route::post('/admin/del/user', 'AdminController@delUser')->name('delUser');
+    Route::post('/admin/del/services', 'AdminController@delServices')->name('delServices');
+    Route::post('/admin/del/packages', 'AdminController@delPackages')->name('delPackages');
+    Route::post('/admin/del/Employee', 'AdminController@delEmployees')->name('delEmployees');
+    Route::post('/admin/rej/Empleave', 'AdminController@rejleave')->name('rejleave');
+    Route::post('/admin/apr/Empleaves', 'AdminController@aprleave')->name('aprleave');
+
+    ///PRODUCT
+
+//add product categeory
+
+Route::view('/admin/viewcategeoryform', 'adminpages.addProductCategeory')->name('addProductCategeory');
+Route::post('/admin/addproductcaregeory', 'AdminController@addproductcategeory')->name('ProductCategeory');
+
+// add product
+Route::get('/admin/viewProduct', 'AdminController@viewProductForm')->name('viewProduct');
+Route::post('/admin/addproductdetails', 'AdminController@saveProduct')->name('Product');
+
+// product view
+
+Route::get('/admin/list/products','AdminController@viewProducts')->name('listproducts');
+Route::post('/admin/list/productsDetails','AdminController@viewProductsDetail')->name('listproductsDetail'); //detail
+
+
+// delete product
+
+Route::post('/admin/del/products', 'AdminController@delProducts')->name('delProducts');
+
+
+
+//..........................................PACKAGE...............................................................
+
+Route::post('/admin/list/packageDetails','AdminController@viewPackageDetail')->name('listpackageDetail'); //detail
+
+
+//----------------------------------------------------------------------------------------------------------
+Route::get('/admin/viewEmployee', 'AdminController@viewEmployeeForm')->name('viewEmployee');
+Route::get('/admin/viewPackage', 'AdminController@viewPackageForm')->name('viewPackage');
+Route::get('/admin/viewfeedback', 'AdminController@viewFeedbackform')->name('viewFeedback');//view feedback
+Route::post('/admin/del/feedback', 'AdminController@delfeedback')->name('deletefeedback');//REMOVE FEEEDBACK
+Route::get('/admin/viewappointmentss', 'AdminController@viewAppointment')->name('viewappoi');//view appointments
+
+Route::get('/admin/list/users','AdminController@viewUsers')->name('listusers');
+Route::get('/admin/list/services','AdminController@viewServices')->name('listservices');
+Route::get('/admin/list/packages','AdminController@viewPackages')->name('listpackages');
+Route::get('/admin/list/employees','AdminController@viewEmployees')->name('listemployees');
+Route::get('/admin/view/empleaves','AdminController@viewLeaves')->name('listempleaves');
+Route::view('/adminhome', 'adminhome');
+    
+
+});

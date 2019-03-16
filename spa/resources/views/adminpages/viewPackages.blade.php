@@ -49,7 +49,14 @@
                     <form action="{{ route('delPackages')}}" method="post">
                       @csrf
                         <input hidden name="uid" value="{{ $row['id'] }}">
-                        <button type="submit" name="delPackages" class="btn btn-primary" >Remove</button>
+                        <button type="submit" name="delPackages" class="btn btn-primary" >REMOVE</button>
+                    </form>
+                  </td>
+                  <td>
+                    <form action="{{ route('listpackageDetail')}}" method="post">
+                      @csrf
+                        <input hidden name="id" value="{{ $row['id'] }}">
+                        <button type="submit" name="delPackages" class="btn btn-primary" >VIEW MORE</button>
                     </form>
                   </td>
                   </tr>

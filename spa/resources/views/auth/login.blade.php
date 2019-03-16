@@ -2,169 +2,111 @@
 
 @section('content')
 <!DOCTYPE html>
-<html lang="en">
+<!--
+	Author: W3layouts
+	Author URL: http://w3layouts.com
+	License: Creative Commons Attribution 3.0 Unported
+	License URL: http://creativecommons.org/licenses/by/3.0/
+-->
+<!DOCTYPE html>
+<html lang="zxx">
+<!-- Head -->
+
 <head>
-	<title>Login</title>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-<!--===============================================================================================-->	
-	<link rel="icon" type="image/png" href="logtem/images/icons/favicon.ico"/>
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="logtem/vendor/bootstrap/css/bootstrap.min.css">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="logtem/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="logtem/fonts/iconic/css/material-design-iconic-font.min.css">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="logtem/vendor/animate/animate.css">
-<!--===============================================================================================-->	
-	<link rel="stylesheet" type="text/css" href="logtem/vendor/css-hamburgers/hamburgers.min.css">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="logtem/vendor/animsition/css/animsition.min.css">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="logtem/vendor/select2/select2.min.css">
-<!--===============================================================================================-->	
-	<link rel="stylesheet" type="text/css" href="logtem/vendor/daterangepicker/daterangepicker.css">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="logtem/css/util.css">
-	<link rel="stylesheet" type="text/css" href="logtem/css/main.css">
-<!--===============================================================================================-->
-</head>
-<body>
+    <title>Key Login Form Flat Responsive Widget Template :: W3layouts</title>
+    <!-- Meta-Tags -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8">
+    <meta name="keywords" content="Key Login Form a Responsive Web Template, Bootstrap Web Templates, Flat Web Templates, Android Compatible Web Template, Smartphone Compatible Web Template, Free Webdesigns for Nokia, Samsung, LG, Sony Ericsson, Motorola Web Design">
+    <script>
+        addEventListener("load", function () {
+            setTimeout(hideURLbar, 0);
+        }, false);
+
+        function hideURLbar() {
+            window.scrollTo(0, 1);
+        }
+    </script>
+    <!-- //Meta-Tags -->
+    <!-- Index-Page-CSS -->
+    <link rel="stylesheet" href="/loggintheam/css/style.css" type="text/css" media="all">
+    <!-- //Custom-Stylesheet-Links -->
+    <!--fonts -->
+    <!-- //fonts -->
+    <link rel="stylesheet" href="/logginthem/css/font-awesome.min.css" type="text/css" media="all">
+    <!-- //Font-Awesome-File-Links -->
 	
-	<div class="limiter">
-		<div class="container-login100" style="background-image: url('logtem/images/bg-01.jpg');">
-			<div class="wrap-login100">
-				<form class="login100-form validate-form oh-autoval-form" method="POST" action="{{ route('login') }}">
-                        @csrf
-					<span class="login100-form-logo">
-						<i class="zmdi zmdi-landscape"></i>
-					</span>
-<!-- 
-					<span class="login100-form-title p-b-34 p-t-27">
-						Log in
-					</span> -->
+	<!-- Google fonts -->
+	<link href="//fonts.googleapis.com/css?family=Quattrocento+Sans:400,400i,700,700i" rel="stylesheet">
+	<link href="//fonts.googleapis.com/css?family=Mukta:200,300,400,500,600,700,800" rel="stylesheet">
+	<!-- Google fonts -->
 
-					<div class="wrap-input100 validate-input" data-validate = "Enter username">
-						<input class="input100 " type="text" name="email" placeholder="email">
-						<span class="focus-input100" data-placeholder="&#xf207;"></span>
-					</div>
+</head>
+<!-- //Head -->
+<!-- Body -->
 
-					<div class="wrap-input100 validate-input" data-validate="Enter password">
-						<input class="input100" type="password" name="password" placeholder="Password">
-						<span class="focus-input100" data-placeholder="&#xf191;"></span>
-					</div>
+<body>
 
-					<div class="contact100-form-checkbox">
-						<input class="input-checkbox100" id="ckb1" type="checkbox" name="remember-me">
-						<label class="label-checkbox100" for="ckb1">
-							Remember me
-						</label>
+<section class="main">
+	<div class="layer">
+		
+		<div class="bottom-grid">
+			<div class="logo">
+				<h1> <a href="index.html"><span class="fa fa-key"></span> </a></h1>
+			</div>
+			<div class="links">
+			
+			</div>
+		</div>
+		<div class="content-w3ls">
+			<div class="text-center icon">
+				<span class="fa fa-html5"></span>
+			</div>
+			<div class="content-bottom">
+				<form  method="POST" action="{{ route('login') }}">
+					@csrf
+					<div class="field-group">
+						<span class="fa fa-user" aria-hidden="true"></span>
+						<div class="wthree-field">
+							<input type="text" name="email" placeholder="email"  required>
+						</div>
 					</div>
-
-					<div class="container-login100-form-btn">
-						<button class="login100-form-btn">
-							Login
-						</button>
+					<div class="field-group">
+						<span class="fa fa-lock" aria-hidden="true"></span>
+						<div class="wthree-field">
+							<input type="password" name="password" placeholder="Password">
+						</div>
 					</div>
-
-					<div class="text-center">
-                    <a class="btn btn-link" href="{{ route('password.request') }}">
-                    {{ __('Forgot Your Password?') }}
-                </a>
+					<div class="wthree-field">
+						<button type="submit" class="btn">Get Started</button>
 					</div>
+					<ul class="list-login">
+						<li class="switch-agileits">
+							<label class="switch">
+								<input type="checkbox">
+								<span class="slider round"></span>
+								keep Logged in
+							</label>
+						</li>
+						<li>
+							<a href="{{ route('password.request') }}">
+                    {{ __('Forgot Your Password?') }} </a>
+						</li>
+						<li class="clearfix"></li>
+					</ul>
+					<ul class="list-login-bottom">
+						
+						<li class="clearfix"></li>
+					</ul>
 				</form>
 			</div>
 		</div>
-	</div>
-	
-
-	<div id="dropDownSelect1"></div>
-	
-<!--===============================================================================================-->
-	<script src="logtem/vendor/jquery/jquery-3.2.1.min.js"></script>
-<!--===============================================================================================-->
-	<script src="logtem/vendor/animsition/js/animsition.min.js"></script>
-<!--===============================================================================================-->
-	<script src="logtem/vendor/bootstrap/js/popper.js"></script>
-	<script src="logtem/vendor/bootstrap/js/bootstrap.min.js"></script>
-<!--===============================================================================================-->
-	<script src="logtem/vendor/select2/select2.min.js"></script>
-<!--===============================================================================================-->
-	<script src="logtem/vendor/daterangepicker/moment.min.js"></script>
-	<script src="logtem/vendor/daterangepicker/daterangepicker.js"></script>
-<!--===============================================================================================-->
-	<script src="logtem/vendor/countdowntime/countdowntime.js"></script>
-<!--===============================================================================================-->
-	<script src="logtem/js/main.js"></script>
+		
+</section>
 
 </body>
+<!-- //Body -->
 </html>
-<!-- <div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Login') }}</div>
 
-                <div class="card-body">
-                    <form method="POST" action="{{ route('login') }}">
-                        @csrf
 
-                        <div class="form-group row">
-                            <label for="email" class="col-sm-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required autofocus>
-
-                                @if ($errors->has('email'))
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('email') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required>
-
-                                @if ($errors->has('password'))
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('password') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <div class="col-md-6 offset-md-4">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
-
-                                    <label class="form-check-label" for="remember">
-                                        {{ __('Remember Me') }}
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="form-group row mb-0">
-                            <div class="col-md-8 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Login') }}
-                                </button>
-
-                                <a class="btn btn-link" href="{{ route('password.request') }}">
-                                    {{ __('Forgot Your Password?') }}
-                                </a>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-</div> -->
 @endsection

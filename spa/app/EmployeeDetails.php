@@ -10,6 +10,6 @@ class EmployeeDetails extends Model
     protected $table = 'employedetails';
     
         protected $fillable = [
-            'id', 'fname', 'lname', 'dob','city','gender','number','image','Role',
+            'id', 'fname', 'lname', 'dob','qualification','experience','bio','city','gender','number','image','Role',
         ];
 }
