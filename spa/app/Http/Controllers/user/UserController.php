@@ -33,6 +33,15 @@ class UserController extends Controller
         return redirect('/home');
 
     }
+
+    public function viewSeviceuser($id)
+    {
+        $data=Service::all();
+        return view('userpages.userViewServices',['data'=>$data]);
+        //return $packages;
+    }   
+    
+
     public function viewPackagesuser($id)
     {
         $packages=Package::where('servename', $id)->get();

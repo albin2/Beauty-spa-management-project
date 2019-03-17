@@ -1,25 +1,19 @@
-@extends('layouts.user') @section('content')
-<div class="container">
-<h5><i>Welcome</i></h5>
-<h4><i>Best Beauty And Spa</i> <span class="line"></span>
-    </h4>
-  
-<video autoplay loop id="video-background" poster="" muted>
-  <source src="css/honey.webm" type="video/webm">
-</video>
-        <!--Start of Tawk.to Script-->
-<script type="text/javascript">
-var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
-(function(){
-var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
-s1.async=true;
-s1.src='https://embed.tawk.to/5bf2b74379ed6453ccaa14f3/default';
-s1.charset='UTF-8';
-s1.setAttribute('crossorigin','*');
-s0.parentNode.insertBefore(s1,s0);
-})();
-</script>
-<!--End of Tawk.to Script-->
-    </div>
-</div>
+@extends('layouts.user') 
+@section('content')
+
+
+<section class="jumbotron-custom jumbotron-custom-1 bg-gray-base bg-image text-center" style="background-image: url(theam/images/bg-image-2.jpg);">
+              <div class="jumbotron-custom-content">
+                <div class="shell">
+                  <div class="range range-sm-center">
+                    <div class="cell-sm-10 cell-lg-9"><a class="brand-big" href="index.html"><img src="theam/images/logo-md-white-136x160.png" alt="" width="136" height="160"></a>
+                      <p class="caption">The Best</p>
+                      <h1>Masters of the Blade</h1>
+                      <p class="large">At Barbershop, you will find an atmosphere of old school sophistication with modern amenities.We cater to gentlemen on the go. So stop in on your lunch break to get an old-fashioned straight razor shave or a perfect haircut.</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+    </section>
+
 @endsection

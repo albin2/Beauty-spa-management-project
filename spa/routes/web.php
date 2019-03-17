@@ -44,6 +44,9 @@ Route::view('/admin/viewServices', 'adminpages.addServices')->name('viewServices
 
 
 //user routs
+Route::post('/user/view/service/spa','user\UserController@viewSeviceuser')->name('viewSpaServices');
+
+
 Route::get('/user/view/service/{id}','user\UserController@viewPackagesuser')->name('service-details-user');
 
 Route::post('/user/view/package1','user\UserController@viewuserEmployees')->name('userEmployees');
