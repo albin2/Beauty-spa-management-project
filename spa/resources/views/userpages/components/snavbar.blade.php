@@ -27,12 +27,10 @@
                             <li><a href="contacts-1.html">Contacts 1</a></li>
                             <li><a href="contacts-2.html">Contacts 2</a></li>
                           </ul>
-              
                           <p class="rd-megamenu-header"><a href="services.html">Services</a></p>
                         </li>
                         <li>
                           <p class="rd-megamenu-header">Book</p>
-                          
                           <ul class="rd-megamenu-list">
                             <li><a href="step-1.html">Step 1</a></li>
                             <li><a href="step-2.html">Step 2</a></li>
@@ -115,12 +113,6 @@
                         <li><a href="checkout.html">Checkout</a>
                         </li>
                       </ul>
-                    </li>
-                    <li> 
-                    <a href="{{ route('userEmployeessp') }}">experts</a>
-                    </li>
-                    <li> 
-                    <a href="{{ route('viewSpaaServices') }}">spa services</a>
                     </li>
                     <li><a href="#">Contacts</a>
                       <ul class="rd-navbar-dropdown">

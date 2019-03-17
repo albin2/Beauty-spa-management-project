@@ -34,7 +34,7 @@ class UserController extends Controller
 
     }
 
-    public function viewSeviceuser($id)
+    public function viewSeviceuser()
     {
         $data=Service::all();
         return view('userpages.userViewServices',['data'=>$data]);
@@ -42,9 +42,10 @@ class UserController extends Controller
     }   
     
 
-    public function viewPackagesuser($id)
+    public function viewPackagesuser(Request $request)
     {
-        $packages=Package::where('servename', $id)->get();
+        // return $request;
+        $packages=Package::where('servename', $request->pid)->get();
         $data=Service::all();
         return view('userpages.uviewPackages',['data'=>$data,'pack'=>$packages]);
         //return $packages;
