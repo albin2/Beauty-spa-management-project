@@ -203,7 +203,7 @@ public function delProducts(Request $request)
         $imgPath = "";
         if ($request->hasFile('image') && $request->file('image')->isValid()) {
             $image = $request->file('image');
-            $imgPath = $image->store('images/emp/pack');
+            $imgPath = $image->store('public/images/emp/pack');
 
 
             $package = $request->except('image');

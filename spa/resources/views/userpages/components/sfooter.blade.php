@@ -3,7 +3,7 @@
                 <div class="range range-xs-center">
                   <div class="cell-lg-10"><a class="brand" href="index.html"><img src="/theam/images/logo-default-199x36.png" alt="" width="199" height="36"/></a>
                     <div class="text-highlighted-wrap">
-                      <p class="text-highlighted">Barbershop is a No.1 place to have a men’s haircut in San Francisco. Here you can get luxury barber experience at a reasonable price.</p>
+                      <p class="text-highlighted">PAPAYA is a No.1 place to have a Beauty and Spa servces in Kerala. Here you can get luxury Beauty and Spa experience at a reasonable price.</p>
                     </div>
                     <ul class="footer-navigation footer-navigation-horizontal">
                       <li><a href="index.html">Home</a></li>
@@ -24,4 +24,3 @@
                 </div>
               </div>
             </footer>
-          </div>

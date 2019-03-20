@@ -1,4 +1,4 @@
-@extends('layouts.user') @section('content')
+@extends('layouts.service') @section('content')
 <div class="container">
     <div class="row justify-content-center my-5">
  <div class="box-header">
@@ -45,6 +45,8 @@
             </div>
         </div>
     </div>
+</div>
+</div>
 </div>
 </div>
 @endsection

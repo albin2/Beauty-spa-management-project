@@ -23,7 +23,7 @@
                     <div class="page-header-left"><a class="brand" href="index.html">
                             <div class="brand-logo-default"><img src="{{ asset('theam/images/logo-default-199x36.png') }}" alt="" width="199" height="36" />
                             </div>
-                            <div class="brand-logo-white"><img src="{{ asset('theam/images/logo-white-200x36.png') }}" alt="" width="200" height="36" />
+                            <div class="brand-logo-white"><img src="{{ asset('theam/images/logo-default-199x36.png') }}" alt="" width="200" height="36" />
                             </div>
                         </a></div>
                     <div class="page-header-right">
@@ -44,7 +44,7 @@
 
                     @yield('content')
 
-                    @include('userpages.components.footer')
+                    @include('userpages.components.sfooter')
                 </div>
                 <div id="perspective-content-overlay"></div>
             </div>

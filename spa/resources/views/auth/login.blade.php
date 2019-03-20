@@ -13,7 +13,7 @@
 <!-- Head -->
 
 <head>
-    <title>Key Login Form Flat Responsive Widget Template :: W3layouts</title>
+    <title>LOGIN PAPAYA</title>
     <!-- Meta-Tags -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta charset="utf-8">
@@ -78,7 +78,7 @@
 						</div>
 					</div>
 					<div class="wthree-field">
-						<button type="submit" class="btn">Get Started</button>
+						<button type="submit" class="btn">LOGIN</button>
 					</div>
 					<ul class="list-login">
 						<li class="switch-agileits">

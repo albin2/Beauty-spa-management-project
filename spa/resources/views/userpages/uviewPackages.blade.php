@@ -42,7 +42,7 @@
                     </div>
                     <div class="box-service-text">
                       <p><b>Package For:</b> {{ $row->packfor }}</p>
-                      <p> {{ $row->packfor }}</p>
+                      <p> {{ $row->packdecr }}</p>
                       <p><b>Package Specialities:</b> {{ $row->benafits }}</p>
                       
                     </div>
@@ -55,6 +55,7 @@
                 </article>
               </div>
             </section>
+</div>
             @endforeach
 
             @endsection

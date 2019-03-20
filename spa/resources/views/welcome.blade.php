@@ -24,7 +24,7 @@
             <div class="page-header-left"><a class="brand" href="index.html">
                 <div class="brand-logo-default"><img src="theam/images/logo-default-199x36.png" alt="" width="199" height="36"/>
                 </div>
-                <div class="brand-logo-white"><img src="theam/images/logomy.png" alt="" width="200" height="36"/>
+                <div class="brand-logo-white"><img src="theam/images/papaya2.png" alt="" width="200" height="36"/>
                 </div></a></div>
             <div class="page-header-right">
               <div class="booking-control"><a class="btn btn-xs btn-circle btn-primary"  href="{{ route('login') }}">Login</a></div>
@@ -319,7 +319,7 @@
                     <div class="box-contacts-col text-center text-sm-left">
                       <div class="box-contacts-block">
                         <h3>Address</h3>
-                        <address>123 Street W, Seattle WA 99999 United States</address>
+                        <address>TRAFFIC JUNCTION NEAR MARIYA HOTEL PULPALLY KERALA</address>
                       </div>
                       <div class="divider divider-nebula"></div>
                       <div class="box-contacts-block text-center text-sm-left">

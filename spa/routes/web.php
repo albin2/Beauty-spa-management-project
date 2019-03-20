@@ -15,7 +15,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Auth::routes();
+Auth::routes(['verify'=>true]);
 
 
 Route::get('/home', 'HomeController@index')->name('home');
@@ -48,7 +48,7 @@ Route::get('/user/spaservice/view','user\UserController@viewSeviceuser')->name('
 
 
 //Route::post('/user/view/ServiceToPackage','user\UserController@viewuserEmployees')->name('userEmployees');
-
+Route::get('/user/view/service/{id}','user\UserController@viewPackagesuser')->name('service-details-user');
 Route::post('/user/view/service','user\UserController@viewPackagesuser')->name('userServiceToPackage');
 
 Route::post('/user/view/package1','user\UserController@viewuserEmployees')->name('userEmployees');
