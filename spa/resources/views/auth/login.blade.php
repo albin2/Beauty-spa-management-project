@@ -60,7 +60,7 @@
 		</div>
 		<div class="content-w3ls">
 			<div class="text-center icon">
-				<span class="fa fa-html5"></span>
+				<span class="fa fa-html5">LOGIN</span>
 			</div>
 			<div class="content-bottom">
 				<form  method="POST" action="{{ route('login') }}">

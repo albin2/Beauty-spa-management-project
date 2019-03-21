@@ -237,6 +237,7 @@ public function delProducts(Request $request)
     public function viewUsers()
     {
         $data = Registration::all();
+        
         return view('adminpages.viewUsers', ['data' => $data]);
     }
 
@@ -246,7 +247,7 @@ public function delProducts(Request $request)
         $data->delete();
 
         $user = User::find($request->uid);
-        $data->delete();
+        $user->delete();
 
         $data = Registration::all();
         return view('adminpages.viewUsers', ['data' => $data, 'info' => 'User Removed']);

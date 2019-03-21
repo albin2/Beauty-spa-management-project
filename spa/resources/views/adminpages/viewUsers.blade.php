@@ -32,20 +32,22 @@
               <table id="example2" class="table table-bordered table-hover">
                 <thead>
                 <tr>
-                  <th>NAME</th>
-                  <th>DOB</th>
+                  <th>FIRST NAME</th>
+                  <th>LAST NMAE</th>
                   <th>CONTACT NUMBER</th>
-                  <th>CITY</th>
+                  
                   <th>*</th>
                 </tr>
                 </thead>
                 <tbody>
                   @foreach($data as $row)
+
+                  
                   <tr>
                   <td>{{ $row['fname'] }}</td>
-                  <td>{{ $row['DOB'] }}</td>
+                  <td>{{ $row['lname'] }}</td>
                   <td>{{ $row['contact'] }}</td>
-                  <td>{{ $row['city'] }}</td>
+                  
                   <td>
                     <form action="{{ route('delUser')}}" method="post">
                       @csrf

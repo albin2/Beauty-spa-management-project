@@ -33,8 +33,8 @@
                 <tr>
                   <th>PACKAGE NAME</th>
                   <th>PRICE</th>
-                  <th>DURATION</th>
-                  <th>DISCRIPTION(Minutes)</th>
+                  <th>TIME DURATION(Minutes)</th>
+                  <th>DISCRIPTION</th>
                   <th>*</th>
                 </tr>
                 </thead>

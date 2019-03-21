@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\user;
+
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -19,7 +20,7 @@ class UserController extends Controller
 {
     public function regStep(Request $request)
     {
-       
+
         // $reg = new Registration();
         // $reg
         $imgPath = "";
@@ -31,67 +32,66 @@ class UserController extends Controller
         $profile->proimg = $imgPath;
         Auth::user()->Registration()->save($profile);
         return redirect('/home');
-
     }
 
     public function viewSeviceuser()
     {
-        $data=Service::all();
-        return view('userpages.userViewServices',['data'=>$data]);
+        $data = Service::all();
+        return view('userpages.userViewServices', ['data' => $data]);
         //return $packages;
-    }   
-    
+    }
+
 
     public function viewPackagesuser(Request $request)
     {
         // return $request;
-        $packages=Package::where('servename', $request->pid)->get();
-        $data=Service::all();
-        return view('userpages.uviewPackages',['data'=>$data,'pack'=>$packages]);
+        $packages = Package::where('servename', $request->pid)->get();
+        $data = Service::all();
+        return view('userpages.uviewPackages', ['data' => $data, 'pack' => $packages]);
         //return $packages;
     }
     public function viewuserEmployees(Request $request)
     {
-    $data=Service::all();
-    //$empl=EmployeeDetails::all();
-    // return $request->all();
-    $empl=EmployeeDetails::where('Role', $request->sid)->get();
-    //$empl= DB::table('employedetails', 'Role')->select('employedetails.*', 'Role.*' )->join('role', 'employedetails.Role', '=', 'role.id')->get();
-    // return $empl;
-    $pack=Package::where('id',$request->pid)->get();
-    return view('userpages.uviewEmployees',['data'=>$data,'empl'=>$empl,'pack'=>$pack,]);
+        $data = Service::all();
+        //$empl=EmployeeDetails::all();
+        // return $request->all();
+        $empl = EmployeeDetails::where('Role', $request->sid)->get();
+        //$empl= DB::table('employedetails', 'Role')->select('employedetails.*', 'Role.*' )->join('role', 'employedetails.Role', '=', 'role.id')->get();
+        // return $empl;
+        $pack = Package::where('id', $request->pid)->get();
+        return view('userpages.uviewEmployees', ['data' => $data, 'empl' => $empl, 'pack' => $pack, ]);
     }
 
     public function viewuserEmployeessp(Request $request)
     {
-        $data=Service::all();
+        $data = Service::all();
         //$empl=EmployeeDetails::all();
         // return $request->all();
-        $empl=EmployeeDetails::all();
+        $empl = EmployeeDetails::all();
         //$empl= DB::table('employedetails', 'Role')->select('employedetails.*', 'Role.*' )->join('role', 'employedetails.Role', '=', 'role.id')->get();
         // return $empl;
-        $pack=Package::all();
-        return view('userpages.spacilists',['data'=>$data,'empl'=>$empl,'pack'=>$pack,]);
+        $pack = Package::all();
+        return view('userpages.spacilists', ['data' => $data, 'empl' => $empl, 'pack' => $pack, ]);
     }
 
 
-        
+
 
     public function viewdate(Request $request)
     {
-        session(['eid'=> $request->eid]);
-        session(['pid'=> $request->pid]);
-        $data=Service::all();
-        $pack=Package::where('id',$request->id)->get();
-        $empl=EmployeeDetails::where('Role', $request->id)->get();
-        return view('userpages.datechoose',['data'=>$data,'empl'=>$empl,'pack'=>$pack]);
+        session(['eid' => $request->eid]);
+        session(['pid' => $request->pid]);
+        $data = Service::all();
+        $pack = Package::where('id', $request->id)->get();
+        $empl = EmployeeDetails::where('Role', $request->id)->get();
+        return view('userpages.datechoose', ['data' => $data, 'empl' => $empl, 'pack' => $pack]);
     }
 
-    
+
     public function makefeedback(Request $request)
     {
-    $data=Service::all();
-    return view('userpages.givefeedback',['data'=>$data,]);
+        $data = Service::all();
+        return view('userpages.givefeedback', ['data' => $data, ]);
     }
     public function savefeedback(Request $request)
     {
@@ -99,37 +99,38 @@ class UserController extends Controller
         $fbc = new feedback($request->all());
         $fbc->uid = Auth::id();
         $fbc->save();
-        
-        $data=Service::all();
-        return view('userpages.givefeedback',['data'=>$data,]);
+
+        $data = Service::all();
+        return view('userpages.givefeedback', ['data' => $data, ]);
     }
     //appontment
     public function saveappoinment(Request $request)
     {
         # code...
+        // return $request->all();
         $fbc = new Booking($request->all());
         $fbc->uid = Auth::id();
         $fbc->packid = session('pid');
-        $amount = Package::where('id', session('pid'))->select('price','packname')->get();
+        $amount = Package::where('id', session('pid'))->select('price', 'packname')->get();
         $fbc->amount = $amount[0]['price'];
         $fbc->servid = $amount[0]['packname'];
         $fbc->emplid = session('eid');
         $packkk = EmployeeDetails::where('id', session('eid'))->select('fname')->get();
         $fbc->duration = $packkk[0]['fname'];
-        $usena = Registration::where('user_id', auth::id())->select('fname')->get();
+        $usena = Registration::where('user_id', Auth::id())->select('fname')->get();
         $fbc->usname = $usena[0]['fname'];
-       
+
         $fbc->status = '1';
         $fbc->save();
-        
-        
-        $data=Service::all();
-       
+
+
+        $data = Service::all();
+
         //return $fbc;
-        $apm= DB::table('regist','booking')->select('regist.user_id', 'booking.*')->join('booking', 'regist.user_id', '=', 'booking.uid')->where([['user_id', Auth::id()],['status','1']])->get();
+        $apm = DB::table('regist', 'booking')->select('regist.user_id', 'booking.*')->join('booking', 'regist.user_id', '=', 'booking.uid')->where([['user_id', Auth::id()], ['status', '1']])->get();
 
         //return $leaves;
-        return view('userpages.viewappionments',['apm'=>$apm,'data'=>$data]);
+        return view('userpages.viewappionments', ['apm' => $apm, 'data' => $data]);
         //reciept
         //return view('userpages.viewappionments');
     }
@@ -141,49 +142,69 @@ class UserController extends Controller
         $packid = session('pid');
         //check if employee available
         $isOnLeave = Empleave::where('leavedate', $date)->count();
-        $isPackFull = Booking::where([['bdate', $date],['emplid', $empid],['status', '1']])->count();
+        $isPackFull = Booking::where([['bdate', $date], ['emplid', $empid], ['status', '1']])->count();
 
         $response = "0";
-        if($isOnLeave == 0 && $isPackFull < 4){
+        if ($isOnLeave == 0 && $isPackFull <= 6) {
 
-            $time = "9:00 AM";
-            if(Booking::where([['time', $time],['status', '1'],['bdate', $date],['emplid', $empid]])->count()>0){
-                $time = "10:00 AM";
-                if(Booking::where([['time', $time],['status', '1'],['bdate', $date],['emplid', $empid]])->count()>0){
-                    $time = "2:00 PM";
-                    if(Booking::where([['time', $time],['status', '1'],['bdate', $date],['emplid', $empid]])->count()>0){
-                        $time = "3:00 PM";
-                    }
-                }
+            $timeSlots = []; //available time slots
+
+            $time = ['time'=>"08:30 AM"];
+            if (Booking::where([['time', $time], ['status', '1'], ['bdate', $date], ['emplid', $empid]])->count() == 0) {
+                array_push($timeSlots, $time);
             }
-            
-            $response = $time;
+
+            $time = ['time'=>"10:0 AM"];
+            if (Booking::where([['time', $time], ['status', '1'], ['bdate', $date], ['emplid', $empid]])->count() == 0) {
+                array_push($timeSlots, $time);
+            }
+
+            $time = ['time'=>"11:30 AM"];
+            if (Booking::where([['time', $time], ['status', '1'], ['bdate', $date], ['emplid', $empid]])->count() == 0) {
+                array_push($timeSlots, $time);
+            }
+
+            $time = ['time'=>"01:30 PM"];
+            if (Booking::where([['time', $time], ['status', '1'], ['bdate', $date], ['emplid', $empid]])->count() == 0) {
+                array_push($timeSlots, $time);
+            }
+
+            $time = ['time'=>"03:00 PM"];
+            if (Booking::where([['time', $time], ['status', '1'], ['bdate', $date], ['emplid', $empid]])->count() == 0) {
+                array_push($timeSlots, $time);
+            }
+
+            $time = ['time'=>"04:30 PM"];
+            if (Booking::where([['time', $time], ['status', '1'], ['bdate', $date], ['emplid', $empid]])->count() == 0) {
+                array_push($timeSlots, $time);
+            }
+
+            $response = $timeSlots;
         }
-        
+
         return $response;
     }
     public function viewuserappontments(Request $request)
     {
-        
-        $data=Service::all();
+
+        $data = Service::all();
         //return $fbc;
-       $apm= DB::table('regist','booking')->select('regist.user_id', 'booking.*')->join('booking', 'regist.user_id', '=', 'booking.uid')->where([['user_id', Auth::id()],['status','1']])->get();
+        $apm = DB::table('regist', 'booking')->select('regist.user_id', 'booking.*')->join('booking', 'regist.user_id', '=', 'booking.uid')->where([['user_id', Auth::id()], ['status', '1']])->get();
         //return $leaves;
-        return view('userpages.viewappionments',['apm'=>$apm,'data'=>$data]);
+        return view('userpages.viewappionments', ['apm' => $apm, 'data' => $data]);
     }
 
     public function cancelapointment(Request $request)
     {
-    //return $request->all();
-    $bok = Booking::find($request->id);
-    $bok->status = 0;
-    $bok->save();
-    $data=Service::all();
-    //return $fbc;
-   $apm= DB::table('regist','booking')->select('regist.user_id', 'booking.*')->join('booking', 'regist.user_id', '=', 'booking.uid')->where([['user_id', Auth::id()],['status','1']])->get();
-    
-    //return $leaves;
-    return view('userpages.viewappionments',['apm'=>$apm,'data'=>$data]);
-    
+        //return $request->all();
+        $bok = Booking::find($request->id);
+        $bok->status = 0;
+        $bok->save();
+        $data = Service::all();
+        //return $fbc;
+        $apm = DB::table('regist', 'booking')->select('regist.user_id', 'booking.*')->join('booking', 'regist.user_id', '=', 'booking.uid')->where([['user_id', Auth::id()], ['status', '1']])->get();
+
+        //return $leaves;
+        return view('userpages.viewappionments', ['apm' => $apm, 'data' => $data]);
     }
 }
