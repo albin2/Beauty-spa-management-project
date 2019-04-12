@@ -51,10 +51,8 @@
 <body>
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
-            <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
-                    Wellness
-                </a>
+            <div class="container-fluid">
+                <div class="page-header-left"><a class="brand" href="/home"><img src="http://127.0.0.1:8000/theam/images/logo-default-199x36.png" alt="" width="199" height="36"></a></div>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -129,11 +127,14 @@
 
         <div class="limiter">
             <div class="container-login100" style="background-image: url('{{ asset('logtem/images/bg-01.jpg')}}');">
-                <form action="{{ route('makeappointment') }}" method="post">
-                    <div class="box-title" margin-top>
-                        <center>
-                            <h3 class="pb-5"><b>Select your Appointment date....</b></h3>
-                        </center>
+                
+            <div class="row">
+                <div class="col">
+                <form action="{{ route('makeappointment') }}" class="pt-5 mt-5" method="post">
+                    <div class="box-title text-center pt-5" margin-top>
+     
+                            <h3 class="pt-5"><b>Select your Appointment date....</b></h3>
+                     
                     </div>
                     @csrf
                     <input type="text" name="bdate" id="datepicker" placeholder="Pick a Date" class="form-control mt-5" required>
@@ -141,18 +142,21 @@
                     <div class="alert alert-info mb-5" id="userInfo">
                         Select a date to Continue!
                     </div>
-                    </br>
+                    <br/>
                     <div class="times mt-5">
                         <!-- //times -->
                     </div>
                     <div>
                         <input hidden name="time" value="0" id="b-time">
-                        </br>
+                        <br/>
                         <div class="text-center mt-5">
                             <input type="submit" id="confirm-booking" class="btn btn-primary btn-sm" readonly value="Confirm Booking">
                         </div>
                     </div>
                 </form>
+                </div>
+
+            </div>
 
             </div>
         </div>
@@ -164,7 +168,7 @@
                 changeMonth: true,
                 changeYear: false,
                 minDate: 1,
-                maxDate: "+1m +1w",
+                maxDate: "5d",
                 dateFormat: "yy-mm-dd"
             });
 
@@ -184,9 +188,11 @@
                         //result
                         if (data == '0') {
                             $("#userInfo").html("Date is not Available");
+                            $(".times").html("");
+                            $("#confirm-booking").attr("disabled", "disabled");
                         } else {
                             $html = '<div class="row"><ul class="date-picker-list animated fadeIn">';
-                            $("#userInfo").html("Date is Available. Pick a time to Schedule");
+                            $("#userInfo").html(" Pick a time to Schedule your appointment");
                             data.forEach(element => {
                                 $html += '<li class="timeSch" data-val="'+element.time+'"><a>'+element.time+'</a></li>'
                             });
@@ -200,7 +206,8 @@
 
             //time pick
             $('body').on("click", '.timeSch', function() {
-                console.log($(this).data('val'));
+                $(this).addClass("selected");
+                $(this).siblings("li").removeClass("selected");
                 
                 $("#b-time").val($(this).data('val'));
                 $("#confirm-booking").removeAttr("disabled");

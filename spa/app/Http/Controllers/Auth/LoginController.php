@@ -40,12 +40,15 @@ class LoginController extends Controller
 
     public function redirectTo()
     {
-        if(Auth::user()->usertype == 1){
+        if(Auth::user()->usertype == 1 & Auth::user()->status == 1){
             return '/home';
         }elseif(Auth::user()->usertype == 2){
             return '/employeehome';
         }elseif(Auth::user()->usertype == 3){
             return '/adminhome';
+        }
+        else{
+            Auth::logout();
         }
     }
     

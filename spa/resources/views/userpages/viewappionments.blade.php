@@ -1,4 +1,5 @@
-@extends('layouts.service') @section('content')
+@extends('layouts.service')
+ @section('content')
 <div class="container">
     <div class="row justify-content-center my-5">
  <div class="box-header">
@@ -31,11 +32,15 @@
                   <td>{{ $row->amount }}</td>
                   
                   <td>
+                  @if ($row->status==1)
                     <form action="{{ route('canappo')}}" method="post">
                       @csrf
                         <input hidden name="id" value="{{ $row->id }}">
                         <button type="submit" name="del" class="btn btn-primary" >CANCEL</button>
                     </form>
+                    @else
+</label>cant cancel</label>
+@endif
                   </td>
                   </tr>
                   @endforeach
@@ -45,8 +50,5 @@
             </div>
         </div>
     </div>
-</div>
-</div>
-</div>
-</div>
+
 @endsection

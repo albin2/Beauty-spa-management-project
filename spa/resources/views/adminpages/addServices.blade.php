@@ -15,6 +15,11 @@
   @csrf
   <div class="box-body" >
               <center><h2><b>ADD SERVICES</b></h2></center>
+              @isset($info)
+                <div class="alert-info alert">
+                 {{ $info }}
+                </div>
+              @endisset
               <div style="margin-left:100px;margin-right:100px;margin-top:40px;margin-bottom:100px;background-color: #e7e4e7;">
                 <div class="form-group">
                   <label>SERVICE NAME</label>

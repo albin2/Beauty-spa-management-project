@@ -61,8 +61,14 @@
 		<div class="content-w3ls">
 			<div class="text-center icon">
 				<span class="fa fa-html5">LOGIN</span>
-			</div>
+			
 			<div class="content-bottom">
+			@if ($errors->has('email'))
+							<span class='bg-white' role="alert">
+							<strong>{{$errors->first('email')}}</strong>
+							</span>
+							@endif
+			</div>
 				<form  method="POST" action="{{ route('login') }}">
 					@csrf
 					<div class="field-group">

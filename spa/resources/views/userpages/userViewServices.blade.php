@@ -21,6 +21,7 @@
                         <!-- <a class="btn btn-xs card-service-option-control" href="step-2.html">Choose</a> -->
                         <input hidden name="pid" value="{{ $row['id'] }}">
                         <button type="submit" class="btn btn-xs card-service-option-control">Choose</button>
+                     </form>
                     </div>
                 </article>
             </div>

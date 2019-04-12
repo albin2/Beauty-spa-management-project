@@ -129,8 +129,10 @@ class AdminController extends Controller
         $imgPath = "";
         if ($request->hasFile('image') && $request->file('image')->isValid()) {
             $image = $request->file('image');
-            $imgPath = $image->store('images/emp/product');
-            
+            $imgPath = $image->store('public/images/emp/product');
+            $d = explode('/', $imgPath);
+            array_shift($d);
+            $imgPath = implode('/', $d);
             $product = $request->except('image');
             $product['image'] = $imgPath;
 
@@ -159,6 +161,7 @@ public function viewProducts()
     $data = DB::table('products')
             ->join('productcategeory', 'products.categeory', '=', 'productcategeory.id')
             ->select('products.*', 'productcategeory.categeory')
+            ->where('products.status', '=', '1')
             ->get();
     // $data = Product::all();
     return view('adminpages.viewProduct', ['data' => $data]);
@@ -189,6 +192,62 @@ public function delProducts(Request $request)
     return view('adminpages.viewProduct', ['data' => $data, 'info' => 'Product Removed']);
 }
 
+//block products
+
+public function blockProducts(Request $request)
+{
+    //return $request->all();
+    Product::where('id', $request->id)->update(['status'=>0]);
+
+    $data = Product::all();
+    return view('adminpages.viewProduct', ['data' => $data, 'info' => 'Product Blocked']);
+}
+
+
+
+public function unblockProducts(Request $request)
+{
+    //return $request->all();
+    Product::where('id', $request->id)->update(['status'=>1]);
+
+    $data = Product::all();
+    return view('adminpages.viewProduct', ['data' => $data, 'info' => 'Product Unblocked']);
+}
+
+
+
+// VIEW  PRODUCT STOCK PAGE
+
+
+public function productupdates(Request $request)
+{
+    $datas = Product::where('id', $request->id)->get();
+    $data = Product::all();
+    return view('adminpages.updateproductstock', ['data' => $data,'datas' =>$datas]);
+}
+
+public function viewupdateProductstock()
+{
+    
+    $data = Product::all();
+    return view('adminpages.updatestock', ['data' => $data]);
+}
+
+
+//update stock
+
+public function updateproduct(Request $request)
+{
+    $request->id;
+    $currentstock=$request->cstock;
+    $newstock=$request->stock;
+    $actualstock=$currentstock+$newstock;
+    Product::where('id', $request->id)->update( ['stock'=>$actualstock]);
+    $datas = Product::where('id', $request->id)->get();
+
+    $data = Product::all();
+    return view('adminpages.updateproductstock', ['data' => $data,'datas' => $datas,'info' => 'Product updated']);
+}
 
     
 //----------------------------------------------------------------------------------------------------
@@ -204,6 +263,9 @@ public function delProducts(Request $request)
         if ($request->hasFile('image') && $request->file('image')->isValid()) {
             $image = $request->file('image');
             $imgPath = $image->store('public/images/emp/pack');
+            $d = explode('/', $imgPath);
+            array_shift($d);
+            $imgPath = implode('/', $d);
 
 
             $package = $request->except('image');
@@ -236,7 +298,7 @@ public function delProducts(Request $request)
 
     public function viewUsers()
     {
-        $data = Registration::all();
+        $data = DB::table('regist', 'users')-> select('regist.*', 'users.*')->where('users.status', '=', '1')->join('users', 'regist.user_id', '=', 'users.id')->get();
         
         return view('adminpages.viewUsers', ['data' => $data]);
     }
@@ -252,6 +314,67 @@ public function delProducts(Request $request)
         $data = Registration::all();
         return view('adminpages.viewUsers', ['data' => $data, 'info' => 'User Removed']);
     }
+
+
+    //Block Employees
+    public function BlockEUser(Request $request)
+    {
+
+        User::where('id',$request->uid)->update(['status'=>0]);
+        $data = DB::table('users')
+        ->join('employedetails','employedetails.id','=','users.id')
+        ->get()->toArray();
+        // return $data;
+        return view('adminpages.viewEmployees', ['data' => $data,'info' => 'Employee Blocked']);
+    }
+
+    public function unBlockEUser(Request $request)
+    {
+        // return $request;
+        User::where('id',$request->uid)->update(['status'=>1]);
+        $data = DB::table('users')
+        ->join('employedetails','employedetails.id','=','users.id')
+        ->get()->toArray();
+        // return $data;
+        return view('adminpages.viewEmployees', ['data' => $data,'info' => 'Employee UnBlocked']);
+    }
+
+    // Block users
+
+
+
+    public function BlockUser(Request $request)
+    {
+
+        User::where('id',$request->uid)->update(['status'=>0]);
+
+        $data = DB::table('regist', 'users')-> select('regist.*', 'users.*')->where('users.status', '=', '1')->join('users', 'regist.user_id', '=', 'users.id')->get();
+
+        return view('adminpages.viewUsers', ['data' => $data, 'info' => 'User Blocked']);
+    }
+
+    public function UnblockUser(Request $request)
+    {
+
+        User::where('id',$request->uid)->update(['status'=>1]);
+
+        $data = DB::table('regist', 'users')-> select('regist.*', 'users.*')->where('users.status', '=', '0')->join('users', 'regist.user_id', '=', 'users.id')->get();
+
+        return view('adminpages.viewblockedusers', ['data' => $data, 'info' => 'User  unBlocked']);
+    }
+
+    
+    public function viewblockedUsers()
+    {
+        $data = DB::table('regist', 'users')-> select('regist.*', 'users.*')->where('users.status', '=', '0')->join('users', 'regist.user_id', '=', 'users.id')->get();
+        
+        return view('adminpages.viewblockedusers', ['data' => $data]);
+    }
+
+
+
+
+
     public function viewServices()
     {
         $data = Service::all();
@@ -281,6 +404,27 @@ public function delProducts(Request $request)
         $data = Package::all();
         return view('adminpages.viewPackages', ['data' => $data, 'info' => 'Package Removed']);
     }
+///Block Packages
+
+    public function blockPackages(Request $request)
+    {
+        //return $request->all();
+        $data = Package::where('id', $request->uid)->update(['status'=>0]);;
+
+        $data = Package::all();
+        return view('adminpages.viewPackages', ['data' => $data, 'info' => 'Package Blocked']);
+    }
+
+    public function  unblockPackages(Request $request)
+    {
+        //return $request->all();
+        $data = Package::where('id', $request->uid)->update(['status'=>1]);;
+
+        $data = Package::all();
+        return view('adminpages.viewPackages', ['data' => $data, 'info' => 'Package UnBlocked']);
+    }
+
+
     public function viewEmployees()
     {
         $data = EmployeeDetails::all();

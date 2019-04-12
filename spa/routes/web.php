@@ -38,6 +38,8 @@ __________________ */
 
 
 
+
+
 //menu_redirect
 Route::view('/admin/viewEmpRole', 'adminpages.addEmpRole')->name('viewEmpRole'); //viewEmpRole
 Route::view('/admin/viewServices', 'adminpages.addServices')->name('viewServices');
@@ -45,6 +47,35 @@ Route::view('/admin/viewServices', 'adminpages.addServices')->name('viewServices
 
 //user routs
 Route::get('/user/spaservice/view','user\UserController@viewSeviceuser')->name('viewSpaaServices');// user view service
+Route::get('/user/spaproduct/view','user\UserController@viewProductss')->name('viewUserproduct');// user view product
+Route::get('/user/view/singleproduct/{id}','user\UserController@viewsingleProducts')->name('singleviewproduct');//view single product
+
+
+
+Route::get('/user/appointment/view','user\UserController@viewuserappontments')->name('viewUserappontment');// user appointment
+Route::get('/user/view/product/{id}','user\UserController@viewcatProduct')->name('product-cat-user');
+Route::get('/user/view/profile','user\UserController@viewuserProfile')->name('viewUserprofile');// view user profile
+Route::get('/user/view/editprofile','user\UserController@viewusereditProfile')->name('viewUsereditprofile');// view user edit profile
+
+
+//cart
+Route::post('/add/toCart', 'BookingController@setCart')->name('toCart');//add to cart
+Route::get('/edit/toCart', 'BookingController@editcart')->name('editcart');//add to cart
+Route::post('/update/cart/items', 'BookingController@updatecart')->name('updatecart');//update to cart
+Route::get('/user/remove/cartproduct/{id}','BookingController@removecart')->name('removecartproduct');
+
+//checkout
+Route::post('/district','BookingController@district')->name('district');
+//save payment details
+Route::post('/save/payement/details', 'BookingController@paymentDetails')->name('paymentDetails');//update to cart
+
+
+
+Route::post('/add/tobillingaddress', 'BookingController@BillingAddress')->name('BillingAddress');//add to cart
+
+Route::get('/view/checkout', 'BookingController@viewcheckout')->name('viewcheckout');//view checkout page
+
+Route::post('/user/view/usereditprofile','user\UserController@proedit')->name('Userproedit');// view user edit profile
 
 
 //Route::post('/user/view/ServiceToPackage','user\UserController@viewuserEmployees')->name('userEmployees');
@@ -89,16 +120,25 @@ Route::get('/send/email', 'HomeController@mail'); ;//mail emp add
 
 //admin
 Route::middleware(['disableadmin'])->group(function (){
-         Route::post('/admin/savePackages','AdminController@savePackages')->name('savePackages');
+    Route::post('/admin/savePackages','AdminController@savePackages')->name('savePackages');
     Route::post('/admin/saveEmployee','AdminController@saveEmployee')->name('saveEmployee');
     Route::post('/admin/addEmpRole', 'AdminController@addEmpRole')->name('addEmpRole');
     Route::post('/admin/addServices', 'AdminController@addServices')->name('addServices');
     Route::post('/admin/del/user', 'AdminController@delUser')->name('delUser');
     Route::post('/admin/del/services', 'AdminController@delServices')->name('delServices');
     Route::post('/admin/del/packages', 'AdminController@delPackages')->name('delPackages');
+
+    Route::post('/admin/block/packages', 'AdminController@blockPackages')->name('blockPackages');  // block packages  unblockPackages
+    Route::post('/admin/unblock/packages', 'AdminController@unblockPackages')->name('unblockPackages');  // unblock packages  
+
     Route::post('/admin/del/Employee', 'AdminController@delEmployees')->name('delEmployees');
     Route::post('/admin/rej/Empleave', 'AdminController@rejleave')->name('rejleave');
     Route::post('/admin/apr/Empleaves', 'AdminController@aprleave')->name('aprleave');
+
+    Route::post('/admin/block/user', 'AdminController@BlockUser')->name('blockUser');// BLOCK USER
+    Route::post('/admin/unblock/user', 'AdminController@UnblockUser')->name('unblockUser');// UNBLOCK USER
+    Route::post('/admin/blocke/user', 'AdminController@BlockEUser')->name('blockEUser');// BLOCK USER
+    Route::post('/admin/unblocke/user', 'AdminController@unBlockEUser')->name('unblockEUser');// UNBLOCK USER
 
     ///PRODUCT
 
@@ -106,6 +146,14 @@ Route::middleware(['disableadmin'])->group(function (){
 
 Route::view('/admin/viewcategeoryform', 'adminpages.addProductCategeory')->name('addProductCategeory');
 Route::post('/admin/addproductcaregeory', 'AdminController@addproductcategeory')->name('ProductCategeory');
+//update stock
+
+//Route::get('/admin/viewProductstock', 'AdminController@viewupdateProductstock')->name('viewupdateProductstock');
+Route::post('/admin/updateProductstock', 'AdminController@updateproduct')->name('updateproduct');
+Route::get('/admin/updateProductstockss', 'AdminController@viewupdateProductstock')->name('updateproductss');
+
+
+Route::get('/admin/viewProductstock/{id}', 'AdminController@productupdates')->name('productupdates');
 
 // add product
 Route::get('/admin/viewProduct', 'AdminController@viewProductForm')->name('viewProduct');
@@ -121,8 +169,13 @@ Route::post('/admin/list/productsDetails','AdminController@viewProductsDetail')-
 
 Route::post('/admin/del/products', 'AdminController@delProducts')->name('delProducts');
 
+//block product            
 
+Route::post('/admin/block/products', 'AdminController@blockProducts')->name('blockProducts');
 
+//unblockProducts
+
+Route::post('/admin/unblock/products', 'AdminController@unblockProducts')->name('unblockProducts');
 //..........................................PACKAGE...............................................................
 
 Route::post('/admin/list/packageDetails','AdminController@viewPackageDetail')->name('listpackageDetail'); //detail
@@ -135,6 +188,8 @@ Route::get('/admin/viewfeedback', 'AdminController@viewFeedbackform')->name('vie
 Route::post('/admin/del/feedback', 'AdminController@delfeedback')->name('deletefeedback');//REMOVE FEEEDBACK
 Route::get('/admin/viewappointmentss', 'AdminController@viewAppointment')->name('viewappoi');//view appointments
 
+
+Route::get('/admin/list/blockedusers','AdminController@viewblockedUsers')->name('listblockedusers');//view blocked users
 Route::get('/admin/list/users','AdminController@viewUsers')->name('listusers');
 Route::get('/admin/list/services','AdminController@viewServices')->name('listservices');
 Route::get('/admin/list/packages','AdminController@viewPackages')->name('listpackages');

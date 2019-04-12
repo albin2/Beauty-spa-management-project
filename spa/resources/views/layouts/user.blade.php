@@ -31,7 +31,7 @@
                                                      document.getElementById('logout-form').submit();">LOG OUT</a>
                                                      <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                         @csrf
-                                    </form>
+                                      </form>
                                                      </div>
 
                         <div id="perspective-open-menu" data-custom-toggle=".perspective-menu-toggle" data-custom-toggle-hide-on-blur="true"><span class="perspective-menu-text">Menu</span>

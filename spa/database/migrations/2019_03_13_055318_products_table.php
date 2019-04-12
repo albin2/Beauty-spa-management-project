@@ -22,6 +22,7 @@ class ProductsTable extends Migration
             $table->string('stock');
             $table->string('price');
             $table->string('image');
+            $table->integer('status');
 
         });
     }

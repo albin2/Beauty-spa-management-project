@@ -9,6 +9,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta charset="utf-8">
     <script src="{{ asset('theam/cdn-cgi/apps/head/3ts2ksMwXvKRuG480KNifJ2_JNM.js')}}"></script>
+    <script src="{{ asset('js/jquery.js') }}"></script>
     <link rel="icon" href="images/favicon.ico" type="image/x-icon">
     <!-- Stylesheets-->
     <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Roboto+Mono:300,300italic,400,700">
@@ -24,20 +25,37 @@
         <main class="page-content" id="perspective">
             <div class="content-wrapper">
                 <div class="page-header page-header-perspective">
+                
                     <div class="page-header-left"><a class="brand" href="/home"><img src="{{ asset('/theam/images/logo-default-199x36.png') }}" alt="" width="199" height="36" /></a></div>
-                    <div class="page-header-center">
-                        <div class="step-progress">
-                            <div class="step-progress-top"><span class="step-progress-number">1</span><span>of</span><span class="step-progress-number">3</span></div>
-                            <div class="step-progress-bottom">
-                                <p class="step-progress-text">STEP</p>
-                            </div>
-                        </div>
+                    <div class="page-header-right">
+                    </div>
+                    <div class="page-header-right">
+                    </div>
+                    <div class="page-header-right">
+                    </div>
+                    <div class="page-header-right">
+                    </div>
+                    <div class="page-header-right">
+                    </div>
+                    <div class="page-header-right">
+                    </div>
+                    <div class="page-header-right">
+                    </div>
+                    <div class="page-header-right">
+                        <div class="booking-control"><a class="btn btn-xs btn-circle btn-primary" href="{{ route('logout') }}" onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">LOG OUT</a>
+                                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                        @csrf
+                                      </form>
+                                                     </div>
                     </div>
                     <div class="page-header-right">
                         <div id="perspective-open-menu" data-custom-toggle=".perspective-menu-toggle" data-custom-toggle-hide-on-blur="true"><span class="perspective-menu-text">Menu</span>
                             <button class="perspective-menu-toggle"><span></span></button>
                         </div>
+                        
                     </div>
+                    
                 </div>
                 <div class="custom-progress">
                     <div class="custom-progress-body" style="width: 0;"></div>

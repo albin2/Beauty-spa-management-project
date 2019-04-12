@@ -24,6 +24,7 @@ class CreatePackagesTable extends Migration
             $table->string('timed');
             $table->string('price');
             $table->string('image');
+            $table->integer('status');
 
         });
     }

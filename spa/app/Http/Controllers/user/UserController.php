@@ -1,12 +1,9 @@
 <?php
-
 namespace App\Http\Controllers\user;
-
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
-
 use App\Registration;
 use App\EmployeeDetails;
 use App\feedback;
@@ -14,6 +11,8 @@ use App\Package;
 use App\Service;
 use App\Empleave;
 use App\Booking;
+use App\Product;
+use App\productCategeory;
 // use App\Http\Controllers\user\Registration;
 
 class UserController extends Controller
@@ -26,7 +25,11 @@ class UserController extends Controller
         $imgPath = "";
         if ($request->hasFile('proimg') && $request->file('proimg')->isValid()) {
             $image = $request->file('proimg');
-            $imgPath = $image->store('images/' . Auth::id());
+            $imgPath = $image->store('public/images/emp/'. Auth::id());
+
+            $d = explode('/', $imgPath);
+            array_shift($d);
+            $imgPath = implode('/', $d);
         }
         $profile = new Registration($request->all());
         $profile->proimg = $imgPath;
@@ -42,10 +45,35 @@ class UserController extends Controller
     }
 
 
+    /// product view
+    public function viewProductss()
+    {
+        $data = Product::all()->where('status', '=', '1');
+        $cat= productCategeory::all();
+        return view('userpages.productview', ['data' => $data, 'cat' => $cat]);
+        
+    }
+
+    public function viewsingleProducts($id)
+    {
+        $data = Product::where('id',$id)->get();
+        $cat= productCategeory::all();
+        return view('userpages.singleviewproduct', ['data' => $data, 'cat' => $cat]);
+        
+    }
+
+
+    public function viewcatProduct($id)
+    {
+        $data=Product::where('categeory', $id)->where('status', '=', '1')->get();
+        $cat= productCategeory::all();
+        return view('userpages.productview', ['data' => $data, 'cat' => $cat]);
+    }
+
     public function viewPackagesuser(Request $request)
     {
-        // return $request;
-        $packages = Package::where('servename', $request->pid)->get();
+        //return $request;
+        $packages = Package::where('servename', $request->pid)->where('status', '=', '1')->get();
         $data = Service::all();
         return view('userpages.uviewPackages', ['data' => $data, 'pack' => $packages]);
         //return $packages;
@@ -106,6 +134,7 @@ class UserController extends Controller
     //appontment
     public function saveappoinment(Request $request)
     {
+        // return Auth::id();
         # code...
         // return $request->all();
         $fbc = new Booking($request->all());
@@ -130,7 +159,7 @@ class UserController extends Controller
         $apm = DB::table('regist', 'booking')->select('regist.user_id', 'booking.*')->join('booking', 'regist.user_id', '=', 'booking.uid')->where([['user_id', Auth::id()], ['status', '1']])->get();
 
         //return $leaves;
-        return view('userpages.viewappionments', ['apm' => $apm, 'data' => $data]);
+        return redirect('/user/appointment/view');
         //reciept
         //return view('userpages.viewappionments');
     }
@@ -140,9 +169,9 @@ class UserController extends Controller
         $date =  $request->date;
         $empid = session('eid');
         $packid = session('pid');
-        //check if employee available
-        $isOnLeave = Empleave::where('leavedate', $date)->count();
-        $isPackFull = Booking::where([['bdate', $date], ['emplid', $empid], ['status', '1']])->count();
+        //check if employee available               //status
+        $isOnLeave = Empleave::where('leavedate', $date)->where('status',2)->count();
+        $isPackFull = Booking::where([['bdate', $date], ['emplid', $empid], ['status', '1']])->orWhere([['bdate', $date], ['emplid', $empid], ['status', '3']])->count();
 
         $response = "0";
         if ($isOnLeave == 0 && $isPackFull <= 6) {
@@ -150,32 +179,32 @@ class UserController extends Controller
             $timeSlots = []; //available time slots
 
             $time = ['time'=>"08:30 AM"];
-            if (Booking::where([['time', $time], ['status', '1'], ['bdate', $date], ['emplid', $empid]])->count() == 0) {
-                array_push($timeSlots, $time);
+            if (Booking::where([['time', $time], ['status', '1'], ['bdate', $date], ['emplid', $empid]])->orWhere([['time', $time], ['status', '3'], ['bdate', $date], ['emplid', $empid]])->count() == 0) {
+                array_push($timeSlots, $time) ;
             }
 
             $time = ['time'=>"10:0 AM"];
-            if (Booking::where([['time', $time], ['status', '1'], ['bdate', $date], ['emplid', $empid]])->count() == 0) {
+            if (Booking::where([['time', $time], ['status', '1'], ['bdate', $date], ['emplid', $empid]])->orWhere([['time', $time], ['status', '3'], ['bdate', $date], ['emplid', $empid]])->count() == 0) {
                 array_push($timeSlots, $time);
             }
 
             $time = ['time'=>"11:30 AM"];
-            if (Booking::where([['time', $time], ['status', '1'], ['bdate', $date], ['emplid', $empid]])->count() == 0) {
+            if (Booking::where([['time', $time], ['status', '1'], ['bdate', $date], ['emplid', $empid]])->orWhere([['time', $time], ['status', '3'], ['bdate', $date], ['emplid', $empid]])->count() == 0) {
                 array_push($timeSlots, $time);
             }
 
             $time = ['time'=>"01:30 PM"];
-            if (Booking::where([['time', $time], ['status', '1'], ['bdate', $date], ['emplid', $empid]])->count() == 0) {
+            if (Booking::where([['time', $time], ['status', '1'], ['bdate', $date], ['emplid', $empid]])->orWhere([['time', $time], ['status', '3'], ['bdate', $date], ['emplid', $empid]])->count() == 0) {
                 array_push($timeSlots, $time);
             }
 
             $time = ['time'=>"03:00 PM"];
-            if (Booking::where([['time', $time], ['status', '1'], ['bdate', $date], ['emplid', $empid]])->count() == 0) {
+            if (Booking::where([['time', $time], ['status', '1'], ['bdate', $date], ['emplid', $empid]])->orWhere([['time', $time], ['status', '3'], ['bdate', $date], ['emplid', $empid]])->count() == 0) {
                 array_push($timeSlots, $time);
             }
 
             $time = ['time'=>"04:30 PM"];
-            if (Booking::where([['time', $time], ['status', '1'], ['bdate', $date], ['emplid', $empid]])->count() == 0) {
+            if (Booking::where([['time', $time], ['status', '1'], ['bdate', $date], ['emplid', $empid]])->orWhere([['time', $time], ['status', '3'], ['bdate', $date], ['emplid', $empid]])->count() == 0) {
                 array_push($timeSlots, $time);
             }
 
@@ -184,27 +213,65 @@ class UserController extends Controller
 
         return $response;
     }
-    public function viewuserappontments(Request $request)
+    public function viewuserappontments()
     {
 
         $data = Service::all();
         //return $fbc;
-        $apm = DB::table('regist', 'booking')->select('regist.user_id', 'booking.*')->join('booking', 'regist.user_id', '=', 'booking.uid')->where([['user_id', Auth::id()], ['status', '1']])->get();
+        $apm = DB::table('regist', 'booking')->select('regist.user_id', 'booking.*')->join('booking', 'regist.user_id', '=', 'booking.uid')->where([['user_id', Auth::id()], ['status', '1']])->orWhere([['user_id', Auth::id()], ['status', '3']])->get();
         //return $leaves;
         return view('userpages.viewappionments', ['apm' => $apm, 'data' => $data]);
     }
 
     public function cancelapointment(Request $request)
     {
+        
         //return $request->all();
         $bok = Booking::find($request->id);
         $bok->status = 0;
         $bok->save();
         $data = Service::all();
         //return $fbc;
-        $apm = DB::table('regist', 'booking')->select('regist.user_id', 'booking.*')->join('booking', 'regist.user_id', '=', 'booking.uid')->where([['user_id', Auth::id()], ['status', '1']])->get();
+        $apm = DB::table('regist', 'booking')->select('regist.user_id', 'booking.*')->join('booking', 'regist.user_id', '=', 'booking.uid')->where([['user_id', Auth::id()], ['status', '1']])->orWhere([['user_id', Auth::id()], ['status', '3']])->get();
 
         //return $leaves;
         return view('userpages.viewappionments', ['apm' => $apm, 'data' => $data]);
     }
+
+
+
+    ///..................................user profile.......................................................
+
+
+    public function viewuserProfile()
+    {
+        $data = DB::table('regist', 'users')-> select('regist.*', 'users.*')->where('id',Auth::id())->where('users.status', '=', '1')->join('users', 'regist.user_id', '=', 'users.id')->get();
+        return view('userpages.userprofile', ['data' => $data]);
+    }
+    public function viewusereditProfile()
+    {
+        $data = DB::table('regist', 'users')-> select('regist.*', 'users.*')->where('id',Auth::id())->where('users.status', '=', '1')->join('users', 'regist.user_id', '=', 'users.id')->get();
+        return view('userpages.editprofile', ['data' => $data]);
+      
+    }
+
+
+    
+    public function proedit(Request $request)
+    {
+       Registration::where('user_id', $request->id)->update($request->except('_token', 'id'));
+        
+        $data = DB::table('regist', 'users')-> select('regist.*', 'users.*')->where('id',Auth::id())->where('users.status', '=', '1')->join('users', 'regist.user_id', '=', 'users.id')->get();
+        return view('userpages.userprofile', ['data' => $data]);
+    }
+    // viewuserProfile
+
+
+
 }
+
+
+
+//............................product........................................................................
+
+

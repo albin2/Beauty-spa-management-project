@@ -2,7 +2,6 @@
 
 @section('content')
 
-<div id="wrapper">
             <div class="page-title">
               <div class="page-title-content">
                 <div class="shell">
@@ -51,16 +50,20 @@
                     <input hidden name="sid" value="{{ $row['servename'] }}">
                         <input hidden name="pid" value="{{ $row['id'] }}">
                      <button type="submit" class="btn btn-sm box-service-control">Book Now</button>
+</form>
                   </div>
                 </article>
+                @endforeach
               </div>
-            </section>
 </div>
-            @endforeach
+
+            </section>
+
+
+           
 
             @endsection
 
-</div>
 
 
 

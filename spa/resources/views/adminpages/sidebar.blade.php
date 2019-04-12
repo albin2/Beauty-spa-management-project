@@ -66,6 +66,8 @@
           <ul class="treeview-menu">
 
           <li><a href="{{ route('listusers') }}"><i class="fa fa-circle-o"></i> view users</a></li>
+          <li><a href="{{ route('listblockedusers') }}"><i class="fa fa-circle-o"></i> view Blocked users</a></li>
+
 
           </ul>
         </li>
@@ -109,7 +111,8 @@
           <li><a href="{{ route('viewProduct') }}"><i class="fa fa-circle-o"></i> Add Product Details</a></li>
           <li><a href="{{ route('listproducts') }}"><i class="fa fa-circle-o"></i> View Product Details</a></li>
 
-          
+          <li><a href="{{ route('updateproductss') }}"><i class="fa fa-circle-o"></i>Update product Stock</a></li>
+
           </ul>
         </li>
 

@@ -60,7 +60,7 @@
 		</div>
 		<div class="content-w3ls">
 			<div class="text-center icon">
-				<span class="fa fa-html5">LOGIN</span>
+				<span class="fa fa-html5">FORGOT_PASSWORD</span>
 			</div>
 			<div class="content-bottom">
            
@@ -75,7 +75,7 @@
 					<div class="field-group">
 						<span class="fa fa-user" aria-hidden="true"></span>
 						<div class="wthree-field">
-                        <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required>
+                        <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required >
 						</div>
                        
 					</div>
@@ -88,19 +88,18 @@
                           @endif
 					</div>
 					<div class="wthree-field">
-						<button type="submit" class="btn">LOGIN</button>
+						<button type="submit" class="btn">SEND LINK TO E-MAIL</button>
 					</div>
 					<ul class="list-login">
 						<li class="switch-agileits">
 							<label class="switch">
 								<input type="checkbox">
 								<span class="slider round"></span>
-								keep Logged in
+							
 							</label>
 						</li>
 						<li>
-							<a href="{{ route('password.request') }}">
-                    {{ __('Forgot Your Password?') }} </a>
+						
 						</li>
 						<li class="clearfix"></li>
 					</ul>
