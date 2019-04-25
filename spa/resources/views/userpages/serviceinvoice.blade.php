@@ -23,62 +23,70 @@
             <main>
                 <div class="row contacts">
                     <div class="col invoice-to">
-                        @foreach($add as $row)
+                    @foreach($det as $row)
                         <div class="text-gray-light">INVOICE TO:</div>
-                        <h2 class="to">{{ $add[0]->fname}} {{ $add[0]->lname}}</h2>
-                        <div class="address"><h4>{{ $add[0]->address}},{{ $add[0]->post }},{{ $add[0]->pincode }}</h4></div>
-                        @endforeach
+                        <h2 class="to">{{ $row->usname}}</h2>
+                        <div class="address"> </h4></div>
+                      
                     </div>
                     <div class="col invoice-details">
-                        <h1 class="invoice-id">INVOICE 3-2-{{ $add[0]->cartid }}</h1>
-                        <div class="date">Date of Invoice: {{ $add[0]->updated_at }}</div>
+                        <h1 class="invoice-id">INVOICE 3-2-{{ $row->id }}</h1>
+                        <div class="date">Date of Invoice: {{ $row->updated_at }}</div>
                         
                     </div>
                 </div>
+               
                 <table border="0" cellspacing="0" cellpadding="0">
                     <thead>
                         <tr>
                             <th class="total" ></th>
-                            <th class="text-left">PRODUCT NAME</th>
+                            <th class="text-left">PACKAGE NAME</th>
+                            <th class="text-left">BOOKING DATE</th>
+                            <th class="text-left">BOOKING TIME</th>
                             <th class="text-right">PRICE</th>
-                            <th class="text-right">UNIT</th>
+                            <th class="text-right">EMPLOEE NAME</th>
                             <th class="text-right">SUB TOTAL</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                        @php $value = 0 @endphp
-                        @foreach($data as $row)
+                       
                             <td class="no"></td>
-                            <td class="text-left"><h3>
-                            {{ $row->productname }}
+                            <td class="qty"><h3>
+                            {{ $row->servid}}
                             </td>
-                            <td class="unit">{{ $row->price }}</td>
-                            <td class="qty">{{ $row->count }}</td>
-                            <td class="total">{{ $row->count * $row->price }}</td>
-                            @php $value = $value + $row->count * $row->price
-                            @endphp
+                            <td class="unit">{{ $row->bdate }}</td>
+                            <td class="qty">{{ $row->time}}</td>
+                            <td class="qty">{{ $row->amount}}</td>
+                            <td class="qty">{{ $row->duration}}</td>
+                            <td class="total">{{ $row->amount}}</td>
+
+                            
                         </tr>
-                        @endforeach
+                        
                        
                     </tbody>
                     <tfoot>
-                        <tr>
+                        <tr><td></td>
+                            <td></td>
                             <td colspan="2"></td>
                             <td colspan="2"></td>
                             <td></td>
                         </tr>
                         
                         <tr>
+                       
                             <td colspan="2"></td>
                             <td colspan="2"></td>
                             <td></td>
                         </tr>
                         
                         <tr>
+                       <td></td>
+                            <td></td>
                             <td colspan="2"></td>
                             <td colspan="2">GRAND TOTAL</td>
-                            <td ><b>{{ $value}}</b></td>
+                            <td ><b>{{ $row->amount}}</b></td>
                         </tr>
                     
                     </tfoot>
@@ -86,13 +94,14 @@
                 <div class="thanks">Thank you!</div>
                 <div class="notices">
                     <div>NOTICE:</div>
-                    <div class="notice">You can cancel your products Before you delivered.</div>
+                    <div class="notice">You can cancel selected package ............</div>
                 </div>
             </main>
             <footer>
                 Invoice was created on a computer and is valid without the signature and seal.
             </footer>
         </div>
+        @endforeach
         <!--DO NOT DELETE THIS div. IT is responsible for showing footer always at the bottom-->
         <div></div>
     </div>

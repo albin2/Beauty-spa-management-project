@@ -34,8 +34,18 @@
                     <div class="product-single-price-wrap">
                       <p class="price">RS:{{ $row->price }}</p>
                     </div>
+                   
                     <div class="product-single-text">
-                      <p>{{ $row->proddecr }}</p>
+                      <p>Ideal For:{{ $row->profor }}</p>
+                    </div>
+                    <div class="product-single-text">
+                      <p>Application Area:{{ $row->aplarea }}</p>
+                    </div>
+                    <div class="product-single-text">
+                      <p>Quantity:{{ $row->quantity }}g</p>
+                    </div>
+                    <div class="product-single-text">
+                      <p>Description:{{ $row->proddecr }}</p>
                     </div>
                     <form class="login100-form validate-form" method="POST" action="{{ route('toCart') }}">
                         @csrf

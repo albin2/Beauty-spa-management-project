@@ -69,6 +69,7 @@ Route::post('/district','BookingController@district')->name('district');
 //save payment details
 Route::post('/save/payement/details', 'BookingController@paymentDetails')->name('paymentDetails');//update to cart
 
+Route::post('/save/payement/details/service', 'user\UserController@paymentDetails')->name('paymentDetails');//update to cart
 
 
 Route::post('/add/tobillingaddress', 'BookingController@BillingAddress')->name('BillingAddress');//add to cart
@@ -176,6 +177,9 @@ Route::post('/admin/block/products', 'AdminController@blockProducts')->name('blo
 //unblockProducts
 
 Route::post('/admin/unblock/products', 'AdminController@unblockProducts')->name('unblockProducts');
+// view product bookings
+Route::get('/admin/view/pro/bookings', 'AdminController@viewProductsBooking')->name('viewproductbookings');//view Bookings
+
 //..........................................PACKAGE...............................................................
 
 Route::post('/admin/list/packageDetails','AdminController@viewPackageDetail')->name('listpackageDetail'); //detail
@@ -187,7 +191,6 @@ Route::get('/admin/viewPackage', 'AdminController@viewPackageForm')->name('viewP
 Route::get('/admin/viewfeedback', 'AdminController@viewFeedbackform')->name('viewFeedback');//view feedback
 Route::post('/admin/del/feedback', 'AdminController@delfeedback')->name('deletefeedback');//REMOVE FEEEDBACK
 Route::get('/admin/viewappointmentss', 'AdminController@viewAppointment')->name('viewappoi');//view appointments
-
 
 Route::get('/admin/list/blockedusers','AdminController@viewblockedUsers')->name('listblockedusers');//view blocked users
 Route::get('/admin/list/users','AdminController@viewUsers')->name('listusers');

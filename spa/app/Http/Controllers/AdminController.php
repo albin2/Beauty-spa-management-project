@@ -506,4 +506,18 @@ public function updateproduct(Request $request)
 
         return view('adminpages.viewappontments', ['apm' => $apm, ]);
     }
+
+
+    /// view product Bookings
+    public function viewProductsBooking(Request $request){
+    
+         $data = DB::table('cart')
+        ->join('cartitems', 'cartitems.cartid', '=', 'cart.cartid')
+        ->join('products', 'products.id', '=', 'cartitems.ptoductid')
+        ->join('address', 'address.uid', '=', 'cart.userid')
+        ->where('cart.satus', '=', '2')->orWhere('cart.satus', '=', '0')
+        ->get();
+        
+        return view('adminpages.viewproductBooking', ['data' => $data,]);
+    }
 }

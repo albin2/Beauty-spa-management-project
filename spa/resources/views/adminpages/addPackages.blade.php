@@ -41,10 +41,10 @@
  </div>
 
  <div class="form-group">
- <label><h4><b>PACKAGE FOR</b></h4></label><br>
+ <label><h4><b>IDEAL FOR</b></h4></label><br>
  <select name="packfor" class="form-control">
-                        <option value="volvo">MALE</option>
-                        <option value="saab">FEMALE</option>
+                        <option value="Male">MALE</option>
+                        <option value="Female">FEMALE</option>
                         </select>
 </div>
  <div class="form-group">
@@ -53,7 +53,7 @@
  </div>
  <div class="form-group">
     <label><h4><b>PRICE</b></h4></label>
-    <input type="number" class="form-control av-price" av-message="invalid pricing format" name="price"  placeholder="price">
+    <input type="number" class="form-control av-posnumber" av-message="invalid pricing format" name="price"  placeholder="price">
  </div>
  <div class="form-group">
     <label><h4><b>PICTURE</b></h4></label>

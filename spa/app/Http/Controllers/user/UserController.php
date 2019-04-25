@@ -13,6 +13,7 @@ use App\Empleave;
 use App\Booking;
 use App\Product;
 use App\productCategeory;
+use App\PaymentDetails;
 // use App\Http\Controllers\user\Registration;
 
 class UserController extends Controller
@@ -149,21 +150,36 @@ class UserController extends Controller
         $usena = Registration::where('user_id', Auth::id())->select('fname')->get();
         $fbc->usname = $usena[0]['fname'];
 
-        $fbc->status = '1';
+        $fbc->status = '0';
+        // return $fbc;
         $fbc->save();
-
-
+        $bok = Booking::find($fbc->id);
+        return view('userpages.servicepayment' ,['apm' => $bok]);
         $data = Service::all();
 
         //return $fbc;
         $apm = DB::table('regist', 'booking')->select('regist.user_id', 'booking.*')->join('booking', 'regist.user_id', '=', 'booking.uid')->where([['user_id', Auth::id()], ['status', '1']])->get();
 
         //return $leaves;
-        return redirect('/user/appointment/view');
+       // return redirect('/user/appointment/view');
         //reciept
         //return view('userpages.viewappionments');
     }
+    public function paymentDetails(Request $request) // add services
+    {
+        //return $request;
+        $details = new PaymentDetails($request->except('cvv', 'date','id'));
+        $details->save();
+        
 
+        $det=Booking::where('id', $request->id)->get();
+        
+       //return $det; 
+        Booking::where('id', $request->id)->update(['status'=> '1']);
+
+        return view('userpages.serviceinvoice' ,['det' => $det]);
+
+    }
     public function verifyDate(Request $request)
     {
         $date =  $request->date;

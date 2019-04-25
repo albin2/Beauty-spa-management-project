@@ -34,11 +34,27 @@
     <textarea class="form-control av-required" av-message="required"  name="proddecr"  placeholder="Description"></textarea>
  </div>
 
- 
- 
+ <div class="form-group">
+ <label><h4><b>IDEAL FOR</b></h4></label><br>
+ <select name="profor" class="form-control">
+    
+                        <option value="male">MALE</option>
+                        <option value="female">FEMALE</option>
+                        </select>
+</div>
+
+
+<div class="form-group">
+    <label><h4><b>APPLICATION AREA</b></h4></label>
+    <input type="text" class="form-control av-required" av-message="Required"name="aplarea"  placeholder=" Application Area">
+ </div>
+ <div class="form-group">
+    <label><h4><b>QUANTITY</b></h4></label>
+    <input type="number" class="form-control av-posnumber" av-message="invalid format" name="quantity"  placeholder="Quantity (in grammes)">
+ </div>
  <div class="form-group">
     <label><h4><b>PRICE</b></h4></label>
-    <input type="number" class="form-control av-price" av-message="invalid pricing format" name="price"  placeholder="price">
+    <input type="number" class="form-control av-posnumber" av-message="invalid pricing format" name="price"  placeholder="price">
  </div>
  <div class="form-group">
     <label><h4><b>STOCK</b></h4></label>

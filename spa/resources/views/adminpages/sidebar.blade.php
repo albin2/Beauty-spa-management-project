@@ -112,6 +112,8 @@
           <li><a href="{{ route('listproducts') }}"><i class="fa fa-circle-o"></i> View Product Details</a></li>
 
           <li><a href="{{ route('updateproductss') }}"><i class="fa fa-circle-o"></i>Update product Stock</a></li>
+          <li><a href="{{ route('viewproductbookings') }}"><i class="fa fa-circle-o"></i> View Product Bookings</a></li>
+
 
           </ul>
         </li>
