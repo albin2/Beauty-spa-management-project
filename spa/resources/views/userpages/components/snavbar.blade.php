@@ -8,7 +8,7 @@
               <div class="rd-navbar-nav-wrap">
                 <div class="rd-navbar-nav-inner">
                   <ul class="rd-navbar-nav">
-                    <li class="active"><a href="index.html">Home</a>                  
+                    <li class="active"><a href="/home">Home</a>                  
                     <li> 
                     <a href="{{ route('userEmployeessp') }}">experts</a>
                     </li>
@@ -17,6 +17,10 @@
                     </li>
                     <li><a href="{{ route('viewUserproduct') }}">Shop</a>
                     </li>
+                    <li><a href="{{ route('viewUserprofile') }}">profile</a>
+                    </li>
+                    <li class="active"><a href="/user/appointment/view">My Appointments</a>                  
+                    <li>
                     <li><a href="#">Contacts</a>
                       <ul class="rd-navbar-dropdown">
                         <li><a href="contacts-1.html">Contacts 1</a>

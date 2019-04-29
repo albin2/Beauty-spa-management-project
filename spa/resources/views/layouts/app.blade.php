@@ -25,7 +25,7 @@
     
         <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
             
-        <div class="page-header-left"><a class="brand" href="/"><img src="{{ asset('/theam/images/papaya2.png') }}" alt="" width="199" height="36" /></a></div>
+        <div class="page-header-left"><a class="brand" href="/"><img src="{{ asset('/theam/images/logo-default-199x36.png') }}" alt="" width="199" height="36" /></a></div>
                    
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>

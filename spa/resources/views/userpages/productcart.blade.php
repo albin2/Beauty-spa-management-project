@@ -3,7 +3,7 @@
 @section('content')
 
 <section class="section-xl bg-periglacial-blue">
-              <div class="shell"><a class="link link-primary link-return" href="shop.html">Back</a>
+              <div class="shell"><a class="link link-primary link-return">MY CART</a>
                 <div class="table-custom-responsive table-cart-wrap">
                   <table class="table-cart">
                     <thead>
@@ -58,9 +58,17 @@
                   </table>
                 </div>
                 <div class="table-cart-footer">
-                  <div class="table-cart-footer-left">
                   
+                  
+                  <div class="table-cart-footer-left">
+                  <a href="{{ route('viewUserproduct') }}">
+                    <label class="checkbox-inline checkbox-modern">
+                      CONTINUE SHOPPING
+                    </label>
+                    </a>
                   </div>
+
+                  
                   <div class="table-cart-footer-right">
                     <dl class="terms-list-bold">
                       <dt>Total</dt>

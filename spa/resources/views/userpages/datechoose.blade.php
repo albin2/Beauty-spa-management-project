@@ -10,7 +10,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ 'Wellness' }}</title>
+    <title>{{ 'PAPAYA' }}</title>
 
     <!-- Scripts -->
     <!-- <script src="{{ asset('js/app.js') }}" defer></script> -->
@@ -150,7 +150,7 @@
                         <input hidden name="time" value="0" id="b-time">
                         <br/>
                         <div class="text-center mt-5">
-                            <input type="submit" id="confirm-booking" class="btn btn-primary btn-sm" readonly value="Confirm Booking">
+                            <input type="submit" id="confirm-booking" class="btn btn-primary btn-sm" disabled value="Confirm Booking">
                         </div>
                     </div>
                 </form>
@@ -175,6 +175,7 @@
             //date change
             $("#datepicker").on("change", function() {
                 $date = $(this).val();
+                $("#confirm-booking").attr("disabled", "disabled");
                 //date check
                 $.ajax({
                     url: '/user/check/date',
@@ -189,7 +190,6 @@
                         if (data == '0') {
                             $("#userInfo").html("Date is not Available");
                             $(".times").html("");
-                            $("#confirm-booking").attr("disabled", "disabled");
                         } else {
                             $html = '<div class="row"><ul class="date-picker-list animated fadeIn">';
                             $("#userInfo").html(" Pick a time to Schedule your appointment");
@@ -208,7 +208,6 @@
             $('body').on("click", '.timeSch', function() {
                 $(this).addClass("selected");
                 $(this).siblings("li").removeClass("selected");
-                
                 $("#b-time").val($(this).data('val'));
                 $("#confirm-booking").removeAttr("disabled");
             });

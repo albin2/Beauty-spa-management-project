@@ -6,7 +6,7 @@
             <div class="cell-xs-12">
                 <h2>OUR EXPERTS</h2>
                 <div class="p text-width-medium">
-                    <p class="big">We employ only highly qualified Beauty and Spa experts who are not just professionals, but also enjoy maintaining the atmosphere of a classic Bearuty and Spa.</p>
+                    <p class="big">We employ only highly qualified Beauty and Spa experts who are not just professionals, but also enjoy maintaining the atmosphere of a classic Beauty and Spa.</p>
                 </div>
             </div>
             <div class="cell-xs-12">
@@ -19,11 +19,7 @@
                                 <div class="thumbnail-card-text">
                                     <p>{{ $row->qualification }}</p>
                                 </div>
-                                <ul class="inline-list inline-list-md">
-                                    <li><a class="icon icon-xs link-gray-base fa-facebook" href="#"></a></li>
-                                    <li><a class="icon icon-xs link-gray-base fa-twitter" href="#"></a></li>
-                                    <li><a class="icon icon-xs link-gray-base fa-linkedin" href="#"></a></li>
-                                </ul>
+                               
                             </div>
                         </div>
                     </div>
@@ -41,7 +37,7 @@
 <div class="modal fade text-center" id="modalWindow{{$row->id}}" role="dialog">
         <div class="modal-dialog custom-modal-dialog">
             <div class="custom-modal-content">
-                <button class="close" type="button" data-dismiss="modal"></button>
+                <button class="close" type="button" data-dismiss="modal">X</button>
                 <div class="shell">
                     <div class="box-portfolio"><img class="box-portfolio-image" src="{{ asset('storage/'.$row->image) }}" alt="" width="130" height="130" />
                         <p class="box-portfolio-header">{{ $row->fname }} {{ $row->lname }}</p>

@@ -2,11 +2,11 @@
  @section('content')
 <div class="container">
     <div class="row justify-content-center my-5">
- <div class="box-header">
-            <div class="box-title" ><center><h3><b>BOOKING DETAILS</b></h3></center>
+       <div class="box-header">
+            <div class="box-title" ><center><h3><b>APPOINTMENT DETAILS</b></h3></center>
             </div>
-    
-        <div class="col-md-8">
+           
+        <div class="col-md-12">
         
             <div class="root row">
             <table id="example2" class="table table-bordered table-hover">
@@ -39,8 +39,8 @@
                         <button type="submit" name="del" class="btn btn-primary" >CANCEL</button>
                     </form>
                     @else
-</label>cant cancel</label>
-@endif
+                 </label> can't cancel</label>
+                   @endif
                   </td>
                   </tr>
                   @endforeach
@@ -49,6 +49,5 @@
               </table>
             </div>
         </div>
-    </div>
-
+   
 @endsection

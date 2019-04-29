@@ -195,20 +195,12 @@
         </div>
         <div class="cell-sm-8 cell-md-6">
           <ul class="list-blocks-bordered">
-            <li>
-              <label class="radio-inline radio-bold">
-                <input type="radio" name="radio-group-1">COD
-              </label>
-              <p class="text-gray-base">
-                123 Street W, Seattle WA 99999 United States.
-
-              </p>
-            </li>
+          
             <li>
               <div class="group-lg group-middle">
                 <label class="radio-inline radio-bold">
-                  <input type="radio" name="radio-group-1">PayPal
-                </label><a class="link link-primary" href="#">What is PayPal?</a>
+                 MAKE PAYMENT WITH
+                </label><
               </div>
               <ul class="inline-list inline-list-sm">
                 <li><a href="#"><img src="/theam/images/card-1-65x40.png" alt="" width="65" height="40" /></a></li>

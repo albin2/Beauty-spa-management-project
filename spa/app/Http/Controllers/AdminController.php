@@ -147,6 +147,35 @@ class AdminController extends Controller
         return view('adminpages.addProduct', ['products1' => productCategeory::select('id', 'categeory')->get()]);
     }
 
+ // ......................................updatesProductdetails
+
+    public function updatesProductdetails(Request $request)
+{
+    $da=$request->except('_token', 'id','image');
+    $imgPath = "";
+     // return l;
+        $imgPath = "";
+        if ($request->hasFile('image') && $request->file('image')->isValid()) {
+            $image = $request->file('image');
+            $imgPath = $image->store('public/images/emp/product');
+            $d = explode('/', $imgPath);
+            array_shift($d);
+            $imgPath = implode('/', $d);
+            
+            $da['image'] = $imgPath;
+
+    }
+  // return $da;
+   
+    Product::where('id', $request->id)->update($da);
+
+    $datas = Product::where('id', $request->id)->get();
+
+    $data = Product::all();
+    return view('adminpages.viewProduct', ['data' => $data,'datas' => $datas,'info' => 'Product updated']);
+}
+
+  
 
     public function viewProductForm()
     {
@@ -294,6 +323,33 @@ public function updateproduct(Request $request)
     return view('adminpages.updatePackage', ['data' => $data]);
 }
 
+public function updatesPackages(Request $request)
+{
+    $da=$request->except('_token', 'id','image');
+    $imgPath = "";
+    if ($request->hasFile('image') && $request->file('image')->isValid()) {
+        $image = $request->file('image');
+        $imgPath = $image->store('public/images/emp/pack');
+        $d = explode('/', $imgPath);
+        array_shift($d);
+        $imgPath = implode('/', $d);
+
+
+           $da['image'] = $imgPath;
+    }
+   
+   
+    Package::where('id', $request->id)->update($da);
+
+    $datas = Package::where('id', $request->id)->get();
+
+    $data = Package::all();
+    return view('adminpages.viewPackages', ['data' => $data,'datas' => $datas,'info' => 'Package updated']);
+}
+
+
+///............................................................................................
+
 
 
     public function viewUsers()
@@ -409,7 +465,7 @@ public function updateproduct(Request $request)
     public function blockPackages(Request $request)
     {
         //return $request->all();
-        $data = Package::where('id', $request->uid)->update(['status'=>0]);;
+        $data = Package::where('id', $request->uid)->update(['status'=>0]);
 
         $data = Package::all();
         return view('adminpages.viewPackages', ['data' => $data, 'info' => 'Package Blocked']);
@@ -515,7 +571,7 @@ public function updateproduct(Request $request)
         ->join('cartitems', 'cartitems.cartid', '=', 'cart.cartid')
         ->join('products', 'products.id', '=', 'cartitems.ptoductid')
         ->join('address', 'address.uid', '=', 'cart.userid')
-        ->where('cart.satus', '=', '2')->orWhere('cart.satus', '=', '0')
+        ->where('cart.satus', '=', '2')->orWhere('cart.satus', '=', '0')->orWhere('cart.satus', '=', '4')
         ->get();
         
         return view('adminpages.viewproductBooking', ['data' => $data,]);

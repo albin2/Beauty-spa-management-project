@@ -45,6 +45,7 @@
  <select name="packfor" class="form-control">
                         <option value="Male">MALE</option>
                         <option value="Female">FEMALE</option>
+                        <option value="MALE AND FEMALE">MALE AND FEMALE</option>
                         </select>
 </div>
  <div class="form-group">

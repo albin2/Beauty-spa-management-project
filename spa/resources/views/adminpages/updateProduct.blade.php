@@ -19,7 +19,7 @@
             </div>
             @endisset
             
-            <form method="POST" class="oh-autoval-form" enctype="multipart/form-data" action="{{ route('Product') }}" onsubmit="return">
+            <form method="POST" class="oh-autoval-form" enctype="multipart/form-data" action="{{ route('updatesProductdetails') }}" onsubmit="return">
                 @csrf
                 <class="box-body">
                     <center>
@@ -32,36 +32,65 @@
                         </select>
                         <div class="form-group">
                             <label>
-                                <h4><b>Product Name</b></h4>
+                                <h4><b>PRODUCT NAME</b></h4>
                             </label>
                             <input type="text" class="form-control av-required" av-message="Required" name="productname" value="{{ $data[0]->productname }}">
                         </div>
                         <div class="form-group">
                             <label>
-                                <h4><b>Product Description</b></h4>
+                                <h4><b>PRODUCT DESCRIPTION</b></h4>
                             </label>
                             <textarea class="form-control av-required" av-message="required" name="proddecr">{{$data[0]->proddecr}}</textarea>
                         </div>
                         <div class="form-group">
+
+<div class="form-group">
+    
+<label> <h4><b>IDEAL FOR</b></h4></label>
+   
+      <h4> 
+      @if($data[0]->profor=="")
+       <label class="radio-inline"><input type="radio" name="profor" value='Male' >Male</label>
+        <label class="radio-inline"><input type="radio" name="profor" value='emale' >Female</label>     
+        @endif
+      @if($data[0]->profor=="Male")
+       <label class="radio-inline"><input type="radio" name="profor" value='Male' checked>Male</label>
+        <label class="radio-inline"><input type="radio" name="profor" value='Female' >Female</label>     
+        @endif  
+        @if($data[0]->profor=="Female")
+       <label class="radio-inline"><input type="radio" name="profor" value='Male' >Male</label>
+        <label class="radio-inline"><input type="radio" name="profor" value='Female' checked >Female</label>     
+        @endif                   
+    </h4>
+    </div>
+
+ 
+                 <div class="form-group">
+                     <br><label><h4><b>APPLICATION AREA</b></h4></label>
+                      <input type="text" class="form-control av-required" av-message="Required"name="aplarea"  value="{{ $data[0]->aplarea }}" placeholder=" Application Area">
+                       </div>
+                       <div class="form-group">
+                  <label><h4><b>QUANTITY</b></h4></label>
+                  <input type="number" class="form-control av-posnumber" av-message="invalid format" name="quantity"  value="{{ $data[0]->quantity }}" placeholder="Quantity (in grammes)">
+                      </div>
+                        <div class="form-group">
                             <label>
-                                <h4><b>Price</b></h4>
+                                <h4><b>PRICE</b></h4>
                             </label>
                             <input type="number" class="form-control av-price" av-message="invalid pricing format" name="price" value={{$data[0]->price}}>
                         </div>
+                   
+                       
                         <div class="form-group">
                             <label>
-                                <h4><b>Stock</b></h4>
+                                <h4><b>PICTURE</b></h4>
                             </label>
-                            <input type="number" class="form-control av-posnumber" av-message="positive number" name="stock" value={{$data[0]->stock}}>
-                        </div>
-                        <div class="form-group">
-                            <label>
-                                <h4><b>picture</b></h4>
-                            </label>
-                            <input type="file" class="form-control av-required" name="image" accept=".jpg,.jpeg,.png,.jfif" value={{$data[0]->image}}>
+                            <input type="file" class="form-control " name="image" accept=".jpg,.jpeg,.png,.jfif" value={{$data[0]->image}}>
                         </div>
                         <div style="margin-left:400px;">
-                            <button type="submit" name="submit" class="btn btn-primary">UPDATE</button>
+                        <input hidden name="id" value="{{$data[0] ->id}}">
+
+                            <button type="submit"  class="btn btn-primary">UPDATE</button>
                         </div>
                     </div>
         </div>

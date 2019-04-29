@@ -39,7 +39,7 @@
                 @foreach($data as $row)
                
                   <div class="cell-sm-6 cell-md-4">
-                    <article class="product"><a class="product-image" href="single-product.html"><img src="{{ asset('storage/'.$row->image) }}" alt="" width="164" height="168"/></a>
+                    <article class="product"><a class="product-image" ><img src="{{ asset('storage/'.$row->image) }}" alt="" width="164" height="168"/></a>
                       <p class="product-title"><a href="{{ route('singleviewproduct', $row->id) }}">{{ $row->productname }}</a></p>
                       <p class="product-price">RS: {{ $row->price }}
                       @if ($row->stock>=1)

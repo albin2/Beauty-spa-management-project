@@ -1,48 +1,146 @@
+
 @extends('layouts.admin')
 @section('content')
-
 <body class="hold-transition skin-blue sidebar-mini">
-    <div class="wrapper">
+<div class="wrapper">
 
-        @component('adminpages.navbar')
-        @endcomponent
-        <!-- Left side column. contains the logo and sidebar -->
+ @component('adminpages.navbar')
+ @endcomponent
+  <!-- Left side column. contains the logo and sidebar -->
+ 
+@component('adminpages.sidebar')
+ @endcomponent
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
 
-        @component('adminpages.sidebar')
-        @endcomponent
-        <!-- Content Wrapper. Contains page content -->
-        <div class="content-wrapper">
-            <form method="POST" class="oh-autoval-form" enctype="multipart/form-data" onsubmit="return">
-                @csrf
+ <html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+* {
+  box-sizing: border-box;
+}
 
-                <class="box-body">
-                    <center>
-                        <h2><B>UPDATE PRODUCT STOCK</B></h2>
-                    </center>
-                    <div style="margin-left:100px;margin-right:100px;margin-top:20px;background-color: #e7e4e7;">
+#myInput {
+  background-image: url('/css/searchicon.png');
+  background-position: 10px 10px;
+  background-repeat: no-repeat;
+  width: 100%;
+  font-size: 16px;
+  padding: 12px 20px 12px 40px;
+  border: 1px solid #ddd;
+  margin-bottom: 12px;
+}
 
-                        <label>
-                            <h4><b>SELECT PRODUCT</b></h4>
-                        </label>
-                        <li class="nav-item dropdown ">
+#myTable {
+  border-collapse: collapse;
+  width: 100%;
+  border: 1px solid #ddd;
+  font-size: 18px;
+}
 
-                            <a class="nav-link dropdown-toggle form-control " href="{{ route('viewUserproduct')}}" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Select product
-                            </a>
-                            <div class="dropdown-menu form-control" aria-labelledby="navbarDropdown">
-                                @foreach($data as $ser)
-                                <a class="dropdown-item form-control" href="{{ route('productupdates',$ser['id'])}}">{{ $ser['productname'] }}</a><br>
-                                @endforeach
-                                
-                        </div>
+#myTable th, #myTable td {
+  text-align: left;
+  padding: 12px;
+}
 
-                           
-            </form>
+#myTable tr {
+  border-bottom: 1px solid #ddd;
+}
+
+#myTable tr.header, #myTable tr:hover {
+  background-color: #f1f1f1;
+}
+</style>
+</head>
+<body>
+
+<center><h3><b><class="box-title">PRODUCT STOCK</b></h3></center>
 
 
-        </div>
-        <!-- /.content-wrapper -->
-    </div>
-    <!-- ./wrapper -->
+<input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search product......." title="Type in a name">
 
-    @endsection 
+<table id="myTable">
+@isset($info)
+                <div class="alert-info alert">
+                 {{ $info }}
+                </div>
+              @endisset
+  <tr class="header"> 
+      <th></th>
+      <th></th>
+                 <th>PRODUCT NAME</th>
+                  <th>STOCK</th>
+                  <th>*</th>
+  </tr>
+
+                  @foreach($data as $row)
+                  <tr>
+                      <td></td>
+                      <td></td>
+                  <td>{{ $row['productname'] }}</td>
+                  <td>{{ $row['stock'] }}</td>
+                  
+                  <td>
+                    <form action="{{ route('productupdates')}}" method="post">
+                      @csrf
+                        <input hidden name="id" value="{{ $row['id'] }}">
+                        <button type="submit" name="delServices" class="btn btn-primary" >UPDATE STOCK</button>
+                    </form>
+                  </td>
+                  </tr>
+                  @endforeach
+                
+                
+   </table>
+
+<script>
+function myFunction() {
+  var input, filter, table, tr, td, i, txtValue;
+  input = document.getElementById("myInput");
+  filter = input.value.toUpperCase();
+  table = document.getElementById("myTable");
+  tr = table.getElementsByTagName("tr");
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[0];
+    if (td) {
+      txtValue = td.textContent || td.innerText;
+      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }       
+  }
+}
+</script>
+
+</body>
+</html>
+
+    <!-- Main content -->
+    
+    <!-- /.content -->
+  </div>
+  @endsection
+
+
+
+
+
+
+
+
+
+
+
+   
+
+
+
+
+
+
+
+
+

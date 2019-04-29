@@ -11,7 +11,7 @@
  @endcomponent
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
-  <form  method="POST" class="oh-autoval-form" enctype="multipart/form-data" action="{{ route('savePackages') }}" onsubmit="return">
+  <form  method="POST" class="oh-autoval-form" enctype="multipart/form-data" action="{{ route('updatesPackages') }}" onsubmit="return">
   @csrf
    <class = "box-body" >
               <center><h2><B>UPDATE PACKAGES</B></h2></center>
@@ -33,12 +33,10 @@
  </div>
 
  <div class="form-group">
- <label><h4><b>Package For</b></h4></label><br>
- <INPUT TYPE="Radio" Name="packfor" Value="Male"><b>Male</b>
-<INPUT TYPE="Radio" Name="packfor" Value="Female"><b>Female</b>
-</div>
+
+
  <div class="form-group">
-    <label><h4><b>Time Duration</b></h4></label>
+   <br> <label><h4><b>Time Duration</b></h4></label>
     <input type="number" class="form-control av-posnumber" av-message="positive number" name="timed"  value="{{ $data[0]->timed}}">
  </div>
  <div class="form-group">
@@ -47,10 +45,11 @@
  </div>
  <div class="form-group">
     <label><h4><b>picture</b></h4></label>
-    <input type="file" class="form-control av-required"name="image"  value="{{ $data[0]->image}}" accept=".jpg,.jpeg,.png,.jfif">
+    <input type="file" class="form-control "name="image"  value="{{ $data[0]->image}}" accept=".jpg,.jpeg,.png,.jfif">
  </div>
  <div style="margin-left:400px;" >
-            <button type="submit" name="submit" class="btn btn-primary">UPDATE </button>
+ <input hidden name="id" value="{{$data[0] ->id}}">
+            <button type="submit"  class="btn btn-primary">UPDATE </button>
 </div>
 </div>
 </div>

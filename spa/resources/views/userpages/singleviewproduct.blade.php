@@ -3,7 +3,7 @@
 @section('content')
 
 <section class="section-xl bg-periglacial-blue">
-              <div class="shell"><a class="link link-primary link-return" href="shop.html">Back</a>
+              <div class="shell">
                 <article class="product-single">
                   <div class="product-single-left">
                   @foreach($data as $row)

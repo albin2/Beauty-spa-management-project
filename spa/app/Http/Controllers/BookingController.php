@@ -235,14 +235,14 @@ class BookingController extends Controller
 
 
 
-    public function paymentDetails(Request $request) // add services
+    public function paymentDetails(Request $request) 
     {
         //return $request;
         $details = new PaymentDetails($request->except('cvv', 'date'));
         $details->save();
 
         //cart items
-        $cartItems = Cartitems::where('cartid', $request->cartid)->get();
+        return $cartItems = Cartitems::where('cartid', $request->cartid)->get();
         foreach($cartItems as $item){
             //deduct stock
             $currStock = Product::where('id', $item->ptoductid)->get()[0]->stock;
@@ -250,7 +250,7 @@ class BookingController extends Controller
             Product::where('id', $item->ptoductid)->update(['stock'=> $updatedStock]);
         }
 
-       $data = DB::table('cart')
+        $data = DB::table('cart')
         ->join('cartitems', 'cartitems.cartid', '=', 'cart.cartid')
         ->join('products', 'products.id', '=', 'cartitems.ptoductid')
         ->where('cart.userid', Auth::id())

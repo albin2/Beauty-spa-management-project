@@ -75,7 +75,7 @@
 					<div class="field-group">
 						<span class="fa fa-user" aria-hidden="true"></span>
 						<div class="wthree-field">
-                        <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required >
+                        <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" placeholder="Enter your email Address"required >
 						</div>
                        
 					</div>

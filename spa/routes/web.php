@@ -33,8 +33,7 @@ Route::get('/_register', function () {
 Route::post('/registerTo', 'user\UserController@regStep')->name('registerTo');
 
 
-/*admin routes
-__________________ */
+
 
 
 
@@ -50,6 +49,8 @@ Route::get('/user/spaservice/view','user\UserController@viewSeviceuser')->name('
 Route::get('/user/spaproduct/view','user\UserController@viewProductss')->name('viewUserproduct');// user view product
 Route::get('/user/view/singleproduct/{id}','user\UserController@viewsingleProducts')->name('singleviewproduct');//view single product
 
+//package search
+Route::post('/user/spapackage/search','user\UserController@PackSearch')->name('searchpack');// user view product
 
 
 Route::get('/user/appointment/view','user\UserController@viewuserappontments')->name('viewUserappontment');// user appointment
@@ -152,9 +153,9 @@ Route::post('/admin/addproductcaregeory', 'AdminController@addproductcategeory')
 //Route::get('/admin/viewProductstock', 'AdminController@viewupdateProductstock')->name('viewupdateProductstock');
 Route::post('/admin/updateProductstock', 'AdminController@updateproduct')->name('updateproduct');
 Route::get('/admin/updateProductstockss', 'AdminController@viewupdateProductstock')->name('updateproductss');
+Route::post('/admin/updatesProductdetails', 'AdminController@updatesProductdetails')->name('updatesProductdetails');//updatesProduct details
 
-
-Route::get('/admin/viewProductstock/{id}', 'AdminController@productupdates')->name('productupdates');
+Route::Any('/admin/viewProductstock/up', 'AdminController@productupdates')->name('productupdates');
 
 // add product
 Route::get('/admin/viewProduct', 'AdminController@viewProductForm')->name('viewProduct');
@@ -184,7 +185,7 @@ Route::get('/admin/view/pro/bookings', 'AdminController@viewProductsBooking')->n
 
 Route::post('/admin/list/packageDetails','AdminController@viewPackageDetail')->name('listpackageDetail'); //detail
 
-
+Route::post('/admin/update/packageDetails','AdminController@updatesPackages')->name('updatesPackages');//updatesPackages
 //----------------------------------------------------------------------------------------------------------
 Route::get('/admin/viewEmployee', 'AdminController@viewEmployeeForm')->name('viewEmployee');
 Route::get('/admin/viewPackage', 'AdminController@viewPackageForm')->name('viewPackage');

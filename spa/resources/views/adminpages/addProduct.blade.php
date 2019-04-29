@@ -40,6 +40,7 @@
     
                         <option value="male">MALE</option>
                         <option value="female">FEMALE</option>
+                        <option value="MALE AND FEMALE">MALE AND FEMALE</option>
                         </select>
 </div>
 

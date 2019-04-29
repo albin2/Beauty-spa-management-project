@@ -3,12 +3,12 @@
             <div class="rd-navbar-inner">
               <div class="rd-navbar-panel">
                 <button class="rd-navbar-toggle" data-rd-navbar-toggle=".rd-navbar-nav-wrap"><span></span></button>
-                <div class="rd-navbar-brand"><a class="brand-name" href="index.html"><img src="images/logo-default-199x36.png" alt="" width="199" height="36"/></a></div>
+                <div class="rd-navbar-brand"><a class="brand-name" href="#"><img src="images/logo-default-199x36.png" alt="" width="199" height="36"/></a></div>
               </div>
               <div class="rd-navbar-nav-wrap">
                 <div class="rd-navbar-nav-inner">
                   <ul class="rd-navbar-nav">
-                    <li class="active"><a href="index.html">Home</a>                  
+                    <li class="active"><a href="/home">Home</a>                  
                     <li> 
                     <a href="{{ route('userEmployeessp') }}">experts</a>
                     </li>
@@ -18,6 +18,8 @@
                     <li><a href="{{ route('viewUserproduct') }}">Shop</a>
                     </li>
                     <li><a href="{{ route('viewUserprofile') }}">profile</a>
+                    </li>
+                    <li><a href="/user/appointment/view">My Appointments</a>
                     </li>
                     <li><a href="#">Contacts</a>
                       <ul class="rd-navbar-dropdown">
