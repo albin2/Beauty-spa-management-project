@@ -46,6 +46,8 @@ class LoginController extends Controller
             return '/employeehome';
         }elseif(Auth::user()->usertype == 3){
             return '/adminhome';
+        }elseif(Auth::user()->usertype == 4){
+            return '/agenthome';
         }
         else{
             Auth::logout();

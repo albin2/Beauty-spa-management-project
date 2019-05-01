@@ -26,7 +26,8 @@
                         @foreach($add as $row)
                         <div class="text-gray-light">INVOICE TO:</div>
                         <h2 class="to">{{ $add[0]->fname}} {{ $add[0]->lname}}</h2>
-                        <div class="address"><h4>{{ $add[0]->address}},{{ $add[0]->post }},{{ $add[0]->pincode }}</h4></div>
+                        <div class="text-gray-light">SHIPPING ADDRESS:</div>
+                        <div class="address"><h4>{{ $add[0]->firstname}},{{ $add[0]->lastname}},{{ $add[0]->address}},{{ $add[0]->post }},{{ $add[0]->pincode }}</h4></div>
                         @endforeach
                     </div>
                     <div class="col invoice-details">

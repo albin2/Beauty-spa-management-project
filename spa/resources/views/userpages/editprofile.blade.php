@@ -1,6 +1,11 @@
 @extends('layouts.service')
 
 @section('content')
+<link rel="stylesheet" type="text/css" href="{{ asset('css/oh-autoval-style.css') }}">
+<!-- Adding jQuery script. It must be before other script files -->
+<script src="{{ asset('js/jquery.min.js') }}"> </script>
+<!-- Adding oh-autoVal script file -->
+<script src="{{ asset('js/oh-autoval-script.js') }}"></script>
 
 @foreach($data as $row)
 <hr>
@@ -26,24 +31,24 @@
         <!--/col-3-->
         <div class="col-sm-9">
             <ul class="nav nav-tabs">
-                <li ><a  href="{{ route('viewUserprofile')}}">Profile</a></li>
-                <li class="active" ><a data-toggle="tab" href="#messages">Edit Profile</a></li>
-                <li><a data-toggle="tab" href="#settings">Change Password </a></li>
+            <li ><a  href="{{ route('viewUserprofile')}}">Profile</a></li>
+                <li class="active"><a  href="{{ route('viewUsereditprofile')}}">Edit Profile</a></li>
+                <li ><a  href="{{ route('viewUserChangePassword')}}">Change Password </a></li>
             </ul>
 
 
             <div class="tab-content">
                 <div class="tab-pane active" id="home">
                     <hr>
-                    <form class="form"  action="{{ route('Userproedit') }}" method="post" id="registrationForm">
-            @csrf
+                    <form class="form oh-autoval-form" action="{{ route('Userproedit') }}" method="post" id="registrationForm">
+                     @csrf
                         <div class="form-group">
 
                             <div class="col-xs-6">
                                 <label for="first_name">
                                     <h4>First name</h4>
                                 </label>
-                                <input type="text" class="form-control" name="fname"  value={{$row ->fname}}  >
+                                <input type="text" class="form-control av-name" av-message="space and . is not allowed" name="fname"  value={{$row ->fname}}  >
                             </div>
                         </div>
                         <div class="form-group">
@@ -52,7 +57,7 @@
                                 <label for="last_name">
                                     <h4>Last name</h4>
                                 </label>
-                                <input type="label" class="form-control" name="lname"  value={{$row ->lname}}>
+                                <input type="label" class="form-control av-name" av-message="space and . is not allowed" name="lname"  value={{$row ->lname}}>
                             </div>
                         </div>
 
@@ -62,7 +67,7 @@
                                 <label for="phone">
                                     <h4>Phone</h4>
                                 </label>
-                                <input type="text" class="form-control" name="contact"  value={{$row ->contact}}>
+                                <input type="text" class="form-control av-number" av-message="enter a valid phone number" name="contact"  value={{$row ->contact}}>
                             </div>
                         </div>
 
@@ -73,7 +78,7 @@
                                 <label for="email">
                                     <h4>Height</h4>
                                 </label>
-                                <input type="text" class="form-control" name="height"  value={{$row ->height}}  >
+                                <input type="text" class="form-control av-posnumber" av-message="invalid format" name="height"  value={{$row ->height}}  >
                             </div>
                         </div>
                         <div class="form-group">
@@ -82,7 +87,7 @@
                                 <label for="email">
                                     <h4>Weight</h4>
                                 </label>
-                                <input type="text" class="form-control" name="weight"  value={{$row ->weight}} >
+                                <input type="text" class="form-control av-posnumber" av-message="invalid format" name="weight"  value={{$row ->weight}} >
                             </div>
                         </div>
                         <div class="form-group">

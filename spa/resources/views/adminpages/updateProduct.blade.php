@@ -34,36 +34,16 @@
                             <label>
                                 <h4><b>PRODUCT NAME</b></h4>
                             </label>
-                            <input type="text" class="form-control av-required" av-message="Required" name="productname" value="{{ $data[0]->productname }}">
+                            <input type="text" class="form-control av-required" av-message="Enter Product name" name="productname" value="{{ $data[0]->productname }}">
                         </div>
                         <div class="form-group">
                             <label>
                                 <h4><b>PRODUCT DESCRIPTION</b></h4>
                             </label>
-                            <textarea class="form-control av-required" av-message="required" name="proddecr">{{$data[0]->proddecr}}</textarea>
+                            <textarea class="form-control av-required" av-message="Enter Product description" name="proddecr">{{$data[0]->proddecr}}</textarea>
                         </div>
-                        <div class="form-group">
-
-<div class="form-group">
+                        
     
-<label> <h4><b>IDEAL FOR</b></h4></label>
-   
-      <h4> 
-      @if($data[0]->profor=="")
-       <label class="radio-inline"><input type="radio" name="profor" value='Male' >Male</label>
-        <label class="radio-inline"><input type="radio" name="profor" value='emale' >Female</label>     
-        @endif
-      @if($data[0]->profor=="Male")
-       <label class="radio-inline"><input type="radio" name="profor" value='Male' checked>Male</label>
-        <label class="radio-inline"><input type="radio" name="profor" value='Female' >Female</label>     
-        @endif  
-        @if($data[0]->profor=="Female")
-       <label class="radio-inline"><input type="radio" name="profor" value='Male' >Male</label>
-        <label class="radio-inline"><input type="radio" name="profor" value='Female' checked >Female</label>     
-        @endif                   
-    </h4>
-    </div>
-
  
                  <div class="form-group">
                      <br><label><h4><b>APPLICATION AREA</b></h4></label>

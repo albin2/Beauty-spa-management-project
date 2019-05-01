@@ -1,4 +1,5 @@
-@extends('layouts.user') @section('content')
+@extends('layouts.guests')
+ @section('content')
 
 <section class="section-xl bg-periglacial-blue text-center">
     <div class="shell">
@@ -25,7 +26,7 @@
                     </div>
                     @endforeach
                 </div>
-
+</div>
             </div>
         </div>
     </div>

@@ -23,7 +23,7 @@
               <div style="margin-left:100px;margin-right:100px;margin-top:40px;margin-bottom:100px;background-color: #e7e4e7;">
                 <div class="form-group">
                   <label>SERVICE NAME</label>
-                  <input type="text" class="form-control av-required" av-message="Required" name="servname" placeholder="Service Name">
+                  <input type="text" class="form-control av-required" av-message="Enter service name" name="servname" placeholder="Service Name">
                 </div>
                 <div class="form-group">
                   <label>ABOUT SERVICE</label>

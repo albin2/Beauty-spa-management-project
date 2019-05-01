@@ -27,11 +27,11 @@
               </select>
    <div class="form-group">
     <label><h4><b>PRODUCT NAME</b></h4></label>
-    <input type="text" class="form-control av-required" av-message="Required"name="productname"  placeholder="Product Name">
+    <input type="text" class="form-control av-required" av-message="Enter product name "name="productname"  placeholder="Product Name">
  </div>
  <div class="form-group">
     <label><h4><b>PRODUCT DESCRIPTION</b></h4></label>
-    <textarea class="form-control av-required" av-message="required"  name="proddecr"  placeholder="Description"></textarea>
+    <textarea class="form-control av-required" av-message="Enter product description"  name="proddecr"  placeholder="Description"></textarea>
  </div>
 
  <div class="form-group">
@@ -63,7 +63,7 @@
  </div>
  <div class="form-group">
     <label><h4><b>PICTURE</b></h4></label>
-    <input type="file" class="form-control av-required"name="image"  placeholder="image" accept=".jpg,.jpeg,.png,.jfif">
+    <input type="file" class="form-control av-required"av-message="please insert product Image" name="image"  placeholder="image" accept=".jpg,.jpeg,.png,.jfif">
  </div>
  <div style="margin-left:400px;" >
             <button type="submit" name="submit" class="btn btn-primary">ADD PRODUCT</button>

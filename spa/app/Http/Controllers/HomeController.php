@@ -28,6 +28,7 @@ class HomeController extends Controller
      */
     public function index()
     {
+       
         if(Auth::user()->usertype == 1){
             $data=Service::all();
             $empl=EmployeeDetails::all();
@@ -38,6 +39,8 @@ class HomeController extends Controller
             return redirect('/employeehome');
         }elseif(Auth::user()->usertype == 3){
             return redirect('/adminhome');
+        }elseif(Auth::user()->usertype == 4){
+            return redirect('/agenthome');
         }
         
 

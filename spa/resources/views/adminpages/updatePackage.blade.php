@@ -19,16 +19,16 @@
 
    <div class="form-group">
     <label><h4><b>Package Name</b></h4></label>
-    <input type="text" class="form-control av-required" av-message="Required"name="packname"  value="{{ $data[0]->packname }}">
+    <input type="text" class="form-control av-required" av-message="Enter package Name"name="packname"  value="{{ $data[0]->packname }}">
  </div>
  <div class="form-group">
     <label><h4><b>Package Description</b></h4></label>
-    <textarea class="form-control av-required" av-message="required"  name="packdecr" >{{ $data[0]->packdecr }}</textarea>
+    <textarea class="form-control av-required" av-message="Enter package Description"  name="packdecr" >{{ $data[0]->packdecr }}</textarea>
  </div>
 
  <div class="form-group">
     <label><h4><b>Package Benefits</b></h4></label>
-    <textarea name="benafits" class="form-control" >{{ $data[0]->benafits }}</textarea>
+    <textarea name="benafits" av-message="Enter package benefits" class="form-control av-required" >{{ $data[0]->benafits }}</textarea>
     <!-- <input type="text" class="form-control av-required" av-message="required"  name="benafits"  placeholder="Benefits"> -->
  </div>
 
@@ -45,7 +45,7 @@
  </div>
  <div class="form-group">
     <label><h4><b>picture</b></h4></label>
-    <input type="file" class="form-control "name="image"  value="{{ $data[0]->image}}" accept=".jpg,.jpeg,.png,.jfif">
+    <input type="file" class="form-control " name="image"  value="{{ $data[0]->image}}" accept=".jpg,.jpeg,.png,.jfif">
  </div>
  <div style="margin-left:400px;" >
  <input hidden name="id" value="{{$data[0] ->id}}">

@@ -8,9 +8,9 @@
             @foreach($pack as $row)
                 <div class="card col-md-3">
                     <div class="card__header">
-                        <h1>{{ $row['packname'] }}</h1>
+                        <h5>{{ $row['packname'] }}</h5>
                         
-                        <p class="price">{{ $row['price'] }}$</p>
+                        <p class="price">RS:{{ $row['price'] }}</p>
                         <p></p>
                     </div>
 
@@ -19,7 +19,7 @@
                             <!--<li>Start with 200 teams notes</li>
                             <li>Unlimited personal notes</li>-->
                             <li><h4><i>TIME REQUIRED  {{ $row['timed'] }}  MINUTES</i></h4></li>
-                            <li>WELNESS</li>
+                            <li>PAPAYA</li>
                         </ul>
                     </div>
 

@@ -4,11 +4,11 @@
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">
 
- @component('adminpages.navbar')
+@component('agentpages.navbar')
  @endcomponent
   <!-- Left side column. contains the logo and sidebar -->
  
-@component('adminpages.sidebar')
+  @component('agentpages.sidebar')
  @endcomponent
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -59,7 +59,6 @@
 <center><h3><b><class="box-title">PRODUCT BOOKING DETAILS</b></h3></center>
 
 
-<input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search ......." title="Type in a name">
 
 <table id="myTable">
 @isset($info)
@@ -67,55 +66,77 @@
                  {{ $info }}
                 </div>
               @endisset
+           
   <tr class="header"> 
-                 <th>BOOOKING DATE</th>
-                  <th>BOOKING ID</th>
-                  <th>USER NAME</th>
-                  <th>BILLING ADDRESS</th>
-                  <th>LAND_MARK</th> 
-                  <th>STATUS</th>
-                  <th>*</th>
-
-
+                 <th>PRODUCT NAME</th>
+                 <th>QUANTITY</th>
+                  <th>COUNT</th>
+                  <th>PRICE</th>
+                  <th>SUBTOTAL</th>
+                  
+                  
   </tr>
+  
 
                   @foreach($data as $row)
                   <tr>
-                  <td>{{ $row->updated_at}}</td>
-                  <td>BKPAPAYA{{ $row->cartid}}</td>
-                  <td>{{ $row->fname}} {{ $row->lname}}</td>
-                  <td>{{ $row->firstname}} {{ $row->lastname}}<br>
-                    {{ $row->address }}<br>
-                      {{ $row->post }}<br>
-                      {{ $row->pincode }}
-
-                  </td>
-                  <td>{{ $row->landmark}}</td>
-                  
-                  <td> @if($row->satus==0)
-                  <span style="color:red"><b> CANCELLED</b></span>
-                    @elseif($row->satus==2)
-                    <span style="color:blue"> <b> BOOKED</b></span>
-                    @elseif($row->satus==3)
-                    <span style="color:brown"><b> SHIPPED</b></span>
-                    @elseif($row->satus==4)
-                    <span style="color:green"><b> DELIVERED </span>
-                    @endif 
-                  </td>
-                  
-                  <td>
-                  
-                    <form action="{{ route('viewdetailsproduct')}}" method="post">
-                      @csrf
-                      <input hidden name="status" value="{{$row->satus}}">
-                      <input hidden name="tmnt" value="{{$row->totalamount}}">
-                        <input hidden name="id" value="{{$row->cartid}}">
-                        <button type="submit"  class="btn btn-primary" >VIEW DETAILS</button>
-                    </form>
-                   
-                  </td>
+                  <td>{{ $row->productname}}</td>
+                  <td>{{ $row->quantity}}g</td>
+                  <td>{{ $row->count}}</td>
+                  <td>{{ $row->price}} </td>
+                  <td>{{ $row->price*$row->count}} </td>
                   </tr>
                   @endforeach
+                  <tr>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td><b>Total Amount</b></td>
+                      <td><span style="color:gray"><b>{{$total}}<b></span></td>
+                  </tr>
+                  <tr>
+                  <td></td>    
+                  <td></td>  
+                  <td></td>  
+                      
+                  <td>CURRENT STAUS:</td>  
+                  <td>
+               
+                    @if($sta==2)
+                    <span style="color:blue"> <b> BOOKED</b></span>
+                    @elseif($sta==0)
+                    <span style="color:red"><b> CANCELLED</b></span>
+                    @elseif($sta==3)
+                    <span style="color:brown"><b> SHIPPED</b></span>
+                    @elseif($sta==4)
+                      <span style="color:green"><b> DELIVERED </span>
+                    @endif 
+      
+                  </td> 
+                  </tr>
+                  <tr>
+                  @if($sta==3) 
+                  <td></td>    
+                  <td></td>  
+                  <td></td>  
+                  
+                  <td>Change status:</td>  
+                  <td>
+               
+                 
+                    <form action="{{ route('Deliveredproduct')}}" method="post">
+                      @csrf
+                      @foreach($data as $row)
+                        <input hidden name="id" value="{{$row->cartid}}">
+                        @endforeach
+                        <button type="submit"  class="btn btn-primary" >DELIVERED PRODUCT</button>
+                    </form>
+                   
+                    @endif 
+      
+                  </td> 
+                  </tr>
+                 
                 
                 
    </table>

@@ -4,16 +4,15 @@
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">
 
- @component('adminpages.navbar')
+@component('agentpages.navbar')
  @endcomponent
   <!-- Left side column. contains the logo and sidebar -->
  
-@component('adminpages.sidebar')
+  @component('agentpages.sidebar')
  @endcomponent
-<div class="content-wrapper">
-    <!-- Content Header (Page header) -->
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
 
- 
     <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -71,7 +70,7 @@
                  <th>BOOOKING DATE</th>
                   <th>BOOKING ID</th>
                   <th>USER NAME</th>
-                  <th>BILLING ADDRESS</th>
+                  <th>SHIPPING ADDRESS</th>
                   <th>LAND_MARK</th> 
                   <th>STATUS</th>
                   <th>*</th>
@@ -105,7 +104,7 @@
                   
                   <td>
                   
-                    <form action="{{ route('viewdetailsproduct')}}" method="post">
+                    <form action="{{ route('agentviewdetailsproduct')}}" method="post">
                       @csrf
                       <input hidden name="status" value="{{$row->satus}}">
                       <input hidden name="tmnt" value="{{$row->totalamount}}">

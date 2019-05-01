@@ -1,10 +1,14 @@
 @extends('layouts.checkouter')
 
 @section('content')
-
+<link rel="stylesheet" type="text/css" href="{{ asset('css/oh-autoval-style.css') }}">
+<!-- Adding jQuery script. It must be before other script files -->
+<script src="{{ asset('js/jquery.min.js') }}"> </script>
+<!-- Adding oh-autoVal script file -->
+<script src="{{ asset('js/oh-autoval-script.js') }}"></script>
 
 <section class="section-xl bg-periglacial-blue">
-  <form class="rd-mailform" method="post" action="{{ route('BillingAddress') }}">
+  <form class="rd-mailform oh-autoval-form" method="post" action="{{ route('BillingAddress') }}">
     <div class="shell">
       <div class="range range-sm-center range-50">
         <div class="cell-md-10 cell-lg-6">
@@ -19,40 +23,40 @@
             <div class="cell-sm-6">
               <div class="form-group">
                 <label class="form-label-outside" for="billing-first-name">First Name *</label>
-                <input class="form-control" value="{{$add ->fname}}" id="billing-first-name" type="text" name="fname" data-constraints="@Required">
+                <input class="form-control av-name" av-message="space and . is not allowed" value="{{$add ->firstname}}" id="billing-first-name" type="text" name="firstname" data-constraints="@Required">
               </div>
 
             </div>
             <div class="cell-sm-6">
               <div class="form-group">
                 <label class="form-label-outside" for="billing-last-name">Last Name *</label>
-                <input class="form-control" value="{{$add ->lname}}" id="billing-last-name" type="text" name="lname" data-constraints="@Required">
+                <input class="form-control av-name" av-message="space and . is not allowed" value="{{$add ->lastname}}" id="billing-last-name" type="text" name="lastname" data-constraints="@Required">
               </div>
             </div>
             <div class="cell-xs-12">
               <div class="form-group">
                 <label class="form-label-outside" for="billing-address">Address *</label>
-                <input class="form-control" value="{{$add ->address}}" id="billing-address" type="text area" name="address" data-constraints="@Required">
+                <input class="form-control av-required" av-message="Enter Your Address" value="{{$add ->address}}" id="billing-address" type="text area" name="address" data-constraints="@Required">
               </div>
             </div>
             <div class="cell-sm-6">
               <div class="form-group">
                 <label class="form-label-outside" for="billing-company-name">Land Mark</label>
-                <input class="form-control" value="{{$add ->landmark}}" id="billing-company-name" type="text" name="landmark">
+                <input class="form-control av-required" av-message="Enter your landmark" value="{{$add ->landmark}}" id="billing-company-name" type="text" name="landmark">
               </div>
             </div>
 
             <div class="cell-sm-6">
               <div class="form-group">
                 <label class="form-label-outside" for="billing-phone">Phone *</label>
-                <input class="form-control" value="{{$add ->contact}}" id="billing-phone" type="number" name="contact" data-constraints="@Required @Numeric">
+                <input class="form-control av-number" av-message="enter a valid phone number" value="{{$add ->contact}}" id="billing-phone" type="number" name="contact" data-constraints="@Required @Numeric">
               </div>
             </div>
 
             <div class="cell-sm-6">
               <div class="form-group">
                 <label class="form-label-outside" for="billing-country">State</label>
-                <select type="text" id="state" class="form-control" name="state" required>
+                <select type="text" id="state" class="form-control av-required" av-message="select your state" name="state" >
                   <option class="form-control" value="{{$add ->sid}}">{{$add ->s_name}}</option>
                   @foreach ($states as $state){{ $state}}
                   <option class="form-control" value="{{ $state['sid'] }}">{{ $state['s_name'] }}</option>
@@ -64,7 +68,7 @@
             <div class="cell-sm-6">
               <div class="form-group">
                 <label class="form-label-outside" for="billing-country">District</label>
-                <select type="text" id="district" value="{{$add ->district}}" name="district" class="form-control" required>
+                <select type="text" id="district" value="{{$add ->district}}" name="district" class="form-control av-required" av-message="select your District">
                   <option class="form-control" value="{{$add ->did}}">{{$add ->d_name}}</option>
                 </select>
               </div>
@@ -72,13 +76,13 @@
             <div class="cell-sm-6">
               <div class="form-group">
                 <label class="form-label-outside" for="billing-town">Post *</label>
-                <input class="form-control" value="{{$add ->post}}" id="billing-town" type="text" name="post" data-constraints="@Required">
+                <input class="form-control av-required" av-message="Enter your post" value="{{$add ->post}}" id="billing-town" type="text" name="post" data-constraints="@Required">
               </div>
             </div>
             <div class="cell-sm-6">
               <div class="form-group">
                 <label class="form-label-outside" for="billing-town">Pin code *</label>
-                <input class="form-control" value="{{$add ->pincode}}" id="billing-town" type="text" name="pincode" data-constraints="@Required">
+                <input class="form-control av-pincode" av-message="Enter valid pincode" value="{{$add ->pincode}}" id="billing-town" type="text" name="pincode" data-constraints="@Required">
               </div>
             </div>
           </div>
@@ -88,33 +92,33 @@
             <div class="cell-sm-6">
               <div class="form-group">
                 <label class="form-label-outside" for="billing-first-name">First Name *</label>
-                <input class="form-control"  id="billing-first-name" type="text" name="fname" data-constraints="@Required">
+                <input class="form-control av-name" av-message="space and . is not allowed"  id="billing-first-name" type="text" name="firstname" data-constraints="@Required">
               </div>
 
             </div>
             <div class="cell-sm-6">
               <div class="form-group">
                 <label class="form-label-outside" for="billing-last-name">Last Name *</label>
-                <input class="form-control"  id="billing-last-name" type="text" name="lname" data-constraints="@Required">
+                <input class="form-control av-name" av-message="space and . is not allowed"  id="billing-last-name" type="text" name="lastname" data-constraints="@Required">
               </div>
             </div>
             <div class="cell-xs-12">
               <div class="form-group">
                 <label class="form-label-outside" for="billing-address">Address *</label>
-                <input class="form-control"  id="billing-address" type="text area" name="address" data-constraints="@Required">
+                <input class="form-control av-required" av-message="Enter Your Address"  id="billing-address" type="text area" name="address" data-constraints="@Required">
               </div>
             </div>
             <div class="cell-sm-6">
               <div class="form-group">
                 <label class="form-label-outside" for="billing-company-name">Land Mark</label>
-                <input class="form-control"  id="billing-company-name" type="text" name="landmark">
+                <input class="form-control av-required" av-message="Enter your landmark" id="billing-company-name" type="text" name="landmark">
               </div>
             </div>
 
             <div class="cell-sm-6">
               <div class="form-group">
                 <label class="form-label-outside" for="billing-phone">Phone *</label>
-                <input class="form-control"  id="billing-phone" type="number" name="contact" data-constraints="@Required @Numeric">
+                <input class="form-control av-number" av-message="enter a valid phone number"  id="billing-phone" type="number" name="contact" data-constraints="@Required @Numeric">
               </div>
             </div>
 
@@ -141,13 +145,13 @@
             <div class="cell-sm-6">
               <div class="form-group">
                 <label class="form-label-outside" for="billing-town">Post *</label>
-                <input class="form-control"  id="billing-town" type="text" name="post" data-constraints="@Required">
+                <input class="form-control av-required" av-message="Enter your post"  id="billing-town" type="text" name="post" data-constraints="@Required">
               </div>
             </div>
             <div class="cell-sm-6">
               <div class="form-group">
                 <label class="form-label-outside" for="billing-town">Pin code *</label>
-                <input class="form-control" id="billing-town" type="text" name="pincode" data-constraints="@Required">
+                <input class="form-control av-pincode" av-message="Enter valid pincode" id="billing-town" type="text" name="pincode" data-constraints="@Required">
               </div>
             </div>
           </div>

@@ -37,7 +37,7 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
 				<label class="nl-label" for="nl-radio-1">Make Payment </label>
 				<div class="nl-content">
 					<div class="agileits_w3layouts_tab1 agileits_w3layouts_tab">
-					<form action="{{ route('paymentDetails') }}" method="post" class="creditly-card-form agileinfo_form">
+					<form action="{{ route('paymentDetailss') }}" method="post" class="creditly-card-form agileinfo_form">
                     @csrf    
                     <section class="creditly-wrapper wthree w3_agileits_wrapper">
 								<div class="first-row form-group">

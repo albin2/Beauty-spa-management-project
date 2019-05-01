@@ -21,6 +21,8 @@
                     </li>
                     <li><a href="/user/appointment/view">My Appointments</a>
                     </li>
+                    <li><a href="{{ route('viewuserproductbookings') }}">My Bookings</a>
+                    </li>
                     <li><a href="#">Contacts</a>
                       <ul class="rd-navbar-dropdown">
                         <li><a href="contacts-1.html">Contacts 1</a>

@@ -1,4 +1,4 @@
-@extends('layouts.service') 
+@extends('layouts.guests')
 
 @section('content')
             <div class="page-title">
@@ -36,7 +36,7 @@
                       
               </div>  
   
-              <p class="page-cart-right"><b><a class="btn btn-xs btn-circle btn-primary" href="{{ route('viewcart')}}"> My Cart</a></b></p>
+              <p class="page-cart-right"><b><a class="btn btn-xs btn-circle btn-primary" href="/login"> My Cart</a></b></p>
             <section class="section-md bg-periglacial-blue text-center">
               <div class="shell">
                 <div class="range range-30">
@@ -45,21 +45,13 @@
                
                   <div class="cell-sm-6 cell-md-4">
                     <article class="product"><a class="product-image" ><img src="{{ asset('storage/'.$row->image) }}" alt="" width="164" height="168"/></a>
-                      <p class="product-title"><a href="{{ route('singleviewproduct', $row->id) }}">{{ $row->productname }}</a></p>
+                      <p class="product-title"><a href="{{ route('guestsingleviewproduct', $row->id) }}">{{ $row->productname }}</a></p>
                       <p class="product-price">RS: {{ $row->price }}
                       @if ($row->stock>=1)
-                      <form class="login100-form validate-form" method="POST" action="{{ route('toCart') }}">
-                        @csrf
-                        <input hidden name="ptoductid" value="{{ $row->id }}">
-                     <button type="submit" class="btn btn-sm box-service-control">ADD TO CART</button>
+                      <a class="btn btn-sm box-service-control" href="/login"> ADD TO CART</a>    
                    
-                    </form>
                      @else
-                     <form class="login100-form validate-form" >
-                        @csrf
-                        <input hidden name="ptoductid" value="{{ $row->id }}">
-                     <button type="submit" class="btn btn-sm box-service-control">OUT OF STOCK</button>
-                     </form>
+                     <a class="btn btn-sm box-service-control" href="/login"> OUT OF STOCK</a>
                      @endif
                     </article>
                   </div>

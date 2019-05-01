@@ -40,10 +40,7 @@
                   <label><h4><b>LAST NAME</b></h4></label>
                   <input type="text" class="av-name form-control" av-message= "space and . is not allowed" name="lname" placeholder="Lname">
                 </div>
-                <div class="form-group">
-                  <label><h4><b>DATE OF BIRTH</b></h4></label>
-                  <input type="date" class="form-control av-required" name="dob" placeholder="DOB">
-                </div>
+                
                 <div class="form-group">
             <label><h4><b>GENDER</b></h4></label>
 						<select name="gender" class="form-control">
@@ -53,16 +50,16 @@
           </div>
                 <div class="form-group">
                   <label><h4><b>CITY</b></h4></label>
-                  <input type="text" class="form-control"name="city"  placeholder="city">
+                  <input type="text" class="form-control av-required" av-message="please Enter city name" name="city"  placeholder="city">
                 </div>
                 <div class="form-group">
                   <label><h4><b>QUALIFICATION</b></h4></label>
-                  <input type="text" class="form-control" av-message= "space and . is not allowed" name="qualification" placeholder="Qualification">
+                  <input type="text" class="form-control av-required" av-message="please Enter Qualification" name="qualification" placeholder="Qualification">
                 </div>
                 
                 <div class="form-group">
                   <label><h4><b>BIOGRAPHY</b></h4></label>
-                  <textarea class="form-control" av-message= "space and . is not allowed" name="bio" placeholder="Biography"></textarea>
+                  <textarea class="form-control av-required" av-message="required" name="bio" placeholder="Biography"></textarea>
                 </div>
     
                 <div><label><h4><b>EXPERIENCE</b></h4></label>
@@ -96,7 +93,7 @@
                 </div>
                 <div class="form-group">
                   <label><h4><b>IMAGE</b></h4></label>
-                  <input type="file" class="form-control "  name="image" accept=".jpg,.jpeg,.png,.jfif" required>
+                  <input type="file" class="form-control av-required" av-message="required"  name="image" accept=".jpg,.jpeg,.png,.jfif" required>
                 </div>
                 <div style="margin-left:400px;">
                 <button type="submit" class="btn btn-primary" style="background-color: green;">ADD EMPLOYEE</button>

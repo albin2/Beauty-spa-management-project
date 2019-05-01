@@ -56,7 +56,7 @@
 </head>
 <body>
 
-<center><h3><b><class="box-title"> USERS DATA LIST</b></h3><center>
+<center><h3><b><class="box-title"> EMPLOYEES DATA LIST</b></h3><center>
 
 <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for Employees....." title="Type in a name">
 

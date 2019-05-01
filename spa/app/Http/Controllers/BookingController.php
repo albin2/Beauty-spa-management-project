@@ -86,6 +86,17 @@ class BookingController extends Controller
         return view('userpages.productcart', ['data' => $data]);
     }
 
+    public function viewmycart()                              //view my cart
+    {
+        $data = DB::table('cart')
+            ->join('cartitems', 'cartitems.cartid', '=', 'cart.cartid')
+            ->join('products', 'products.id', '=', 'cartitems.ptoductid')
+            ->where('cart.userid', Auth::id())
+            ->where('cart.satus', '=', '1')
+            ->get();
+        return view('userpages.productcart', ['data' => $data]);
+    }
+
     public function editcart()                          //view edit cart
     {
         $data = DB::table('cart')
@@ -199,7 +210,7 @@ class BookingController extends Controller
     }
     public function BillingAddress(Request $request) // add Billing address
     {
-        // $request;
+         //$request;
         $count = BillingAddress::where('uid', Auth::id())->count();
         if ($count == 0) {
             $address = new BillingAddress($request->all());
@@ -224,6 +235,8 @@ class BookingController extends Controller
             ->where('cart.satus', '=', '1')
             ->get();
         $states = State::where('status', 1)->get();
+      
+      
         $address = DB::table('address')
             ->join('districts', 'districts.did', '=', 'address.district')
             ->join('states', 'states.sid', '=', 'districts.sid')
@@ -237,12 +250,12 @@ class BookingController extends Controller
 
     public function paymentDetails(Request $request) 
     {
-        //return $request;
+        // $request;
         $details = new PaymentDetails($request->except('cvv', 'date'));
         $details->save();
 
         //cart items
-        return $cartItems = Cartitems::where('cartid', $request->cartid)->get();
+        $cartItems = Cartitems::where('cartid', $request->cartid)->get();
         foreach($cartItems as $item){
             //deduct stock
             $currStock = Product::where('id', $item->ptoductid)->get()[0]->stock;
@@ -260,6 +273,7 @@ class BookingController extends Controller
        
         $add = DB::table('cart')
         ->join('address', 'address.uid', '=', 'cart.userid')
+        ->join('regist', 'regist.user_id', '=', 'cart.userid')
         ->where('cart.userid', Auth::id())
         ->where('cart.satus', '=', '1')
         ->get();

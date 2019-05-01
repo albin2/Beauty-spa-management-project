@@ -21,7 +21,7 @@ use App\feedback;
 use Illuminate\Support\Str;
 use App\productCategeory;
 use App\Product;
-
+use App\Cart;
 
 class AdminController extends Controller
 {
@@ -483,7 +483,9 @@ public function updatesPackages(Request $request)
 
     public function viewEmployees()
     {
-        $data = EmployeeDetails::all();
+        $data = DB::table('users')
+        ->join('employedetails','employedetails.id','=','users.id')
+        ->get()->toArray();
         return view('adminpages.viewEmployees', ['data' => $data]);
     }
     public function delEmployees(Request $request)
@@ -565,15 +567,40 @@ public function updatesPackages(Request $request)
 
 
     /// view product Bookings
-    public function viewProductsBooking(Request $request){
+     public function viewProductsBooking(Request $request){
     
          $data = DB::table('cart')
-        ->join('cartitems', 'cartitems.cartid', '=', 'cart.cartid')
-        ->join('products', 'products.id', '=', 'cartitems.ptoductid')
+        ->join('regist', 'regist.user_id', '=', 'cart.userid')
         ->join('address', 'address.uid', '=', 'cart.userid')
-        ->where('cart.satus', '=', '2')->orWhere('cart.satus', '=', '0')->orWhere('cart.satus', '=', '4')
+        ->where('cart.satus', '=', '2')->orWhere('cart.satus', '=', '0')->orWhere('cart.satus', '=', '3')->orWhere('cart.satus', '=', '4')
         ->get();
         
         return view('adminpages.viewproductBooking', ['data' => $data,]);
     }
+    public function viewProductsBookingDetails(Request $request){
+        $sta= $request->status;
+        $amnt=$request->tmnt;
+        $data = DB::table('cart')
+       ->join('cartitems', 'cartitems.cartid', '=', 'cart.cartid')
+       ->join('products', 'cartitems.ptoductid', '=', 'products.id')
+       ->where('cartitems.cartid', $request->id)
+       ->get();
+       
+       return view('adminpages.viewBookedproduct', ['data' => $data,'sta'=>$sta,'total'=>$amnt,]);
+   }
+   //update productcart status after shipping
+   public function  shippedProduct(Request $request)
+   {
+      // return $request;
+     Cart::where('cartid', $request->id)->update(['satus'=>3]);;
+
+     $data = DB::table('cart')
+     ->join('regist', 'regist.user_id', '=', 'cart.userid')
+     ->join('address', 'address.uid', '=', 'cart.userid')
+     ->where('cart.satus', '=', '2')->orWhere('cart.satus', '=', '0')->orWhere('cart.satus', '=', '3')->orWhere('cart.satus', '=', '4')
+     ->get();
+     
+     return view('adminpages.viewproductBooking', ['data' => $data,]);
+   }
+
 }

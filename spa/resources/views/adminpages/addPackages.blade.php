@@ -27,16 +27,16 @@
               </select>
    <div class="form-group">
     <label><h4><b>PACKAGE NAME</b></h4></label>
-    <input type="text" class="form-control av-required" av-message="Required"name="packname"  placeholder="package Name">
+    <input type="text" class="form-control av-required" av-message="Enter package Name"name="packname"  placeholder="package Name">
  </div>
  <div class="form-group">
     <label><h4><b>PACKAGE DESCRIPTION</b></h4></label>
-    <textarea class="form-control av-required" av-message="required"  name="packdecr"  placeholder="Description"></textarea>
+    <textarea class="form-control av-required" av-message="Enter Package Decription"  name="packdecr"  placeholder="Description"></textarea>
  </div>
 
  <div class="form-group">
     <label><h4><b>PACKAGE BENEFITS</b></h4></label>
-    <textarea name="benafits" class="form-control" placeholder="Package Benefits"></textarea>
+    <textarea name="benafits" class="form-control av-required" av-message="Enter package Benefits" placeholder="Package Benefits"></textarea>
     <!-- <input type="text" class="form-control av-required" av-message="required"  name="benafits"  placeholder="Benefits"> -->
  </div>
 

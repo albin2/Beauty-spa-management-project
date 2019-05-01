@@ -8,36 +8,26 @@
               <div class="rd-navbar-nav-wrap">
                 <div class="rd-navbar-nav-inner">
                   <ul class="rd-navbar-nav">
-                    <li class="active"><a href="/home">Home</a>                  
+                    <li class="active"><a href="/">Home</a> 
                     <li> 
-                    <a href="{{ route('userEmployeessp') }}">experts</a>
+                    <a href="{{ route('aboutus') }}">About</a>
+                    </li>                 
+                    <li> 
+                    <a href="{{ route('guestEmployeessp') }}">Our Experts</a>
                     </li>
                     <li> 
-                    <a href="{{ route('viewSpaaServices') }}">spa services</a>
+                    <a href="{{ route('viewSeviceguest') }}">Spa services</a>
                     </li>
-                    <li><a href="{{ route('viewUserproduct') }}">Shop</a>
+                    <li> 
+                    <a href="{{ route('viewguestsproduct') }}">Shop</a>
                     </li>
-                    <li><a href="{{ route('viewUserprofile') }}">profile</a>
-                    </li>
-                    <li ><a href="/user/appointment/view">My Appointments</a>                  
                     <li>
-                    <li><a href="{{ route('viewuserproductbookings') }}">My Bookings</a>
-                    </li>
-                    <li><a href="#">Contacts</a>
-                      <ul class="rd-navbar-dropdown">
-                        <li><a href="contacts-1.html">Contacts 1</a>
-                        </li>
-                        <li><a href="contacts-2.html">Contacts 2</a>
-                        </li>
-                      </ul>
+                    <a href="/aboutus">Contact</a>
                     </li>
                   </ul>
                   <div class="rd-navbar-nav-footer">
                     <ul class="inline-list inline-list-md">
-                      <li><a class="icon icon-xs link-gray-base fa-facebook" href="#"></a></li>
-                      <li><a class="icon icon-xs link-gray-base fa-twitter" href="#"></a></li>
-                      <li><a class="icon icon-xs link-gray-base fa-youtube" href="#"></a></li>
-                      <li><a class="icon icon-xs link-gray-base fa-linkedin" href="#"></a></li>
+                      
                     </ul>
                   </div>
                 </div>

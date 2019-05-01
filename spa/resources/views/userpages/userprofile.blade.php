@@ -29,7 +29,7 @@
             <ul class="nav nav-tabs">
                 <li class="active"><a data-toggle="tab" href="#home">Profile</a></li>
                 <li><a  href="{{ route('viewUsereditprofile')}}">Edit Profile</a></li>
-                <li><a  href="#settings">Change Password </a></li>
+                <li><a  href="{{ route('viewUserChangePassword')}}">Change Password </a></li>
             </ul>
 
 

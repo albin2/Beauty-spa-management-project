@@ -1,17 +1,25 @@
 @extends('layouts.service')
  @section('content')
-<div class="container">
-    <div class="row justify-content-center my-5">
-       <div class="box-header">
-            <div class="box-title" ><center><h3><b>APPOINTMENT DETAILS</b></h3></center>
+
+ 
+    
+        <div class="content-wrapper">
+         
+
+          
+            <div class="page-title">
+              <div class="page-title-content">
+                <div class="shell">
+                  <p class="page-title-header">APPOINTMENTS</p>
+                </div>
+              </div>
             </div>
-           
-        <div class="col-md-12">
-        
-            <div class="root row">
-            <table id="example2" class="table table-bordered table-hover">
-                <thead>
-                <tr>
+            <section class="section-xl bg-periglacial-blue">
+              <div class="shell">
+               
+                  <table class="table-custom table-custom-primary">
+                    <thead>
+                      <tr>
                   <th>BOOOKING DATE</th>
                   <th>BOOKING TIME</th>
                   <th>PACKAGE NAME</th>
@@ -20,10 +28,10 @@
 
 
                   <th>*</th>
-                </tr>
-                </thead>
-                <tbody>
-                  @foreach($apm as $row)
+                      </tr>
+                    </thead>
+                    <tbody>
+                    @foreach($apm as $row)
                   <tr>
                   <td>{{ $row->bdate }}</td>
                   <td>{{ $row->time }}</td>
@@ -44,10 +52,50 @@
                   </td>
                   </tr>
                   @endforeach
-                
-                </tbody>
-              </table>
-            </div>
-        </div>
-   
-@endsection
+                     
+                    </tbody>
+</table>
+</div>
+              </div>
+</div>
+
+              @endsection            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

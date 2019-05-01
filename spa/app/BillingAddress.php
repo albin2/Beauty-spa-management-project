@@ -9,7 +9,7 @@ class BillingAddress extends Model
     protected $table = 'address';
 
     protected $fillable = [
-        'fname', 'lname','contact','address','state','district','post','pincode','landmark',
+        'firstname', 'lastname','contact','address','state','district','post','pincode','landmark',
     ];
 
 

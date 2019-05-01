@@ -63,6 +63,8 @@ class Kernel extends HttpKernel
         'revalidate' => \App\Http\Middleware\RevalidateBackHistory::class,
         'disablepreventback' => \App\Http\Middleware\DisablePreventBack::class,
         'disableadmin' => \App\Http\Middleware\DisableAdmin::class,
+        'disableuser' => \App\Http\Middleware\DisableUser::class,
+        'disableuemployee' => \App\Http\Middleware\DisableEmployee::class,
     ];
 
     /**

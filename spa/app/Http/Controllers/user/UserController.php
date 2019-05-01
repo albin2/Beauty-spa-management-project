@@ -12,10 +12,15 @@ use App\Package;
 use App\Service;
 use App\Empleave;
 use App\Booking;
+use App\Cartitems;
+use App\Cart;
 use App\Product;
 use App\productCategeory;
 use App\PaymentDetails;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Hash;
+use App\User;
 
 // use App\Http\Controllers\user\Registration;
 
@@ -282,6 +287,9 @@ class UserController extends Controller
     // viewuserProfile
 
     //............................product........................................................................
+    
+    //sort
+    
     function array_sort($array, $on, $order=SORT_ASC){
 
         $new_array = array();
@@ -345,8 +353,8 @@ class UserController extends Controller
                 $packages += $data;
             }
 
-        return array_sort($packages,'count',SORT_REGULAR);
-       // return view('userpages.searchPackages', ['pack' => $go]);
+            $go=  array_sort($packages,'count',SORT_REGULAR);
+       return view('userpages.searchPackages', ['pack' => $go]);
 
         // return $packages;
         //return $packages->unique('id')->values()->all();
@@ -376,5 +384,117 @@ class UserController extends Controller
     //     // return $packages;
     //     return $packages->unique('id')->values()->all();
     // }
+
+
+    //change password...........................................................................
+    public function viewUserChangePassword()
+{
+   
+    $datas = DB::table('regist', 'users')->select('regist.*', 'users.*')->where('id', Auth::id())->where('users.status', '=', '1')->join('users', 'regist.user_id', '=', 'users.id')->get();
+    return view('userpages.changeUserPassword', ['datas' => $datas]);
+}
+
+
+
+    public function admin_credential_rules(array $data)
+    {
+     $messages = [
+    'current-password.required' => 'Please enter current password',
+    'password.required' => 'Please enter password',
+    ];
+
+  $validator = Validator::make($data, [
+    'current-password' => 'required',
+    'password' => 'required|same:password',
+    'password_confirmation' => 'required|same:password',     
+  ], $messages);
+
+  return $validator;
+}  
+public function postCredentials(Request $request)
+{
+
+  if(Auth::Check())
+  {
+    $request_data = $request->All();
+    $validator = $this->admin_credential_rules($request_data);
+    if($validator->fails())
+    {
+      
+      $datas = DB::table('regist', 'users')->select('regist.*', 'users.*')->where('id', Auth::id())->where('users.status', '=', '1')->join('users', 'regist.user_id', '=', 'users.id')->get();
+      $validator='Please enter all fields';
+      return view('userpages.changeUserPassword', ['datas' => $datas,'info' => $validator]);
+    }
+    else
+    {  
+      $current_password = Auth::User()->password;           
+      if(Hash::check($request_data['current-password'], $current_password))
+      {           
+        $user_id = Auth::User()->id;                       
+        $obj_user = User::find($user_id);
+        $obj_user->password = Hash::make($request_data['password']);;
+        $obj_user->save(); 
+        $datas = DB::table('regist', 'users')->select('regist.*', 'users.*')->where('id', Auth::id())->where('users.status', '=', '1')->join('users', 'regist.user_id', '=', 'users.id')->get();
+        $validator='Password Changed';
+        return view('userpages.changeUserPassword', ['datas' => $datas,'info' => $validator]);
+        
+      }
+      else
+      {           
+      
+       $datas = DB::table('regist', 'users')->select('regist.*', 'users.*')->where('id', Auth::id())->where('users.status', '=', '1')->join('users', 'regist.user_id', '=', 'users.id')->get();
+       $validator='Please enter correct current password';
+      return view('userpages.changeUserPassword', ['datas' => $datas,'info' => $validator]); 
+      }
+    }        
+  }
+  else
+  {
+    return redirect()->to('/');
+  }    
+}
+ /// view product Bookings
+ public function viewuserProductsBooking(Request $request){
+    
+    $data = DB::table('cart')
+   ->join('regist', 'regist.user_id', '=', 'cart.userid')
+   ->join('address', 'address.uid', '=', 'cart.userid')
+   ->where('cart.satus', '=', '2')->orWhere('cart.satus', '=', '0')->orWhere('cart.satus', '=', '3')->orWhere('cart.satus', '=', '4')
+   ->get();
+   
+   return view('userpages.viewuserproductbooking', ['data' => $data,]);
+}
+public function viewuserProductsBookingDetails(Request $request){
+   $sta= $request->status;
+   $amnt=$request->tmnt;
+   $data = DB::table('cart')
+  ->join('cartitems', 'cartitems.cartid', '=', 'cart.cartid')
+  ->join('products', 'cartitems.ptoductid', '=', 'products.id')
+  ->where('cartitems.cartid', $request->id)
+  ->get();
+  
+  return view('userpages.viewuserBookedproduct', ['data' => $data,'sta'=>$sta,'total'=>$amnt,]);
+}
+//cancel  product booking 
+public function  shippedProductcancel(Request $request)
+{
+ //return $request;
+ $cartItems = Cartitems::where('cartid', $request->id)->get();
+ foreach($cartItems as $item){
+     //deduct stock
+     $currStock = Product::where('id', $item->ptoductid)->get()[0]->stock;
+     $updatedStock = $currStock + $item->count;
+     Product::where('id', $item->ptoductid)->update(['stock'=> $updatedStock]);
+ }
+Cart::where('cartid', $request->id)->update(['satus'=>0]);;
+
+$data = DB::table('cart')
+->join('regist', 'regist.user_id', '=', 'cart.userid')
+->join('address', 'address.uid', '=', 'cart.userid')
+->where('cart.satus', '=', '2')->orWhere('cart.satus', '=', '0')->orWhere('cart.satus', '=', '3')->orWhere('cart.satus', '=', '4')
+->get();
+
+return view('userpages.viewuserproductbooking', ['data' => $data,]);
+}
 
 }

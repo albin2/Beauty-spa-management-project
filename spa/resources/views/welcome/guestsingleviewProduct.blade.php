@@ -1,4 +1,4 @@
-@extends('layouts.service')
+@extends('layouts.guests')
 
 @section('content')
 
@@ -47,17 +47,17 @@
                     <div class="product-single-text">
                       <p>Description:{{ $row->proddecr }}</p>
                     </div>
-                    <form class="login100-form validate-form" method="POST" action="{{ route('toCart') }}">
-                        @csrf
+                  
+                       
                         @if ($row->stock==0)
                         </h4> <b>sorry not in stock<b></h4>
-                        <a class="btn btn-circle btn-primary" href= "{{ route('viewUserproduct') }}">BACK TO SHOP</a>
+                        <a class="btn btn-circle btn-primary" href= "{{ route('viewguestsproduct') }}">BACK TO SHOP</a>
                        @else
                         <input hidden name="ptoductid" value="{{ $row->id }}">
-                     <button type="submit" class="btn btn-sm box-service-control">ADD TO CART</button>
+                        <a class="btn btn-sm box-service-control" href="/login"> ADD TO CART</a>    
                     
                      @endif
-                     </form>
+                     
                   </div>
                   @endforeach
                 </article>
