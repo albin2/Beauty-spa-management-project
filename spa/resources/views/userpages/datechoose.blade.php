@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
@@ -68,19 +66,19 @@
                         <!-- Authentication Links -->
                         @guest
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                            <a class="nav-link" href="{{ route('login') }}"></a>
                         </li>
                         <li class="nav-item">
                             @if (Route::has('register'))
-                            <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                            <a class="nav-link" href="{{ route('register') }}"></a>
                             @endif
                         </li>
                         @else
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('login') }}">{{ __('CHANGE PASSWORD') }}</a>
+                            <a class="nav-link" href="{{ route('login') }}"></a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('feedback') }}">{{ __('GIVE FEEDBACK') }}</a>
+                            <a class="nav-link" href="{{ route('feedback') }}"></a>
                         </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -100,7 +98,7 @@
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('login') }}">{{ __('SPECIALISTS') }}</a>
+                            <a class="nav-link" href="{{ route('login') }}"></a>
                         </li>
                         <li class="nav-item dropdown">
                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
@@ -127,36 +125,36 @@
 
         <div class="limiter">
             <div class="container-login100" style="background-image: url('{{ asset('logtem/images/bg-01.jpg')}}');">
-                
-            <div class="row">
-                <div class="col">
-                <form action="{{ route('makeappointment') }}" class="pt-5 mt-5" method="post">
-                    <div class="box-title text-center pt-5" margin-top>
-     
-                            <h3 class="pt-5"><b>Select your Appointment date....</b></h3>
-                     
-                    </div>
-                    @csrf
-                    <input type="text" name="bdate" id="datepicker" placeholder="Pick a Date" class="form-control mt-5" required>
-                    <br>
-                    <div class="alert alert-info mb-5" id="userInfo">
-                        Select a date to Continue!
-                    </div>
-                    <br/>
-                    <div class="times mt-5">
-                        <!-- //times -->
-                    </div>
-                    <div>
-                        <input hidden name="time" value="0" id="b-time">
-                        <br/>
-                        <div class="text-center mt-5">
-                            <input type="submit" id="confirm-booking" class="btn btn-primary btn-sm" disabled value="Confirm Booking">
-                        </div>
-                    </div>
-                </form>
-                </div>
 
-            </div>
+                <div class="row">
+                    <div class="col">
+                        <form action="{{ route('makeappointment') }}" class="pt-5 mt-4" method="post">
+                            <div class="box-title text-center pt-5" margin-top>
+
+                                <h4 class="pt-5"><b>Select your Appointment date....</b></h4>
+
+                            </div>
+                            @csrf
+                            <input type="text" name="bdate" id="datepicker" placeholder="Pick a Date" class="form-control mt-5" required>
+                            <br>
+                            <div class="alert alert-info mb-5" id="userInfo">
+                                Select a date to Continue!
+                            </div>
+                            <br />
+                            <div class="times mt-5">
+                                <!-- //times -->
+                            </div>
+                            <div>
+                                <input hidden name="time" value="0" id="b-time">
+                                <br />
+                                <div class="text-center mt-5">
+                                    <input type="submit" id="confirm-booking" class="btn btn-primary btn-sm" disabled value="Confirm Booking">
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+
+                </div>
 
             </div>
         </div>
@@ -194,7 +192,7 @@
                             $html = '<div class="row"><ul class="date-picker-list animated fadeIn">';
                             $("#userInfo").html(" Pick a time to Schedule your appointment");
                             data.forEach(element => {
-                                $html += '<li class="timeSch" data-val="'+element.time+'"><a>'+element.time+'</a></li>'
+                                $html += '<li class="timeSch" data-val="' + element.time + '"><a>' + element.time + '</a></li>'
                             });
                             $html += '</ul></div>';
                             $(".times").html($html);
@@ -215,4 +213,4 @@
     </script>
 </body>
 
-</html> 
+</html>

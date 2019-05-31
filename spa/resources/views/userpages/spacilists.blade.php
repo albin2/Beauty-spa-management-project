@@ -13,7 +13,7 @@
                 <div class="range range-30">
                     @foreach($empl as $row)
                     <div class="cell-sm-6 cell-md-4 height-fill">
-                        <div class="thumbnail-card"><img class="item" src="{{ asset('storage/'.$row->image) }}" alt="" width="370" height="310" />
+                        <div class="thumbnail-card"><img data-toggle="modal" data-target="#modalWindow{{$row->id}}" class="item" src="{{ asset('storage/'.$row->image) }}" alt="" width="370" height="310" />
                             <div class="thumbnail-card-body">
                                 <p class="thumbnail-card-header" data-toggle="modal" data-target="#modalWindow{{$row->id}}">{{ $row->fname }} {{ $row->lname }}</p>
                                 <div class="thumbnail-card-text">
@@ -35,9 +35,12 @@
 @section('modals')
 @foreach($empl as $row)                   
 <div class="modal fade text-center" id="modalWindow{{$row->id}}" role="dialog">
-        <div class="modal-dialog custom-modal-dialog">
+        
+<div class="modal-dialog custom-modal-dialog">
+
             <div class="custom-modal-content">
-                <button class="close" type="button" data-dismiss="modal">X</button>
+                <button class="close " type="button" data-dismiss="modal"><span style="color:red"> X</span></button>
+
                 <div class="shell">
                     <div class="box-portfolio"><img class="box-portfolio-image" src="{{ asset('storage/'.$row->image) }}" alt="" width="130" height="130" />
                         <p class="box-portfolio-header">{{ $row->fname }} {{ $row->lname }}</p>
@@ -54,9 +57,7 @@
                               
                         </div>
                         <ul class="inline-list inline-list-md">
-                            <li><a class="icon icon-xs link-gray-base fa-facebook" href="#"></a></li>
-                            <li><a class="icon icon-xs link-gray-base fa-twitter" href="#"></a></li>
-                            <li><a class="icon icon-xs link-gray-base fa-linkedin" href="#"></a></li>
+
                         </ul>
                     </div>
                 </div>

@@ -50,11 +50,17 @@
 					<span class="login100-form-title p-b-59">
 						Sign Up
 					</span>
+				
 
 					<div class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
 						<span class="label-input100">Email</span>
 						<input class="input100 av-email" av-message="Invalid email address" type="text" name="email" placeholder="Email addess...">
 						<span class="focus-input100"></span>
+						@if ($errors->has('email'))
+                                    <span  role="alert">
+                                        <strong>{{ $errors->first('email') }}</strong>
+                                    </span>
+                                @endif
 					</div>
 
 					<div class="wrap-input100 validate-input" data-validate = "Password is required">

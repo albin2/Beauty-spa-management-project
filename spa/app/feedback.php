@@ -7,8 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 class feedback extends Model
 {
     protected $table = 'feedback';
-    
+    public $primaryKey= 'feedid';
         protected $fillable = [
-            'uid','feed', 
+            'userid','productfeed','productid','feeddate','stars'
         ];
 }

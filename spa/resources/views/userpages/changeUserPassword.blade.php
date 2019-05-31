@@ -12,53 +12,55 @@
 <div class="container bootstrap snippet">
     <div class="row">
         <div class="col-sm-10">
-            <h5>.</h5>
+            <span style="color:#e8eddf">
+                <h5>.</h5>
+            </span>
         </div>
     </div>
     <div class="row">
         <div class="col-sm-3">
             <!--left col-->
 
-            
+
             <div class="text-center">
-                <img  class="avatar img-circle img-thumbnail" alt="avatar" src="{{ url('').'/storage/'.$row->proimg }}">
+                <img class="avatar img-circle img-thumbnail" alt="avatar" src="{{ url('').'/storage/'.$row->proimg }}">
                 <h6>{{$row ->fname}} {{$row ->lname}}</h6>
-                
+
             </div>
             </hr><br>
 
         </div>
-      
-           
-          @endforeach
+
+
+        @endforeach
         <!--/col-3-->
         <div class="col-sm-9">
             <ul class="nav nav-tabs">
-            <li ><a  href="{{ route('viewUserprofile')}}">Profile</a></li>
-                <li><a  href="{{ route('viewUsereditprofile')}}">Edit Profile</a></li>
-                <li class="active"><a  href="{{ route('viewUserChangePassword')}}">Change Password </a></li>
+                <li><a href="{{ route('viewUserprofile')}}">Profile</a></li>
+                <li><a href="{{ route('viewUsereditprofile')}}">Edit Profile</a></li>
+                <li class="active"><a href="{{ route('viewUserChangePassword')}}">Change Password </a></li>
             </ul>
 
 
             <div class="tab-content">
-                
+
                 <div class="tab-pane active" id="home">
                     <hr>
                     <form class="form oh-autoval-form" action="{{ route('userchangepassword') }}" method="post" id="registrationForm">
-                     @csrf
-                     @isset($info)
-            <div class="alert-info alert">
-                {{ $info }}
-            </div>
-            @endisset
+                        @csrf
+                        @isset($info)
+                        <div class="alert-info alert">
+                            {{ $info }}
+                        </div>
+                        @endisset
                         <div class="form-group">
 
-                        <div class="cell-xs-12">
+                            <div class="cell-xs-12">
                                 <label for="first_name">
                                     <h4>Current Password</h4>
                                 </label>
-                                <input type="hidden" name="_token" value="{{ csrf_token() }}"> 
-                                <input type="password" class="form-control" id="current-password" name="current-password" placeholder="current-password" >
+                                <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                <input type="password" class="form-control" id="current-password" name="current-password" placeholder="current-password">
                             </div>
                         </div>
                         <div class="form-group">
@@ -81,62 +83,35 @@
                             </div>
                         </div>
 
-                        
-                      
-                     
+
                         <div class="form-group">
                             <div class="col-xs-12">
-                                <h5>.</h5>
+                            <span style="color:#e8eddf">   <h5>.</h5></span>
                             </div>
                         </div>
                         <div class="form-group">
-                           <div class="col-xs-12">
+                            <div class="col-xs-12">
                                 <br>
                                 <button class="btn btn-lg btn-success" type="submit">change password</button>
-                                </div>
-                      </div>
+                            </div>
+                        </div>
                     </form>
 
                     <hr>
 
+                    <!--/tab-pane-->
+
+                    <script src="{{ asset('profile/profile.js') }}"></script>
+
+                </div>
                 <!--/tab-pane-->
-                
-                <script src="{{ asset('profile/profile.js') }}"></script>
-
             </div>
-            <!--/tab-pane-->
+            <!--/tab-content-->
+
         </div>
-        <!--/tab-content-->
-
+        <!--/col-9-->
     </div>
-    <!--/col-9-->
+    <!--/row-->
 </div>
-<!--/row-->
 </div>
-
-@endsection 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+@endsection

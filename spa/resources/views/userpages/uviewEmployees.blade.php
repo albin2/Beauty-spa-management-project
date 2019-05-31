@@ -1,11 +1,11 @@
 @extends('layouts.service') 
 @section('content')
        <section class="section-xs bg-periglacial-blue one-screen-page-content text-center">
-              <div class="shell"><a class="link link-primary link-return" href="step-1.html">Back</a></div>
+              <div class="shell"><a class="link link-primary link-return" href="/user/view/service">Back</a></div>
               <div class="shell">
                 <h2>CHOOSE OUR PROFESSIONALS</h2>
                 <div class="p text-width-medium">
-                  <p class="big">Barbershop offers professional services of certified barbers with years of experience. On this page you can choose a preferred barber in a few clicks.</p>
+                  <p class="big"></p>
                 </div>
                 <div class="range range-lg-center">
                   <div class="cell-lg-10">
@@ -25,7 +25,7 @@
                               <li class="active">th</li>
                               <li class="active">fr</li>
                               <li class="active">st</li>
-                              <li>sn</li>
+                              <li class="active">sn</li>
                             </ul>
                             <div><form class="login100-form validate-form" method="POST" action="{{ route('viewdate') }}">
                              @csrf

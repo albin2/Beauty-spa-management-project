@@ -11,6 +11,11 @@
  @endcomponent
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
+  @isset($info)
+                <div class="alert-info alert">
+                 {{ $info }}
+                </div>
+              @endisset
   <form  method="POST" class="oh-autoval-form" enctype="multipart/form-data" action="{{ route('Product') }}" onsubmit="return">
   @csrf
    <class ="box-body" >

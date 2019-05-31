@@ -1,16 +1,25 @@
-@extends('layouts.user') @section('content')
-<div class="container">
-    <div class="row justify-content-center my-5">
- <div class="box-header">
-            <div class="box-title" ><center><h3><b>BOOKING DETAILS</b></h3></center>
-            </div>
+@extends('layouts.service')
+ @section('content')
+
+ 
     
-        <div class="col-md-8">
-        
-            <div class="root row">
-            <table id="example2" class="table table-bordered table-hover">
-                <thead>
-                <tr>
+        <div class="content-wrapper">
+         
+
+          
+            <div class="page-title">
+              <div class="page-title-content">
+                <div class="shell">
+                  <p class="page-title-header">APPOINTMENTS</p>
+                </div>
+              </div>
+            </div>
+            <section class="section-xl bg-periglacial-blue">
+              <div class="shell">
+               
+                  <table class="table-custom table-custom-primary">
+                    <thead>
+                      <tr>
                   <th>BOOOKING DATE</th>
                   <th>BOOKING TIME</th>
                   <th>PACKAGE NAME</th>
@@ -19,10 +28,10 @@
 
 
                   <th>*</th>
-                </tr>
-                </thead>
-                <tbody>
-                  @foreach($apm as $row)
+                      </tr>
+                    </thead>
+                    <tbody>
+                    @foreach($apm as $row)
                   <tr>
                   <td>{{ $row->bdate }}</td>
                   <td>{{ $row->time }}</td>
@@ -31,20 +40,62 @@
                   <td>{{ $row->amount }}</td>
                   
                   <td>
+                  @if ($row->bdate > $cudate)
                     <form action="{{ route('canappo')}}" method="post">
                       @csrf
                         <input hidden name="id" value="{{ $row->id }}">
                         <button type="submit" name="del" class="btn btn-primary" >CANCEL</button>
                     </form>
+                    @else
+                 </label></label>
+                   @endif
                   </td>
                   </tr>
                   @endforeach
-                
-                </tbody>
-              </table>
-            </div>
-        </div>
-    </div>
+                     
+                    </tbody>
+</table>
 </div>
+              </div>
 </div>
-@endsection
+
+              @endsection            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

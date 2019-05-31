@@ -13,7 +13,7 @@
 <!-- Head -->
 
 <head>
-    <title>Key Login Form Flat Responsive Widget Template :: W3layouts</title>
+    <title>LOGIN PAPAYA</title>
     <!-- Meta-Tags -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta charset="utf-8">
@@ -60,9 +60,15 @@
 		</div>
 		<div class="content-w3ls">
 			<div class="text-center icon">
-				<span class="fa fa-html5"></span>
-			</div>
+				<span class="fa fa-html5">LOGIN</span>
+			
 			<div class="content-bottom">
+			@if ($errors->has('email'))
+							<span class='bg-white' role="alert">
+							<strong>{{$errors->first('email')}}</strong>
+							</span>
+							@endif
+			</div>
 				<form  method="POST" action="{{ route('login') }}">
 					@csrf
 					<div class="field-group">
@@ -78,14 +84,12 @@
 						</div>
 					</div>
 					<div class="wthree-field">
-						<button type="submit" class="btn">Get Started</button>
+						<button type="submit" class="btn">LOGIN</button>
 					</div>
 					<ul class="list-login">
 						<li class="switch-agileits">
 							<label class="switch">
-								<input type="checkbox">
-								<span class="slider round"></span>
-								keep Logged in
+								
 							</label>
 						</li>
 						<li>

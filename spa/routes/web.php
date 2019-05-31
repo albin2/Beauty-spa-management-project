@@ -30,6 +30,9 @@ Route::get('/_register', function () {
         return view('welcome');
     }
 });
+//mails
+Route::get('/send/email/leave', 'HomeController@leavemail');
+
 
 //agent routes
 Route::get('/agenthome', 'AgentController@index1')->name('agenthome');
@@ -45,6 +48,7 @@ Route::get('/guest/spaproduct/view','WelcomeController@viewProductss')->name('vi
 Route::get('/guest/view/singleproduct/{id}','WelcomeController@viewsingleProducts')->name('guestsingleviewproduct');//view single product
 
 Route::get('/guest/aboutus/view','WelcomeController@Aboutus')->name('aboutus');// guest view about
+Route::get('/guest/view/product/{id}','WelcomeController@viewcatProduct')->name('product-cat-guest');//product catwise
 
 
 Route::middleware(['disableuser'])->group(function (){
@@ -56,6 +60,7 @@ Route::post('/registerTo', 'user\UserController@regStep')->name('registerTo');
 Route::get('/user/spaservice/view','user\UserController@viewSeviceuser')->name('viewSpaaServices');// user view service
 Route::get('/user/spaproduct/view','user\UserController@viewProductss')->name('viewUserproduct');// user view product
 Route::get('/user/view/singleproduct/{id}','user\UserController@viewsingleProducts')->name('singleviewproduct');//view single product
+Route::get('/user/view/singleproductrr/{feedid}/{productid}','user\UserController@deletereview')->name('deletereview');//view single product
 
 //package search
 Route::post('/user/spapackage/search','user\UserController@PackSearch')->name('searchpack');// user view product
@@ -69,6 +74,7 @@ Route::get('/user/view/editprofile','user\UserController@viewusereditProfile')->
 
 //cart
 Route::post('/add/toCart', 'BookingController@setCart')->name('toCart');//add to cart
+Route::get('/add/toCart', 'BookingController@viewcart')->name('toCart');//add to cart
 Route::get('/edit/toCart', 'BookingController@editcart')->name('editcart');//add to cart
 Route::get('/view/viewcart', 'BookingController@viewcart')->name('viewcart');//add to cart
 Route::post('/update/cart/items', 'BookingController@updatecart')->name('updatecart');//update to cart
@@ -77,12 +83,14 @@ Route::get('/user/remove/cartproduct/{id}','BookingController@removecart')->name
 //checkout
 Route::post('/district','BookingController@district')->name('district');
 //save payment details
-Route::post('/save/payement/details', 'BookingController@paymentDetails')->name('paymentDetailss');//update to cart
+Route::post('/save/payement/details', 'BookingController@paymentDetails')->name('paymentDetailss');
+Route::get('/save/payement/details', 'BookingController@viewspaymentDetails')->name('paymentDetailss');///view payment invoice
 
-Route::post('/save/payement/details/service', 'user\UserController@paymentDetails')->name('paymentDetails');//update to cart
-
+Route::post('/save/payement/details/service', 'user\UserController@paymentDetails')->name('paymentDetails');
+Route::get('/save/payement/details/service', 'user\UserController@rviewdate')->name('paymentDetails'); // redirect invoice
 
 Route::post('/add/tobillingaddress', 'BookingController@BillingAddress')->name('BillingAddress');//add to cart
+Route::get('/add/tobillingaddress', 'BookingController@viewBillingAddress')->name('BillingAddress');//add to cart
 
 Route::get('/view/checkout', 'BookingController@viewcheckout')->name('viewcheckout');//view checkout page
 
@@ -92,19 +100,31 @@ Route::post('/user/view/usereditprofile','user\UserController@proedit')->name('U
 //Route::post('/user/view/ServiceToPackage','user\UserController@viewuserEmployees')->name('userEmployees');
 Route::get('/user/view/service/{id}','user\UserController@viewPackagesuser')->name('service-details-user');
 Route::post('/user/view/service','user\UserController@viewPackagesuser')->name('userServiceToPackage');
+Route::get('/user/view/service','user\UserController@uviewPackagesuser')->name('userServiceToPackage');
 
 Route::post('/user/view/package1','user\UserController@viewuserEmployees')->name('userEmployees');
+Route::get('/user/view/package1','user\UserController@rviewuserEmployees')->name('userEmployees');//redirect users to home
+
 Route::post('/user/view/choosedate','user\UserController@viewdate')->name('viewdate');
+Route::get('/user/view/choosedate','user\UserController@rviewdate')->name('viewdate'); //redirect url
+
+Route::post('/user/view/choosedate/reshedule','user\UserController@reviewdate')->name('reSheduleDate');//reshedule date
+
+
+
 Route::get('/user/view/feedbacks','user\UserController@makefeedback')->name('feedback');
-Route::post('/user/save/sfeedbacks','user\UserController@savefeedback')->name('addfeedback');
+Route::post('/user/save/productfeedbacks','user\UserController@saveproductfeedback')->name('productfeedback');
 
 Route::get('user/updateuser', 'user\UserController@userupdates')->name('userupdate');//update user
 
 Route::post('/user/save/appontment','user\UserController@saveappoinment')->name('makeappointment');//make appointment
+Route::get('/user/save/appontment','user\UserController@rviewdate')->name('makeappointment');//redirect make appointment
+Route::post('/user/resave/appontment','user\UserController@resaveappoinment')->name('remakeappointment');//make appointment
 
 Route::get('/user/check/date','user\UserController@verifyDate');//verify Date
 
 Route::get('/user/view/pappointment','user\UserController@viewuserappontments')->name('viewappoinments');//viewappoinments
+Route::Any('/user/view/package/bookings/detail', 'user\UserController@viewuserAppointmentDetails')->name('viewuserdetailappointment');//view details appointment
 
 Route::post('/user/can/pappointment','user\UserController@cancelapointment')->name('canappo');//cancelappoinments
 
@@ -123,8 +143,9 @@ Route::middleware(['disableuemployee'])->group(function (){
 Route::get('/employeehome', 'EmployeeController@index1')->name('employeehome');
 Route::get('/employee/view/service/{id}','EmployeeController@viewPackages')->name('service-details');
 
-Route::get('/employee/leave', 'EmployeeController@empleave')->name('empleave');
+Route::get('/employee/leave', 'EmployeeController@empleave')->name('empleave');//viewleaveform
 Route::post('/empleave', 'EmployeeController@leave')->name('empleave1');
+Route::get('/employee/viewleave', 'EmployeeController@viewempleave')->name('viewempleave');//viewleaveform
 Route::post('/employee/cancelleave', 'EmployeeController@cancelLeave')->name('cancelLeave');
 
 Route::get('/employee/viewfeedbacks', 'EmployeeController@empviewFeedbackform')->name('empviewFeedback');//view feedbacks
@@ -169,6 +190,8 @@ Route::middleware(['disableadmin'])->group(function (){
     Route::post('/admin/del/Employee', 'AdminController@delEmployees')->name('delEmployees');
     Route::post('/admin/rej/Empleave', 'AdminController@rejleave')->name('rejleave');
     Route::post('/admin/apr/Empleaves', 'AdminController@aprleave')->name('aprleave');
+    Route::post('/admin/apr/Empleavesno', 'AdminController@aprleaveno')->name('aprleaveno');
+
 
     Route::post('/admin/block/user', 'AdminController@BlockUser')->name('blockUser');// BLOCK USER
     Route::post('/admin/unblock/user', 'AdminController@UnblockUser')->name('unblockUser');// UNBLOCK USER
@@ -228,14 +251,17 @@ Route::get('/admin/viewPackage', 'AdminController@viewPackageForm')->name('viewP
 Route::get('/admin/viewfeedback', 'AdminController@viewFeedbackform')->name('viewFeedback');//view feedback
 Route::post('/admin/del/feedback', 'AdminController@delfeedback')->name('deletefeedback');//REMOVE FEEEDBACK
 Route::get('/admin/viewappointmentss', 'AdminController@viewAppointment')->name('viewappoi');//view appointments
-
+Route::get('/admin/viewatodayppointmentss', 'AdminController@todayviewAppointment')->name('todayviewappointment');//view today appointments
 Route::get('/admin/list/blockedusers','AdminController@viewblockedUsers')->name('listblockedusers');//view blocked users
 Route::get('/admin/list/users','AdminController@viewUsers')->name('listusers');
 Route::get('/admin/list/services','AdminController@viewServices')->name('listservices');
 Route::get('/admin/list/packages','AdminController@viewPackages')->name('listpackages');
 Route::get('/admin/list/employees','AdminController@viewEmployees')->name('listemployees');
 Route::get('/admin/view/empleaves','AdminController@viewLeaves')->name('listempleaves');
-Route::view('/adminhome', 'adminhome');
+Route::post('/admin/view/empleave/detailed','AdminController@viewLeaveDetailed')->name('viewleavedetailed');
+
+//Route::view('/adminhome', 'adminhome');
+Route::get('/adminhome', 'AdminController@adminhome');
   
 
 //guest pages

@@ -6,7 +6,7 @@
   <div class="jumbotron-custom-content">
     <div class="shell">
       <div class="range range-sm-center">
-        <div class="cell-sm-10 cell-lg-9"><a class="brand-big" href="index.html"><img src="theam/images/logo-md-white-136x160.png" alt="" width="136" height="160"></a>
+        <div class="cell-sm-10 cell-lg-9">
           <p class="caption">The Best</p>
           <h1>Beauty and Spa</h1>
 

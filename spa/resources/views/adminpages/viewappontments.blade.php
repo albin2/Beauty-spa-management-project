@@ -78,7 +78,7 @@
 
   </tr>
 
-                  @foreach($apm as $row)
+                   @foreach($apm as $row)
                   <tr>
                   <td>{{ $row->bdate }}</td>
                   <td>{{ $row->usname }}</td>
@@ -87,9 +87,9 @@
                   <td>{{ $row->duration }}</td>
                   <td>{{ $row->amount }}</td>
                   <td> @if($row->status==0)
-                        CANCELLED
+                  <span style="color:red"> <b>  CANCELLED</b></span>
                     @elseif($row->status==1)
-                        BOOCKED
+                    <span style="color:green"> <b> BOOCKED</b></span>
                     @endif 
                   </td>
                   

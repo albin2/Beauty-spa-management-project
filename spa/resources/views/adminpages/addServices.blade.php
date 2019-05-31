@@ -29,6 +29,10 @@
                   <label>ABOUT SERVICE</label>
                   <textarea class="form-control av-required" av-message="Required" name="serDisc" placeholder="Discription"></textarea>
                 </div>
+                <div class="form-group">
+              <label><h4><b>PICTURE</b></h4></label>
+              <input type="file" class="form-control av-required"name="image"  placeholder="image" accept=".jpg,.jpeg,.png,.jfif">
+              </div>
                 <div style="margin-left:400px;" >
                 <button type="submit" class="btn btn-primary">ADD SERVICE</button>
               </div>

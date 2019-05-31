@@ -1,84 +1,197 @@
-@extends('layouts.employee') @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            @isset($message)
-            <div class="alert alert-info">
-                {{ $message }}
-            </div>
+<!DOCTYPE html>
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
-            @endisset
-            <div class="card mt-5" style="margin-top:1000px;">
-                <div class="content-wrapper">
-                    <form class="login100-form validate-form text-center" method="POST" action="{{ route('empleave1') }}">
-                        @csrf
-                        <h1>APPLY LEAVE</H1>
-                        <label></label>
-                        <div class="form-group">
-                            <div class="form-group">
-                                <input type="date" class="form-control" name="leavedate" placeholder="SELECT LEAVE DATE">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- CSRF Token -->
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
+    <title> {{ 'Beauty and Spa' }}</title>
+
+    <!-- Scripts -->
+
+    <!-- Fonts -->
+    <link rel="dns-prefetch" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet" type="text/css">
+
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <!-- <link rel="stylesheet" href="/resources/demos/style.css"> -->
+
+    <!-- Styles -->
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/style.css') }}" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{{ asset('logtem/vendor/bootstrap/css/bootstrap.min.css') }}">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{{ asset('logtem/fonts/font-awesome-4.7.0/css/font-awesome.min.css')}}">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{{ asset('logtem/fonts/iconic/css/material-design-iconic-font.min.css')}}">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{{ asset('logtem/vendor/animate/animate.css')}}">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{{ asset('logtem/vendor/css-hamburgers/hamburgers.min.css')}}">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{{ asset('logtem/vendor/animsition/css/animsition.min.css')}}">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{{ asset('logtem/vendor/select2/select2.min.css')}}">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{{ asset('logtem/vendor/daterangepicker/daterangepicker.css')}}">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{{ asset('logtem/css/util.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('logtem/css/main.css')}}">
+
+
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="/resources/demos/style.css">
+    <script src="{{ asset('js/jquery.js') }}"></script>
+    <script src="{{ asset('js/jquery-ui.js') }}"></script>
+</head>
+
+<body>
+    <div id="app">
+        <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
+            <div class="container">
+                <a class="navbar-brand" href="{{ url('/employeehome') }}">
+                    <img src="{{ asset('theam/images/logo-default-199x36.png')}}" alt="" width="199" height="36" />
+                </a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <!-- Left Side Of Navbar -->
+                    <ul class="navbar-nav mr-auto">
+
+                    </ul>
+
+                    <!-- Right Side Of Navbar -->
+                    <ul class="navbar-nav ml-auto">
+                        <!-- Authentication Links -->
+                        @guest
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                        </li>
+                        <li class="nav-item">
+                            @if (Route::has('register'))
+                            <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                            @endif
+                        </li>
+                        @else
+                        <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          LEAVE
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                       
+                        <a class="dropdown-item" href="{{ route('empleave') }}">{{ __('APPLY LEAVE') }}</a>
+                        <a class="dropdown-item" href="{{ route('viewempleave') }}">{{ __('VIEW LEAVES ') }}</a>
+
+                        </div>
+                      </li>
+                       
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('empviewappointment') }}">{{ __('APPOINTMENTS') }}</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          SERVICES
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        @foreach($data as $item)
+                        <a class="dropdown-item" href="{{ route('service-details', $item['id'])}}">{{$item['servname']}}</a>
+                        @endforeach
+                         
+                        </div>
+                      </li>
+
+                        <li class="nav-item dropdown">
+                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                {{ Auth::user()->email }} <span class="caret"></span>
+                            </a>
+
+                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+
+                                <a class="nav-link" href="{{ route('viewChangePassword') }}">{{ __('CHANGE PASSWORD') }}</a>
+                                <a class="nav-link" href="{{ route('proeditemp') }}">{{ __('EDIT PROFILE') }}</a>
+                                <a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                    {{ __('LOGOUT') }}
+                                </a>
+
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                    @csrf
+                                </form>
                             </div>
 
-                            <input type="text" class="form-control" placeholder="Reson for Leave" name="reson">
-                        </div>
-                        <div>
-                            <button type="submit" class="btn btn-primary">APPLY</button>
-                        </div>
-                    </form>
+                        </li>
+                        @endguest
+                    </ul>
                 </div>
             </div>
+        </nav>
 
-            <div class="card">
-                
-                <!-- @foreach($leaves as $leave)
-                    @if($leave['status']==0)
-                        Pending
-                    @elseif($leave['status']==1)
-                        Approved
-                    @elseif($leave['status']==2)
-                        Rejected
-                    @endif
-                @endforeach -->
+        <main class="">
+            <div class="limiter">
+                <div class="container-login100" style="background-image: url('{{ asset('logtem/images/bg-01.jpg')}}');">
+                    <div class="container">
+                        <div class="row justify-content-center">
+                            <div class="col-md-8">
+                                @isset($message)
+                                <div class="alert alert-info">
+                                    {{ $message }}
+                                </div>
 
+                                @endisset
+                                <div style="margin-top:20px;">
+                                    <div class="content-wrapper">
+                                        <form class="login100-form validate-form text-center" method="POST" action="{{ route('empleave1') }}">
+                                            @csrf
+                                            <span style="color:#aa9144"> <b>
+                                                    <h2>APPLY LEAVE</h1>
+                                                </b></span>
+                                            <label></label>
+                                            <div class="form-group">
+                                                <div class="form-group">
+                                                    <input type="text" name="leavedate" id="datepicker" placeholder="Pick a Date" class="form-control mt-5" required>
+                                                </div>
+
+                                                <textarea class="form-control" placeholder="Reson for Leave" name="reson" required></textarea>
+                                            </div>
+                                            <div>
+                                                <button type="submit" class="btn btn-primary">APPLY</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+
+
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
             </div>
-
-        </div>
-        <table id="example2" class="table table-bordered table-hover">
-                <thead>
-                <tr>
-                  <th>LEAVE DATE</th>
-                  <th>RESON FOR LEAVE</th>
-                  <th>STATUS OF THE LEAVE</th>
-                  <th>*</th>
-                </tr>
-                </thead>
-                <tbody>
-                  @foreach($leaves as $leave)
-                  <tr>
-                  <td>{{ $leave['leavedate'] }}</td>
-                  <td>{{ $leave['reson'] }}</td>
-                  <td> @if($leave['status']==0)
-                        Pending
-                    @elseif($leave['status']==1)
-                        Approved
-                    @elseif($leave['status']==2)
-                        Rejected
-                    @endif 
-                  </td>
-                  <td>
-                  @if($leave['status']==0)
-    
-                    <form action="{{ route('cancelLeave')}}" method="post">
-                      @csrf
-                        <input hidden name="id" value="{{ $leave['id'] }}">
-                        <button type="submit" name="cancelLeave" class="btn btn-primary" >CANCEL</button>
-                    </form>
-                    @endif 
-                  </td>
-                  </tr>
-                  </tbody>
-                  @endforeach
-        </table>
+        </main>
     </div>
-</div>
-@endsection
+
+</body>
+
+
+
+
+
+<script>
+    $(function() {
+        $("#datepicker").datepicker({
+            changeMonth: true,
+            changeYear: false,
+            minDate: 0,
+            maxDate: "30d",
+            dateFormat: "yy-mm-dd"
+        });
+    })
+</script>
+
+</html>

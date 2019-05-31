@@ -9,6 +9,6 @@ class feedback extends Model
     protected $table = 'feedback';
     
         protected $fillable = [
-            'uid','feed', 
+            'userid','productfeed','productid','feeddate'
         ];
 }

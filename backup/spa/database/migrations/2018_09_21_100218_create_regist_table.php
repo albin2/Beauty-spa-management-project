@@ -19,6 +19,9 @@ class CreateRegistTable extends Migration
             $table->string('lname');
             $table->string('contact');
             $table->string('proimg');
+            $table->string('height');
+            $table->string('weight');
+            $table->string('gender'); 
             $table->timestamps();
         });
     }

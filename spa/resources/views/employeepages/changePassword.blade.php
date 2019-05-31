@@ -12,7 +12,7 @@
 <div class="container bootstrap snippet">
     <div class="row">
         <div class="col-sm-10">
-            <h5>.</h5>
+        <span style="color:#e8eddf">   <h5>.</h5></span>
         </div>
     </div>
     <div class="row">
@@ -84,7 +84,7 @@
                      
                         <div class="form-group">
                             <div class="col-xs-12">
-                                <h5>.</h5>
+                            <span style="color:#e8eddf">   <h5>.</h5></span>
                             </div>
                         </div>
                         <div class="form-group">

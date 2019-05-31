@@ -36,7 +36,7 @@ class EmployeeController extends Controller
   
     public function leave(Request $request)
     {
-        // return $request->all();
+        //return $request->all();
         $eleave = new Empleave($request->all());
         $eleave->status = 0;
         $eleave->empid = Auth::id();
@@ -55,13 +55,21 @@ class EmployeeController extends Controller
         $data=Service::all();
         return view('employeepages.leave',['data'=>$data, 'leaves'=>$leaves]);
     }
+    public function viewempleave()
+    {
+        
+        $leaves = Empleave::where('empid', Auth::id())->get();
+        $data=Service::all();
+        return view('employeepages.viewleave',['data'=>$data, 'leaves'=>$leaves]);
+    }
     public function cancelLeave(Request $request)
     {
-        //return $request->all();
-         $leave=Empleave::where('id', $request->id);
+       // return $request->all();
+         $leave=Empleave::where('leaveid', $request->id);
         $leave->delete();
+        $leaves = Empleave::where('empid', Auth::id())->get();
         $data=Service::all();
-        return view('employeepages.leave',['data'=>$data,'leaves'=>$leave]);
+        return view('employeepages.viewleave',['data'=>$data, 'leaves'=>$leaves]);
     }
 
 

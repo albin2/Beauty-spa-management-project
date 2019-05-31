@@ -29,50 +29,57 @@
               </div>
               <div style="margin-left:100px;margin-right:100px;margin-top:40px;margin-bottom:100px;background-color: #e7e4e7;">
                 <div class="form-group">
-                  <label><h4><b>Email address</b></h4></label>
+                  <label><h4><b>EMAIL ADDRESS</b></h4></label>
                   <input type="email" class="form-control  av-email" av-message="Invalid email address" name="email" placeholder="Enter email" required>
                 </div>
                 <div class="form-group">
-                  <label><h4><b>First Name</b></h4></label>
+                  <label><h4><b>FIRST NAME</b></h4></label>
                   <input type="text" class="av-name form-control" av-message= "space and . is not allowed" name="fname" placeholder="Fname" required>
                 </div>
                 <div class="form-group">
-                  <label><h4><b>Last Name</b></h4></label>
+                  <label><h4><b>LAST NAME</b></h4></label>
                   <input type="text" class="av-name form-control" av-message= "space and . is not allowed" name="lname" placeholder="Lname">
                 </div>
+                
                 <div class="form-group">
-                  <label><h4><b>Date of Birth</b></h4></label>
-                  <input type="date" class="form-control av-required" name="dob" placeholder="DOB">
-                </div>
-
+            <label><h4><b>GENDER</b></h4></label>
+						<select name="gender" class="form-control">
+                        <option value="volvo">MALE</option>
+                        <option value="saab">FEMALE</option>
+                        </select>
+          </div>
                 <div class="form-group">
-                  <label><h4><b>Qualification</b></h4></label>
-                  <input type="text" class="form-control" av-message= "space and . is not allowed" name="qualification" placeholder="Qualification">
-                </div>
-                <div class="form-group">
-                  <label><h4><b>Experience</b></h4></label>
-                  <input type="number" class="form-control" av-message= "space and . is not allowed" name="experience" placeholder="Experience">
+                  <label><h4><b>CITY</b></h4></label>
+                  <input type="text" class="form-control av-required" av-message="please Enter city name" name="city"  placeholder="city">
                 </div>
                 <div class="form-group">
-                  <label><h4><b>Biogrphy</b></h4></label>
-                  <textarea class="form-control" av-message= "space and . is not allowed" name="bio" placeholder="Biography"></textarea>
+                  <label><h4><b>QUALIFICATION</b></h4></label>
+                  <input type="text" class="form-control av-required" av-message="please Enter Qualification" name="qualification" placeholder="Qualification">
                 </div>
-
+                
                 <div class="form-group">
-                  <label><h4><b>city</b></h4></label>
-                  <input type="text" class="form-control"name="city"  placeholder="city">
+                  <label><h4><b>BIOGRAPHY</b></h4></label>
+                  <textarea class="form-control av-required" av-message="required" name="bio" placeholder="Biography"></textarea>
                 </div>
-            
-            <div class="form-group">
-            <label><h4><b>Gender</b></h4></label>
-						<select name="gender"class=" av-required">
-                        <option value="volvo">male</option>
-                        <option value="saab">female</option>
+    
+                <div><label><h4><b>EXPERIENCE</b></h4></label>
+						<select name="experience" class="form-control ">
+                        <option value="0">0-1</option>
+                        <option value="1">1-2</option>
+                        <option value="2">2-3</option>
+                        <option value="3">3-4</option>
+                        <option value="4">4-5</option>
+                        <option value="5">5-6</option>
+                        <option value="6">6-7</option>
+                        <option value="7">7-8</option> 
+                        <option value="8">8-9</option>
+                        <option value="9">9-10</option>
+                        <option value="10">10+</option>
                         </select>
           </div>
           <div class="form-group">
-            <label><h4><b>Employee Service</b></h4></label>
-						<select name="Role" class="av-required">
+            <label><h4><b>EMPLOYEE SERVICE</b></h4></label>
+						<select name="Role" class="form-control">
                 @foreach($service1 as $emp)
                   <option value="{{ $emp['id'] }}">{{ $emp['servname'] }}</option> 
                 @endforeach
@@ -81,15 +88,15 @@
               </select>
           </div>
           <div class="form-group">
-                  <label><h4><b>Contact number</b></h4></label>
+                  <label><h4><b>CONTACT NUMBER</b></h4></label>
                   <input type="tel" class="form-control av-mobile" av-message="Invalid phone number" name="number" placeholder="contact number" required>
                 </div>
                 <div class="form-group">
-                  <label><h4><b>Image</b></h4></label>
-                  <input type="file" class="form-control "  name="image" accept=".jpg,.jpeg,.png,.jfif" required>
+                  <label><h4><b>IMAGE</b></h4></label>
+                  <input type="file" class="form-control av-required" av-message="required"  name="image" accept=".jpg,.jpeg,.png,.jfif" required>
                 </div>
                 <div style="margin-left:400px;">
-                <button type="submit" class="btn btn-primary" style="background-color: green;">Submit</button>
+                <button type="submit" class="btn btn-primary" style="background-color: green;">ADD EMPLOYEE</button>
               </div>
                 </div>
             <!-- /.box-body -->

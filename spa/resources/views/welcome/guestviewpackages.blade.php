@@ -2,20 +2,10 @@
 
 @section('content')
 
-            <div class="page-title">
-              <div class="page-title-content">
-                <div class="shell">
-                  <p class="page-title-header">PACKAGES</p>
-                </div>
-              </div>
-            </div>
-            <section class="section-xl bg-periglacial-blue text-center">
-              <div class="shell">
-                <h2>Our Packages</h2>
-                <div class="p text-width-medium">
-                  <p class="big">Beauty and Spa offers world-class men's haircuts, beard grooming, and hot razor shaves. Here are just some of the services we are known for.</p>
-                </div>
-                <!-- <article class="box-service box-service-dark box-service-reverse">
+<section class="section-xl bg-periglacial-blue text-center">
+  <div class="shell">
+    <h2>Our Packages</h2>
+    <!-- <article class="box-service box-service-dark box-service-reverse">
                   <div class="box-service-left"><img class="box-service-image" src="/theam/images/services-1-500x490.png" alt="" width="500" height="490"/>
                   </div>
                   <div class="box-service-body">
@@ -29,50 +19,38 @@
                     </div><a class="btn btn-sm box-service-control" href="step-1.html">Book Now</a>
                   </div>
                 </article> -->
-                @foreach($pack as $row)
-                <article class="box-service">
-                  <div class="box-service-left"><img class="box-service-image" src="{{ asset('storage/'.$row->image) }}" alt="" width="500" height="490"/>
-                  </div>
-                  <div class="box-service-body">
-                    <div class="box-service-header">
-                      <p class="box-service-title"> {{ $row->packname }}</p>
-                      <p class="box-service-price"><small>RS:</small> {{ $row->price }}<small>00</small>
-                      </p>
-                    </div>
-                    <div class="box-service-text">
-                      <p><b>Package For:</b> {{ $row->packfor }}</p>
-                      <p> {{ $row->packdecr }}</p>
-                      <p><b>Package Specialities:</b> {{ $row->benafits }}</p>
-                      
-                    </div>
-                    <a class="btn btn-circle btn-primary" href="/login">Book Now</a>
-                  </div>
-                </article>
-                @endforeach
-              </div>
-</div>
+    @foreach($pack as $row)
+    <article class="box-service">
+      <div class="box-service-left"><img class="box-service-image" src="{{ asset('storage/'.$row->image) }}" alt="" width="500" height="490" />
+      </div>
+      <div class="box-service-body">
+        <div class="box-service-header">
+          <p class="box-service-title"> {{ $row->packname }}</p>
+          <p class="box-service-price"><small>RS:</small> {{ $row->price }}<small></small>
+          </p>
+        </div>
+        <div class="box-service-text">
+          <span style="color:#c4a33a">
+            <p><b>Package For:</b>
+          </span><span style="color:black"> {{ $row->packfor }}</p></span>
+          <span style="color:black">
+            <p> {{ $row->packdecr }}</p>
+          </span>
+          <span style="color:#c4a33a">
+            <p><b>Package specialities:
+          </span></b><span style="color:black"> {{ $row->benafits }}</p></span>
 
-            </section>
+        </div>
+        <a class="btn btn-circle btn-primary" href="/login">Book Now</a>
+      </div>
+    </article>
+    @endforeach
+  </div>
+  </div>
 
-
-           
-
-            @endsection
-
-
-
+</section>
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-
+@endsection

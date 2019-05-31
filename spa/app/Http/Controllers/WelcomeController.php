@@ -1,10 +1,11 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Service;
 use App\Package;
+use App\feedback;
 use App\Product;
 use App\productCategeory;
 use App\EmployeeDetails;
@@ -46,13 +47,27 @@ class WelcomeController extends Controller
         $cat = productCategeory::all();
         return view('welcome.guestviewproduct', ['data' => $data, 'cat' => $cat]);
     }
+    public function viewcatProduct($id)
+    {
+        $data = Product::where('categeory', $id)->where('status', '=', '1')->get();
+        $cat = productCategeory::all();
+        return view('welcome.guestviewproduct', ['data' => $data, 'cat' => $cat]);
+    }
 
     //single view product
     public function viewsingleProducts($id)
     {
         $data = Product::where('id', $id)->get();
         $cat = productCategeory::all();
-        return view('welcome.guestsingleviewproduct', ['data' => $data, 'cat' => $cat]);
+        $totalcount = feedback::where('productid',$id)->count();
+
+        $totalstars = feedback::where('productid',$id)->avg('stars');
+         $avgstrs= round($totalstars);
+        $review= DB::table('feedback')
+        ->join('regist', 'regist.user_id', '=', 'feedback.userid')
+        ->join('products', 'products.id', '=', 'feedback.productid')->where('productid', '=', $id)
+        ->get();
+        return view('welcome.guestsingleviewproduct', ['data' => $data, 'cat' => $cat,'review'=>$review,'avgstars'=>$avgstrs,'totalcount'=>$totalcount]);
     }
     public function Aboutus()
     {

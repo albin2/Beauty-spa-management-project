@@ -18,24 +18,25 @@
 
            <div class="shop-panel-select"><span class="shop-panel-select-title"></span></div>
            
-           <div class="shop-panel-select"><span class="shop-panel-select-title">choose Category</span>
+           <div class="shop-panel-select"><span class="shop-panel-select-title" style=padding-left:100px;><span style="color:red">Choose category</span></span>
                <li class="nav-item dropdown">
            
-           <a class="nav-link dropdown-toggle" href="{{ route('viewUserproduct')}}" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                          Select
+           <a class="nav-link dropdown-toggle" href="{{ route('viewguestsproduct')}}" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+           <span style="color:black"> <----Select----></span>
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
 
 
                         @foreach($cat as $ser)
                         
-                        <a class="dropdown-item" href="{{ route('product-cat-user',$ser['id'])}}">{{ $ser['categeory']}}</a><br>
+                        <a class="dropdown-item" href="{{ route('product-cat-guest',$ser['id'])}}">{{ $ser['categeory']}}</a><br>
                         @endforeach
                         </div>
                       </li>
                       
               </div>  
   
+
               <p class="page-cart-right"><b><a class="btn btn-xs btn-circle btn-primary" href="/login"> My Cart</a></b></p>
             <section class="section-md bg-periglacial-blue text-center">
               <div class="shell">
@@ -44,7 +45,7 @@
                 @foreach($data as $row)
                
                   <div class="cell-sm-6 cell-md-4">
-                    <article class="product"><a class="product-image" ><img src="{{ asset('storage/'.$row->image) }}" alt="" width="164" height="168"/></a>
+                    <article class="product"><a href="{{ route('guestsingleviewproduct', $row->id) }}" class="product-image" ><img src="{{ asset('storage/'.$row->image) }}" alt="" width="164" height="168"/></a>
                       <p class="product-title"><a href="{{ route('guestsingleviewproduct', $row->id) }}">{{ $row->productname }}</a></p>
                       <p class="product-price">RS: {{ $row->price }}
                       @if ($row->stock>=1)

@@ -34,8 +34,8 @@
                 <tr><th>EMPLOYEE NAME</th>
                   <th>LEAVE DATE</th>
                   <th>RESON FOR LEAVE</th>
-                  <th>APPROVE</th>
-                  <th>REJECT</th>
+                  <th>CURRENT STATUS</th>
+                  <th>DETAILS</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -45,25 +45,21 @@
                   <td>{{ $leave->leavedate }}</td>
                   <td>{{ $leave->reson}}</td>
                   <td> @if($leave->status==0)
-                  <form action="{{ route('aprleave')}}" method="post">
-                      @csrf
-                        <input hidden name="id" value="{{ $leave->id }}">
-                        <button type="submit" name="aprleave" class="btn btn-primary" >APPROVE</button>
-                    </form>
-                    @elseif($leave->status==1)
-                        Approved
+                  <span style="color:blue"> <b>PENDING REQUEST</b><span>
+                    @elseif($leave->status==2)
+                    <span style="color:green">   <b> APPROVED</b></span>
+                    @else
+                    <span style="color:red">   </b>  REJECTED</b></span>
                     @endif 
                   </td>
                   
-                  <td> @if($leave->status==0)
-                  <form action="{{ route('rejleave')}}" method="post">
+                  <td>
+                  <form action="{{ route('viewleavedetailed')}}" method="post">
                       @csrf
-                        <input hidden name="id" value="{{ $leave->id}}">
-                        <button type="submit" name="rejleave" class="btn btn-primary" >REJECT</button>
+                      <input hidden name="leavedate" value="{{ $leave->leavedate}}">
+                        <input hidden name="leaveid" value="{{ $leave->leaveid}}">
+                        <button type="submit" name="leavedetailed" class="btn btn-primary" >DETAILS</button>
                     </form>
-                    @elseif($leave->status==2)
-                        Rejected
-                    @endif 
                   </td>
                   </tr>
                   @endforeach

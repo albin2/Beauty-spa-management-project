@@ -21,9 +21,7 @@
                     <li> 
                     <a href="{{ route('viewguestsproduct') }}">Shop</a>
                     </li>
-                    <li>
-                    <a href='/aboutus'>Contact</a>
-                    </li>
+                   
                   </ul>
                   <div class="rd-navbar-nav-footer">
                     <ul class="inline-list inline-list-md">

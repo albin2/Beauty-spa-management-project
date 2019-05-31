@@ -71,6 +71,8 @@
                   <th>EMAIL</th>
                   <th>CITY</th>
                   <th>CONTACT NUMBER</th>
+                  <th>*</th> 
+                  <th>*</th>
                   
   </tr>
   @foreach($data as $row)

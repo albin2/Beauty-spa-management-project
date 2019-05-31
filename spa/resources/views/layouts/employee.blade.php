@@ -16,7 +16,10 @@
     <link rel="dns-prefetch" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet" type="text/css">
     
-
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <!-- <link rel="stylesheet" href="/resources/demos/style.css"> -->
+    <script src="{{ asset('js/jquery.js') }}"></script>
+    <script src="{{ asset('js/jquery-ui.js') }}"></script>
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/style.css') }}" rel="stylesheet">
@@ -69,12 +72,19 @@
                                 @endif
                             </li>
                         @else
-                        <li class="nav-item">
-                        <a class="nav-link" href="{{ route('empleave') }}">{{ __('APPLY LEAVE') }}</a>
-                        </li>
-                        <li class="nav-item">
-                        <a class="nav-link" href="{{ route('empviewFeedback') }}">{{ __('VIEW FEEDBACK') }}</a>
-                        </li>
+                        <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          LEAVE
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                       
+                        <a class="dropdown-item" href="{{ route('empleave') }}">{{ __('APPLY LEAVE') }}</a>
+                        <a class="dropdown-item" href="{{ route('viewempleave') }}">{{ __('VIEW LEAVES ') }}</a>
+
+                        </div>
+                      </li>
+                        
+                       
                         <li class="nav-item">
                         <a class="nav-link" href="{{ route('empviewappointment') }}">{{ __('APPOINTMENTS') }}</a>
                         </li>
@@ -128,3 +138,4 @@
 
 </body>
 </html>
+

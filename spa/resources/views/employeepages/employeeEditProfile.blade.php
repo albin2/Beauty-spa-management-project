@@ -13,9 +13,9 @@
 <div class="container bootstrap snippet">
     <div class="row">
         <div class="col-sm-10">
-            <h5>.</h5>
-            <h5>.</h5>
-            <h5>.</h5>
+        <span style="color:#e8eddf">   <h5>.</h5></span>
+        <span style="color:#e8eddf">   <h5>.</h5></span>
+        <span style="color:#e8eddf">   <h5>.</h5></span>
         </div>
     </div>
     <div class="row">

@@ -15,7 +15,7 @@
           <img src="{{ asset('admint/dist/img/user2-160x160.jpg') }}" class="img-circle" alt="User Image">
         </div>
         <div class="pull-left info">
-          <p>ADMIN</p>
+          <p>ADMIN BEAUTY AND SPA</p>
           <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
         </div>
       </div>
@@ -51,7 +51,7 @@
           </a>
           <ul class="treeview-menu">
             <li><a href="{{ route('viewEmployee') }}"><i class="fa fa-circle-o"></i> Add Employee</a></li>
-            <li><a href="{{ route('viewEmpRole') }}"><i class="fa fa-circle-o"></i> Add Employee Role</a></li>
+            <!-- <li><a href="{{ route('viewEmpRole') }}"><i class="fa fa-circle-o"></i> Add Employee Role</a></li> -->
             <li><a href="{{ route('listemployees') }}"><i class="fa fa-circle-o"></i> view Employees</a></li>
             <li><a href="{{ route('listempleaves') }}"><i class="fa fa-circle-o"></i> view Employee leave</a></li>
           </ul>
@@ -66,6 +66,8 @@
           <ul class="treeview-menu">
 
           <li><a href="{{ route('listusers') }}"><i class="fa fa-circle-o"></i> view users</a></li>
+          <li><a href="{{ route('listblockedusers') }}"><i class="fa fa-circle-o"></i> view Blocked users</a></li>
+
 
           </ul>
         </li>
@@ -96,6 +98,27 @@
           
           </ul>
         </li>
+
+        <li class="treeview">
+          <a href="#">
+            <i class="fa fa-table"></i> <span>MANAGE PRODUCTS</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+          <li><a href="{{ route('addProductCategeory') }}"><i class="fa fa-circle-o"></i> Add Product Categeory</a></li>
+          <li><a href="{{ route('viewProduct') }}"><i class="fa fa-circle-o"></i> Add Product Details</a></li>
+          <li><a href="{{ route('listproducts') }}"><i class="fa fa-circle-o"></i> View Product Details</a></li>
+
+          <li><a href="{{ route('updateproductss') }}"><i class="fa fa-circle-o"></i>Update product Stock</a></li>
+          <li><a href="{{ route('viewproductbookings') }}"><i class="fa fa-circle-o"></i> View Product Bookings</a></li>
+
+
+          </ul>
+        </li>
+
+
         <li class="treeview">
           <a href="#">
             <i class="fa fa-table"></i> <span>MANAGE FEEDBACKS</span>
@@ -109,6 +132,8 @@
           </ul>
         </li>
         </li>
+
+
         <li class="treeview">
           <a href="#">
             <i class="fa fa-table"></i> <span>MANAGE APPOINTMENTS</span>
@@ -117,10 +142,14 @@
             </span>
           </a>
           <ul class="treeview-menu">
-          <li><a href="{{ route('viewappoi') }}"><i class="fa fa-circle-o"></i> view appointments</a></li>
+          <li><a href="{{ route('viewappoi') }}"><i class="fa fa-circle-o"></i>  All appointments</a></li>
+          <li><a href="{{ route('todayviewappointment') }}"><i class="fa fa-circle-o"></i> Today's appointments</a></li>
+          
 
           </ul>
         </li>
+
+       
     </section>
     <!-- /.sidebar -->
   </aside>

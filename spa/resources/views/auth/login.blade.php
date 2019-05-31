@@ -89,9 +89,7 @@
 					<ul class="list-login">
 						<li class="switch-agileits">
 							<label class="switch">
-								<input type="checkbox">
-								<span class="slider round"></span>
-								keep Logged in
+								
 							</label>
 						</li>
 						<li>

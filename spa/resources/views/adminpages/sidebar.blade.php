@@ -132,6 +132,8 @@
           </ul>
         </li>
         </li>
+
+
         <li class="treeview">
           <a href="#">
             <i class="fa fa-table"></i> <span>MANAGE APPOINTMENTS</span>
@@ -140,10 +142,14 @@
             </span>
           </a>
           <ul class="treeview-menu">
-          <li><a href="{{ route('viewappoi') }}"><i class="fa fa-circle-o"></i> view appointments</a></li>
+          <li><a href="{{ route('viewappoi') }}"><i class="fa fa-circle-o"></i>  All appointments</a></li>
+          <li><a href="{{ route('todayviewappointment') }}"><i class="fa fa-circle-o"></i> Today's appointments</a></li>
+          
 
           </ul>
         </li>
+
+       
     </section>
     <!-- /.sidebar -->
   </aside>
